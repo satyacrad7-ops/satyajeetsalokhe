@@ -16,7 +16,7 @@
   --accent: #c8b89a;
   --p: clamp(1.5rem, 6vw, 5rem);
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 60px; }
 body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 a { text-decoration: none; }
 
@@ -128,7 +128,7 @@ body.de .en { display: none !important; }
 .proj-header { margin-bottom: 2.5rem; }
 .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(10,10,10,.12); width: 100%; }
 .proj-card {
-  background: var(--white); padding: 2.4rem 1.8rem;
+  background: var(--white); color: var(--black); padding: 2.4rem 1.8rem;
   transition: background .38s, color .38s; cursor: default;
 }
 .proj-card.clickable { cursor: pointer; }
@@ -301,14 +301,14 @@ body.de .en { display: none !important; }
 <!-- NAV -->
 <nav id="nav">
   <div id="nav-left">
-    <a class="logo" href="#" onclick="scrollTo('home');return false;">SS</a>
+    <a class="logo" href="#" onclick="goTo('home');return false;">SS</a>
     <button class="lang" id="langBtn" onclick="toggleLang()">DE</button>
   </div>
   <ul id="nav-links">
-    <li><a href="#" data-s="about" onclick="scrollTo('about');return false;"><span class="en">About</span><span class="de">Über mich</span></a></li>
-    <li><a href="#" data-s="projects" onclick="scrollTo('projects');return false;"><span class="en">Projects</span><span class="de">Projekte</span></a></li>
-    <li><a href="#" data-s="skills" onclick="scrollTo('skills');return false;"><span class="en">Skills</span><span class="de">Kenntnisse</span></a></li>
-    <li><a href="#" data-s="contact" onclick="scrollTo('contact');return false;"><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
+    <li><a href="#" data-s="about" onclick="goTo('about');return false;"><span class="en">About</span><span class="de">Über mich</span></a></li>
+    <li><a href="#" data-s="projects" onclick="goTo('projects');return false;"><span class="en">Projects</span><span class="de">Projekte</span></a></li>
+    <li><a href="#" data-s="skills" onclick="goTo('skills');return false;"><span class="en">Skills</span><span class="de">Kenntnisse</span></a></li>
+    <li><a href="#" data-s="contact" onclick="goTo('contact');return false;"><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
   </ul>
   <button id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
@@ -336,7 +336,7 @@ body.de .en { display: none !important; }
     <span class="en">M.Eng student in Technology &amp; Innovation Management. Building products at the intersection of strategy, design, and engineering.</span>
     <span class="de">M.Eng-Student in Technologie- und Innovationsmanagement. Produkte an der Schnittstelle von Strategie, Design und Technik.</span>
   </p>
-  <a class="cta r d3" href="#" onclick="scrollTo('about');return false;">
+  <a class="cta r d3" href="#" onclick="goTo('about');return false;">
     <span class="en">Explore my work</span>
     <span class="de">Meine Arbeit entdecken</span>
   </a>
@@ -476,7 +476,7 @@ body.de .en { display: none !important; }
   <div class="contact-cols">
     <div class="contact-block">
       <h3 class="r"><span class="en">Get in touch</span><span class="de">Kontakt aufnehmen</span></h3>
-      <a class="clink r d1" href="mailto:satyajeetsalokhe57@gmail.com">satyajeetsalokhe57<br>@gmail.com</a>
+      <a class="clink r d1" href="/cdn-cgi/l/email-protection#fb889a8f829a919e9e8f889a979490939ececcbb9c969a9297d5989496">satyajeetsalokhe57<br>@gmail.com</a>
       <p class="cdetail r d2"><span class="en">Open to internships, collaborations<br>&amp; new opportunities.</span><span class="de">Offen für Praktika, Kooperationen<br>&amp; neue Möglichkeiten.</span></p>
     </div>
     <div class="contact-block">
@@ -570,7 +570,7 @@ body.de .en { display: none !important; }
 
     <div class="ov-footer">
       <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
-      <a class="back-btn" href="#" onclick="closeOv();scrollTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
     </div>
   </div>
 </div>
@@ -641,7 +641,7 @@ body.de .en { display: none !important; }
 
     <div class="ov-footer">
       <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
-      <a class="back-btn" href="#" onclick="closeOv();scrollTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
     </div>
   </div>
 </div>
@@ -736,20 +736,24 @@ body.de .en { display: none !important; }
 
     <div class="ov-footer">
       <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
-      <a class="back-btn" href="#" onclick="closeOv();scrollTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
     </div>
   </div>
 </div>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── CORE ── */
 const SECTIONS = ['home','about','projects','skills','contact'];
 let lang = 'en', activeOv = null;
 
-function scrollTo(id) {
+function goTo(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  if (el) {
+    const navH = 60;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
   setNav(id);
 }
 
@@ -777,7 +781,7 @@ function mobileGo(id) {
   document.getElementById('burger').classList.remove('open');
   document.getElementById('mobile-menu').classList.remove('open');
   document.body.style.overflow = '';
-  setTimeout(() => scrollTo(id), 60);
+  setTimeout(() => goTo(id), 60);
   return false;
 }
 
@@ -837,8 +841,23 @@ window.addEventListener('scroll', mobileReveal, { passive: true });
 setTimeout(mobileReveal, 100);
 setTimeout(mobileReveal, 500);
 
-// Home always visible immediately
-document.querySelectorAll('#home .r').forEach(el => el.classList.add('show'));
+/* ── SCROLL-BASED NAV ACTIVE STATE ── */
+// Updates nav highlight as user scrolls (especially needed with sticky cards)
+function updateNavOnScroll() {
+  const navH = 60;
+  let current = 'home';
+  SECTIONS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= navH + 10) current = id;
+    }
+  });
+  setNav(current);
+}
+window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+updateNavOnScroll();
+
 </script>
 </body>
 </html>
