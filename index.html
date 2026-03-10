@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Satyajeet Salokhe</title>
+<title>Satyajeet Salokhe — Product · Project · Innovation</title>
+<meta name="description" content="M.Eng student in Technology & Innovation Management. Building products at the intersection of strategy, design, and engineering.">
+<meta property="og:title" content="Satyajeet Salokhe — Product · Project · Innovation">
+<meta property="og:description" content="M.Eng student in Technology & Innovation Management. Portfolio of product strategy, innovation, and engineering projects.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://satyajeetsalokhe.github.io/og-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Satyajeet Salokhe">
+<meta name="twitter:description" content="Product · Project · Innovation">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 
@@ -43,6 +51,27 @@ body.de .en { display: none !important; }
 #nav-links { display: flex; gap: 2.2rem; list-style: none; }
 #nav-links a { font-size: .6rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); transition: color .2s; }
 #nav-links a:hover, #nav-links a.on { color: var(--white); }
+#nav-links a.on::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  margin-top: 2px;
+  transform-origin: left;
+  animation: navUnderline .3s ease forwards;
+}
+@keyframes navUnderline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.cv-btn {
+  font-size: .55rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(200,184,154,.3); padding: .28rem .75rem;
+  transition: background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.cv-btn:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
 #burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 #burger span { display: block; width: 22px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
 #burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -126,7 +155,7 @@ body.de .en { display: none !important; }
    PROJECTS CARD
 ══════════════════════════════════════ */
 .proj-header { margin-bottom: 2.5rem; }
-.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(10,10,10,.12); width: 100%; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(10,10,10,.12); width: 100%; }
 .proj-card {
   background: var(--white); color: var(--black); padding: 2.4rem 1.8rem;
   transition: background .38s, color .38s; cursor: default;
@@ -422,6 +451,7 @@ body.de .en { display: none !important; }
     <li><a href="#" data-s="projects" onclick="goTo('projects');return false;"><span class="en">Projects</span><span class="de">Projekte</span></a></li>
     <li><a href="#" data-s="skills" onclick="goTo('skills');return false;"><span class="en">Skills</span><span class="de">Kenntnisse</span></a></li>
     <li><a href="#" data-s="contact" onclick="goTo('contact');return false;"><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
+    <li><a class="cv-btn" href="/cv-satyajeet-salokhe.pdf" download><span class="en">CV ↓</span><span class="de">Lebenslauf ↓</span></a></li>
   </ul>
   <button id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
@@ -547,6 +577,19 @@ body.de .en { display: none !important; }
         <span class="ptag">YOLOv11</span>
         <span class="ptag">Computer Vision</span>
         <span class="ptag">Industry 4.0</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 004 -->
+    <div class="proj-card clickable" onclick="openOv('ideaeng')">
+      <p class="pnum">004</p>
+      <h3 class="ptitle"><span class="en">Idea Engineering — Elbfabrik Collaboration Formats</span><span class="de">Idea Engineering — Kollaborationsformate Elbfabrik</span></h3>
+      <p class="pdesc"><span class="en">Systematic innovation management study: applied 5 Whys root cause analysis, brainstorming, and multi-criteria Benefit Analysis to design 5 collaboration formats for Fraunhofer IFF's Elbfabrik hub.</span><span class="de">Systematische Innovationsmanagementstudie: 5-Warum-Analyse, Brainstorming und Nutzwertanalyse zur Entwicklung von 5 Kollaborationsformaten für das Fraunhofer IFF Elbfabrik.</span></p>
+      <div class="ptags">
+        <span class="ptag"><span class="en">Innovation Strategy</span><span class="de">Innovationsstrategie</span></span>
+        <span class="ptag"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+        <span class="ptag"><span class="en">5 Whys</span><span class="de">5-Warum-Methode</span></span>
       </div>
       <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
     </div>
@@ -845,6 +888,110 @@ body.de .en { display: none !important; }
       <div><p class="flbl"><span class="en">Dataset Expansion</span><span class="de">Datensatzerweiterung</span></p><p class="ftxt"><span class="en">Broader scenarios and more drone types to improve generalization.</span><span class="de">Breitere Szenarien und mehr Drohnentypen zur Verbesserung der Generalisierung.</span></p></div>
       <div><p class="flbl"><span class="en">Sensor Fusion</span><span class="de">Sensorfusion</span></p><p class="ftxt"><span class="en">Combining camera data with LiDAR or radar for improved recall in occluded conditions.</span><span class="de">Kombination von Kameradaten mit LiDAR oder Radar für besseren Recall bei Verdeckung.</span></p></div>
       <div><p class="flbl"><span class="en">Real-world Deployment</span><span class="de">Realer Einsatz</span></p><p class="ftxt"><span class="en">Testing in live operational environments with actual drone systems.</span><span class="de">Tests in realen Umgebungen mit echten Drohnensystemen.</span></p></div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 4 — IDEA ENGINEERING / PROJECT 004
+════════════════════════════════════ -->
+<div class="ov" id="ov-ideaeng">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Innovation Management · HS Harz · Group 5</span><span class="de">Innovationsmanagement · HS Harz · Gruppe 5</span></p>
+    <h1 class="ov-title"><span class="en">Idea Engineering —<br><em>Elbfabrik Collaboration Formats</em></span><span class="de">Idea Engineering —<br><em>Elbfabrik Kollaborationsformate</em></span></h1>
+    <p class="ov-lede"><span class="en">A systematic innovation management case study applying structured problem analysis (5 Whys), divergent idea generation (Brainstorming), and objective evaluation (Benefit Analysis) to design five collaboration formats for Fraunhofer IFF's Elbfabrik innovation hub in Magdeburg.</span><span class="de">Eine systematische Innovationsmanagementstudie mit strukturierter Problemanalyse (5-Warum), divergenter Ideengenerierung (Brainstorming) und objektiver Bewertung (Nutzwertanalyse) zur Entwicklung von fünf Kollaborationsformaten für das Fraunhofer IFF Elbfabrik.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Problem Analysis — 5 Whys</span><span class="de">Problemanalyse — 5-Warum-Methode</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Core Problem Identified</span><span class="de">Kernproblem identifiziert</span></p>
+          <p class="qtext"><span class="en">Lack of effective cross-disciplinary collaboration within Elbfabrik's innovation ecosystem — traced through five layers to its root cause: no structured formats enabling knowledge exchange across academia, industry, and startups.</span><span class="de">Mangelnde fachübergreifende Zusammenarbeit im Innovationsökosystem des Elbfabrik — auf die Wurzelursache zurückgeführt: keine strukturierten Formate für den Wissensaustausch.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Root Cause Chain</span><span class="de">Ursachenkette</span></p>
+          <p class="qtext"><span class="en">Seamless communication gaps → limited shared goals → barriers to knowledge exchange → skill mismatches → no structured collaboration formats</span><span class="de">Kommunikationslücken → fehlende gemeinsame Ziele → Barrieren beim Wissensaustausch → Kompetenzlücken → keine strukturierten Formate</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Methodology Stack</span><span class="de">Methodenstack</span></p>
+        <ul class="blist">
+          <li><span class="en">5 Whys — structured root cause identification beyond surface symptoms</span><span class="de">5-Warum-Methode — strukturierte Ursachenanalyse jenseits von Oberflächensymptomen</span></li>
+          <li><span class="en">Brainstorming — open, fast-paced idea generation for high volume of diverse formats</span><span class="de">Brainstorming — offene, schnelle Ideengenerierung für vielfältige Formate</span></li>
+          <li><span class="en">Benefit Analysis — multi-criteria scoring across Feasibility, Scalability, Impact, and Cost</span><span class="de">Nutzwertanalyse — Mehrkriterien-Bewertung nach Machbarkeit, Skalierbarkeit, Wirkung und Kosten</span></li>
+          <li><span class="en">Group 5 — interdisciplinary collaboration between three M.Eng students</span><span class="de">Gruppe 5 — interdisziplinäre Zusammenarbeit zwischen drei M.Eng-Studierenden</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Benefit Analysis Results — Ranked Formats</span><span class="de">Ergebnisse der Nutzwertanalyse — Bewertete Formate</span></p>
+    <div class="step-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:2.5rem">
+      <div class="step-box">
+        <p class="step-lbl">01 · 22/25</p>
+        <p class="qtext" style="font-size:.72rem;color:var(--accent);font-weight:300">Innovation Boot Camp</p>
+        <p class="step-txt">Intensive 1–2 week hackathon-style programme. Highest ranked.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">02 · 20/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Open House Exhibition</p>
+        <p class="step-txt">Co-creation fair modelled on Hannover Messe.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">03 · 20/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Startup Partnership</p>
+        <p class="step-txt">Structured startup co-development pathway.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">04 · 19/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.45);font-weight:300">Exchange Program</p>
+        <p class="step-txt">Cross-disciplinary collaboration initiative.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">05 · 18/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.45);font-weight:300">Virtual Labs</p>
+        <p class="step-txt">Online remote collaboration platform.</p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Takeaway</span><span class="de">Kernaussage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Innovation Boot Camp — #1 Recommended</span><span class="de">Innovation Boot Camp — Empfehlung #1</span></p>
+          <p class="qtext"><span class="en">The Boot Camp scored highest (22/25) due to its concentrated structure, cross-disciplinary intensity, and ability to directly address all identified root causes simultaneously. Partners: universities (credit modules), startups (infrastructure access), Elbfabrik (talent pipeline + reputation).</span><span class="de">Das Boot Camp erzielte die höchste Punktzahl (22/25) durch seine konzentrierte Struktur und die Fähigkeit, alle identifizierten Ursachen gleichzeitig zu adressieren.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables</span><span class="de">Liefergegenstände</span></p>
+        <ul class="blist">
+          <li><span class="en">Root cause analysis via 5 Whys — documented problem chain</span><span class="de">Ursachenanalyse via 5-Warum-Methode — dokumentierte Problemkette</span></li>
+          <li><span class="en">5 collaboration format proposals with execution strategies</span><span class="de">5 Kollaborationsformate mit Ausführungsstrategien</span></li>
+          <li><span class="en">Multi-criteria Benefit Analysis scoring table (4 criteria, 5 formats)</span><span class="de">Nutzwertanalyse-Tabelle (4 Kriterien, 5 Formate)</span></li>
+          <li><span class="en">Group presentation deck — Hochschule Harz, November 2024</span><span class="de">Gruppenprä­sentations­deck — Hochschule Harz, November 2024</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Idea Engineering</span><span class="de">Idea Engineering</span></span>
+            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Innovation Management</span><span class="de">Innovationsmanagement</span></span>
+            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="ov-footer">
