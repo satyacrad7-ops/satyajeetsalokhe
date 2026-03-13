@@ -12,21 +12,25 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Satyajeet Salokhe">
 <meta name="twitter:description" content="Product · Project · Innovation">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --black: #0a0a0a;
-  --white: #f5f4f0;
-  --grey: #777;
-  --accent: #c8b89a;
+  --black: #080808;
+  --white: #f0efec;
+  --grey: #555;
+  --accent: #d8d8d8;
   --p: clamp(1.5rem, 6vw, 5rem);
 }
 html { scroll-behavior: smooth; scroll-padding-top: 60px; }
-body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+body { font-family: 'Syne', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 a { text-decoration: none; }
+::selection { background: rgba(255,255,255,.18); color: #fff; }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); }
 
 /* ─── LANGUAGE ─── */
 body:not(.de) .de { display: none !important; }
@@ -40,23 +44,24 @@ body.de .en { display: none !important; }
   height: 60px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--p);
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.04);
 }
 #nav-left { display: flex; align-items: center; gap: 1.4rem; }
-.logo { font-size: .68rem; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: var(--white); }
-.lang { font-size: .55rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: none; border: 1px solid rgba(255,255,255,.28); padding: .25rem .6rem; cursor: pointer; transition: border-color .2s, color .2s; }
-.lang:hover { border-color: var(--accent); color: var(--accent); }
+.logo { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; font-weight: 400; letter-spacing: .1em; color: var(--white); }
+.lang { font-size: .54rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: none; border: 1px solid rgba(255,255,255,.2); padding: .25rem .6rem; cursor: pointer; transition: border-color .2s, color .2s; }
+.lang:hover { border-color: var(--white); color: var(--white); }
 #nav-links { display: flex; gap: 2.2rem; list-style: none; }
-#nav-links a { font-size: .6rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); transition: color .2s; }
+#nav-links a { font-size: .58rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.35); transition: color .2s; }
 #nav-links a:hover, #nav-links a.on { color: var(--white); }
 #nav-links a.on::after {
   content: '';
   display: block;
   width: 100%;
   height: 1px;
-  background: var(--accent);
+  background: var(--white);
   margin-top: 2px;
   transform-origin: left;
   animation: navUnderline .3s ease forwards;
@@ -66,12 +71,12 @@ body.de .en { display: none !important; }
   to   { transform: scaleX(1); }
 }
 .cv-btn {
-  font-size: .55rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--accent); border: 1px solid rgba(200,184,154,.3); padding: .28rem .75rem;
+  font-size: .54rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,.25); padding: .28rem .75rem;
   transition: background .2s, color .2s, border-color .2s;
   white-space: nowrap;
 }
-.cv-btn:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+.cv-btn:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 #burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 #burger span { display: block; width: 22px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
 #burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -79,11 +84,11 @@ body.de .en { display: none !important; }
 #burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 #mobile-menu {
   display: none; position: fixed; inset: 0; z-index: 190;
-  background: #0a0a0a;
+  background: #080808;
   flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
 }
 #mobile-menu.open { display: flex; }
-#mobile-menu a { font-size: 1.1rem; font-weight: 200; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+#mobile-menu a { font-size: 1.1rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); }
 #mobile-menu a:hover { color: var(--white); }
 
 /* ══════════════════════════════════════
@@ -96,11 +101,26 @@ body.de .en { display: none !important; }
   display: flex; flex-direction: column; justify-content: center;
   position: sticky; top: 0; overflow: hidden;
 }
+/* Projects card — NOT sticky; sits in a tall wrapper so next cards push it away naturally */
+#projects {
+  position: relative !important;
+  min-height: auto;
+  justify-content: flex-start;
+  overflow: visible;
+  padding-bottom: 80px;
+}
+/* Tall wrapper gives scroll room so content is fully visible before next card arrives */
+#projects-wrap {
+  position: relative;
+  z-index: 3;
+}
+/* Next cards still stack on top — handled via ID selectors above */
 .card:nth-child(1) { background: var(--black); z-index: 1; }
-.card:nth-child(2) { background: var(--white); color: var(--black); z-index: 2; border-radius: 16px 16px 0 0; box-shadow: 0 -20px 50px rgba(0,0,0,.6); }
-.card:nth-child(3) { background: #0e0d0c; z-index: 3; border-radius: 16px 16px 0 0; box-shadow: 0 -20px 50px rgba(0,0,0,.6); }
-.card:nth-child(4) { background: var(--white); color: var(--black); z-index: 4; border-radius: 16px 16px 0 0; box-shadow: 0 -20px 50px rgba(0,0,0,.6); }
-.card:nth-child(5) { background: #0a0a0a; z-index: 5; border-radius: 16px 16px 0 0; box-shadow: 0 -20px 50px rgba(0,0,0,.6); }
+.card:nth-child(2) { background: #0e0e0e; color: var(--white); z-index: 2; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+/* projects card lives inside #projects-wrap, handled separately */
+#projects { background: #111; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+#skills { background: #0e0e0e; color: var(--white); z-index: 4; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+#contact { background: #080808; z-index: 5; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
 
 /* ══════════════════════════════════════
    REVEALS
@@ -116,157 +136,251 @@ body.de .en { display: none !important; }
 ══════════════════════════════════════ */
 #home .bg-num {
   position: absolute; bottom: 2rem; right: var(--p);
-  font-size: clamp(6rem, 18vw, 14rem); font-weight: 200;
-  color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(6rem, 18vw, 14rem); font-weight: 400;
+  color: rgba(255,255,255,.022); line-height: 1; pointer-events: none;
 }
-#home .tag { font-size: .58rem; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; }
-#home h1 { font-size: clamp(3.2rem, 9vw, 8.5rem); font-weight: 200; line-height: .95; letter-spacing: -.03em; }
-#home h1 em { font-style: normal; color: var(--accent); }
-#home .sub { margin-top: 2rem; font-size: .82rem; font-weight: 300; line-height: 1.95; color: rgba(248,244,240,.42); max-width: 38ch; }
+#home .tag { font-size: .56rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.32); margin-bottom: 1.6rem; }
+#home h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(5rem, 16vw, 13rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .02em;
+}
+#home h1 em { font-style: normal; color: rgba(255,255,255,.28); }
+#home .sub { margin-top: 2.2rem; font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.35); max-width: 38ch; }
 #home .cta {
   margin-top: 2.4rem; display: inline-flex; align-items: center; gap: .7rem;
-  font-size: .58rem; font-weight: 300; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--white); border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: .35rem;
+  font-size: .56rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white); border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: .35rem;
   transition: color .25s, border-color .25s;
 }
 #home .cta::after { content: '→'; }
 #home .cta:hover { color: var(--accent); border-color: var(--accent); }
+#home .year-stamp {
+  position: absolute; left: var(--p); bottom: 2.5rem;
+  font-size: .5rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.15); writing-mode: horizontal-tb;
+  display: flex; align-items: center; gap: .8rem;
+}
+#home .year-stamp::before { content: ''; display: block; width: 2rem; height: 1px; background: rgba(255,255,255,.15); }
+
+/* Home card — contains skewed gallery */
+#home { overflow: hidden; }
+/* Ensure home card text sits above gallery */
+#home .tag, #home h1, #home .sub, #home .cta { position: relative; z-index: 1; }
+#home .bg-num { z-index: 0; }
+#home .year-stamp { z-index: 1; }
+
+/* ══════════════════════════════════════
+   SKEWED GALLERY — Home card right side
+══════════════════════════════════════ */
+#home-gallery {
+  position: absolute;
+  top: -10%; right: -4%;
+  width: 52%; height: 120%;
+  overflow: hidden;
+  transform: rotate(-14deg);
+  transform-origin: top right;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+}
+.gallery-cols { display: flex; gap: 10px; height: 100%; width: 100%; }
+.gallery-col  { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.gallery-track {
+  display: flex; flex-direction: column; gap: 10px;
+  animation: galleryScroll linear infinite;
+  will-change: transform;
+}
+.gallery-col:nth-child(1) .gallery-track { animation-duration: 28s; }
+.gallery-col:nth-child(2) .gallery-track { animation-duration: 20s; animation-direction: reverse; }
+.gallery-col:nth-child(3) .gallery-track { animation-duration: 34s; }
+@keyframes galleryScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.gtile {
+  background: rgba(255,255,255,0.022);
+  border: 1px solid rgba(255,255,255,0.045);
+  padding: 1.1rem 1rem; flex-shrink: 0;
+}
+.gtile-num  { font-size: .42rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgba(200,200,200,0.35); margin-bottom: .55rem; }
+.gtile-title { font-size: .62rem; font-weight: 400; line-height: 1.4; color: rgba(240,239,236,0.42); margin-bottom: .6rem; letter-spacing: -.01em; }
+.gtile-tags  { display: flex; flex-wrap: wrap; gap: .25rem; }
+.gtile-tag   { font-size: .38rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.22); padding: .15rem .35rem; }
+@media (max-width: 768px) { #home-gallery { display: none; } }
 
 /* ══════════════════════════════════════
    ABOUT CARD
 ══════════════════════════════════════ */
 .section-label {
-  font-size: .54rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  font-size: .54rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
   margin-bottom: 1.8rem;
 }
-.section-label::before { content: attr(data-n); opacity: .35; margin-right: .7rem; font-size: .5rem; }
+.section-label::before { content: attr(data-n); opacity: .3; margin-right: .7rem; font-size: .5rem; }
 .section-label.light { color: var(--accent); }
-.section-label.dark { color: #8a7a6a; }
-.section-title { font-size: clamp(1.8rem, 4vw, 3.4rem); font-weight: 200; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.8rem; }
-.body-dark { font-size: .8rem; font-weight: 300; line-height: 2; color: rgba(10,10,10,.58); margin-bottom: 1.4rem; }
-.body-light { font-size: .8rem; font-weight: 300; line-height: 2; color: rgba(248,244,240,.42); margin-bottom: 1.4rem; }
+.section-label.dark { color: var(--accent); }
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: .02em;
+  margin-bottom: 1.8rem;
+}
+.body-dark { font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.45); margin-bottom: 1.4rem; }
+.body-light { font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.42); margin-bottom: 1.4rem; }
 .about-wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 5rem; align-items: start; width: 100%; }
-.info-row { border-top: 1px solid rgba(10,10,10,.1); padding: 1.1rem 0; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.info-row:last-child { border-bottom: 1px solid rgba(10,10,10,.1); }
-.ilbl { font-size: .54rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: rgba(10,10,10,.35); flex-shrink: 0; }
-.ival { font-size: .75rem; font-weight: 300; color: var(--black); text-align: right; line-height: 1.6; }
+.info-row { border-top: 1px solid rgba(255,255,255,.07); padding: 1.1rem 0; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.info-row:last-child { border-bottom: 1px solid rgba(255,255,255,.07); }
+.ilbl { font-size: .52rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,239,236,.28); flex-shrink: 0; }
+.ival { font-size: .74rem; font-weight: 400; color: var(--white); text-align: right; line-height: 1.6; }
 
 /* ══════════════════════════════════════
    PROJECTS CARD
 ══════════════════════════════════════ */
 .proj-header { margin-bottom: 2.5rem; }
-.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(10,10,10,.12); width: 100%; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,.06); width: 100%; counter-reset: proj; }
 .proj-card {
-  background: var(--white); color: var(--black); padding: 2.4rem 1.8rem;
-  transition: background .38s, color .38s; cursor: default;
+  background: #0d0d0d; color: var(--white); padding: 2.4rem 1.8rem;
+  transition: background .38s, border-left .38s; cursor: default;
+  position: relative; overflow: hidden;
+  border-left: 2px solid transparent;
+}
+.proj-card::before {
+  content: "0" counter(proj);
+  counter-increment: proj;
+  position: absolute; bottom: -1.5rem; right: .8rem;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 9rem; line-height: 1;
+  color: rgba(255,255,255,.028);
+  pointer-events: none; user-select: none;
 }
 .proj-card.clickable { cursor: pointer; }
-.proj-card.clickable:hover { background: var(--black); color: var(--white); }
-.proj-card.clickable:hover .pnum, .proj-card.clickable:hover .plink { color: var(--accent); }
-.proj-card.clickable:hover .pdesc { color: rgba(248,244,240,.45); }
-.proj-card.clickable:hover .ptag { border-color: rgba(255,255,255,.16); color: rgba(255,255,255,.45); }
-.pnum { font-size: .54rem; font-weight: 300; letter-spacing: .16em; color: rgba(10,10,10,.28); margin-bottom: 1.8rem; transition: color .38s; }
-.ptitle { font-size: clamp(.85rem, 1.7vw, 1.1rem); font-weight: 300; line-height: 1.35; letter-spacing: -.01em; margin-bottom: .9rem; }
-.pdesc { font-size: .7rem; font-weight: 300; line-height: 1.9; color: rgba(10,10,10,.46); margin-bottom: 1.6rem; transition: color .38s; }
+.proj-card.clickable:hover { background: #131313; border-left-color: var(--white); }
+.proj-card.clickable:hover .pnum { color: var(--accent); }
+.proj-card.clickable:hover .plink { color: var(--white); }
+.proj-card.clickable:hover .pdesc { color: rgba(240,239,236,.65); }
+.proj-card.clickable:hover .ptag { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.6); }
+.pnum { font-size: .52rem; font-weight: 600; letter-spacing: .18em; color: rgba(240,239,236,.2); margin-bottom: 1.8rem; transition: color .38s; }
+.ptitle { font-size: clamp(.85rem, 1.7vw, 1.05rem); font-weight: 500; line-height: 1.35; letter-spacing: -.01em; margin-bottom: .9rem; }
+.pdesc { font-size: .72rem; font-weight: 400; line-height: 1.9; color: rgba(240,239,236,.38); margin-bottom: 1.6rem; transition: color .38s; }
 .ptags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.4rem; }
-.ptag { font-size: .48rem; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(10,10,10,.14); padding: .2rem .5rem; transition: border-color .38s, color .38s; }
-.plink { font-size: .54rem; font-weight: 300; letter-spacing: .15em; text-transform: uppercase; color: rgba(10,10,10,.38); transition: color .38s; }
+.ptag { font-size: .46rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.3); padding: .2rem .5rem; transition: border-color .38s, color .38s; }
+.plink { font-size: .52rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,239,236,.3); transition: color .38s; }
 
 /* ══════════════════════════════════════
    SKILLS CARD
 ══════════════════════════════════════ */
 .skills-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; width: 100%; }
 .skills-left { position: sticky; top: 80px; }
-.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.07); }
-.skill-box { background: #0a0a0a; padding: 1.8rem; transition: background .3s; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); }
+.skill-box { background: #0e0e0e; padding: 1.8rem; transition: background .3s; }
 .skill-box:hover { background: #141414; }
-.skill-cat { font-size: .54rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.3rem; padding-bottom: .7rem; border-bottom: 1px solid rgba(200,184,154,.18); }
+.skill-cat { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.3rem; padding-bottom: .7rem; border-bottom: 1px solid rgba(216,216,216,.12); }
 .skill-list { list-style: none; }
-.skill-list li { font-size: .7rem; font-weight: 300; line-height: 1.95; color: rgba(248,244,240,.45); }
+.skill-list li { font-size: .7rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.4); }
 
 /* ══════════════════════════════════════
    CONTACT CARD
 ══════════════════════════════════════ */
-.contact-ghost { font-size: clamp(2.5rem, 7vw, 7rem); font-weight: 200; letter-spacing: -.04em; color: rgba(248,244,240,.05); margin-bottom: 5rem; }
-.contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid rgba(248,244,240,.08); padding-top: 3rem; }
-.contact-block h3 { font-size: .54rem; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: var(--grey); margin-bottom: 1.1rem; }
-.clink { font-size: clamp(.85rem, 2.3vw, 1.5rem); font-weight: 200; color: var(--white); display: block; line-height: 1.4; margin-bottom: .35rem; letter-spacing: -.02em; transition: color .25s; }
+.contact-ghost {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 10vw, 10rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: rgba(240,239,236,.04);
+  margin-bottom: 5rem;
+}
+.contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid rgba(255,255,255,.07); padding-top: 3rem; }
+.contact-block h3 { font-size: .52rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,239,236,.3); margin-bottom: 1.1rem; }
+.clink { font-size: clamp(.85rem, 2.3vw, 1.5rem); font-weight: 400; color: var(--white); display: block; line-height: 1.4; margin-bottom: .35rem; letter-spacing: -.02em; transition: color .25s; }
 .clink:hover { color: var(--accent); }
-.cdetail { font-size: .72rem; font-weight: 300; color: rgba(248,244,240,.25); margin-top: .8rem; line-height: 1.9; }
-.footer { margin-top: 5rem; border-top: 1px solid rgba(248,244,240,.06); padding-top: 1.6rem; display: flex; justify-content: space-between; align-items: center; }
-.footer span { font-size: .54rem; font-weight: 300; letter-spacing: .1em; color: rgba(248,244,240,.18); }
+.cdetail { font-size: .72rem; font-weight: 400; color: rgba(240,239,236,.22); margin-top: .8rem; line-height: 1.9; }
+.footer { margin-top: 5rem; border-top: 1px solid rgba(255,255,255,.05); padding-top: 1.6rem; display: flex; justify-content: space-between; align-items: center; }
+.footer span { font-size: .52rem; font-weight: 500; letter-spacing: .12em; color: rgba(240,239,236,.16); }
 
 /* ══════════════════════════════════════
    OVERLAYS — shared
 ══════════════════════════════════════ */
 .ov {
   display: none; position: fixed; inset: 0; z-index: 500;
-  background: #0a0a0a; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  background: #080808; overflow-y: auto; -webkit-overflow-scrolling: touch;
   color: var(--white);
 }
 .ov.open { display: block; }
 .ov-body { max-width: 1180px; margin: 0 auto; padding: 90px var(--p) 80px; }
 .ov-back { margin-bottom: 3rem; }
-.back-btn { font-size: .54rem; letter-spacing: .18em; text-transform: uppercase; color: var(--grey); transition: color .2s; }
-.back-btn:hover { color: var(--accent); }
-.ov-title { font-size: clamp(1.8rem, 4vw, 3.8rem); font-weight: 200; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 1.4rem; }
-.ov-title em { font-style: normal; color: var(--accent); }
-.ov-sub { font-size: .54rem; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-.ov-lede { font-size: .8rem; font-weight: 300; line-height: 2; color: rgba(248,244,240,.42); max-width: 62ch; margin-bottom: 0; }
-.div { height: 1px; background: rgba(248,244,240,.07); margin: 3rem 0; }
+.back-btn { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,239,236,.3); transition: color .2s; }
+.back-btn:hover { color: var(--white); }
+.ov-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.0;
+  margin-bottom: 1.4rem;
+}
+.ov-title em { font-style: normal; color: rgba(255,255,255,.4); }
+.ov-sub { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.ov-lede { font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.4); max-width: 62ch; margin-bottom: 0; }
+.div { height: 1px; background: rgba(255,255,255,.06); margin: 3rem 0; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
-.blabel { font-size: .54rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; padding-bottom: .75rem; border-bottom: 1px solid rgba(200,184,154,.15); }
-.qcard { padding: 1.3rem; border: 1px solid rgba(200,184,154,.14); background: rgba(200,184,154,.025); margin-bottom: .9rem; }
-.qnum { font-size: .48rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: .45rem; }
-.qtext { font-size: .75rem; font-weight: 300; line-height: 1.8; color: rgba(248,244,240,.62); }
+.blabel { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; padding-bottom: .75rem; border-bottom: 1px solid rgba(216,216,216,.12); }
+.qcard { padding: 1.3rem; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.018); margin-bottom: .9rem; }
+.qnum { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .45rem; }
+.qtext { font-size: .74rem; font-weight: 400; line-height: 1.8; color: rgba(240,239,236,.55); }
 .blist { list-style: none; }
-.blist li { font-size: .73rem; font-weight: 300; line-height: 2; color: rgba(248,244,240,.48); padding-left: 1rem; position: relative; }
+.blist li { font-size: .72rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.45); padding-left: 1rem; position: relative; }
 .blist li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .54rem; }
-.stat-row { border-top: 1px solid rgba(248,244,240,.08); padding: .95rem 0; display: flex; justify-content: space-between; align-items: center; }
-.slabel { font-size: .54rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: rgba(248,244,240,.28); }
-.sval { font-size: .78rem; font-weight: 300; color: var(--white); }
+.stat-row { border-top: 1px solid rgba(255,255,255,.06); padding: .95rem 0; display: flex; justify-content: space-between; align-items: center; }
+.slabel { font-size: .52rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,239,236,.25); }
+.sval { font-size: .78rem; font-weight: 400; color: var(--white); }
 .sval.hi { color: var(--accent); font-size: .9rem; }
-.step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(248,244,240,.07); margin-bottom: 3rem; }
+.step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
 .step-box { background: #0a0a0a; padding: 1.6rem 1.3rem; }
-.step-lbl { font-size: .48rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
-.step-txt { font-size: .68rem; font-weight: 300; line-height: 1.85; color: rgba(248,244,240,.42); }
+.step-lbl { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+.step-txt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
 .bar-row { margin-bottom: 1.7rem; }
 .bar-head { display: flex; justify-content: space-between; margin-bottom: .45rem; }
-.blbl { font-size: .56rem; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); }
-.bval { font-size: .56rem; color: var(--accent); }
-.bval.dim { color: rgba(248,244,240,.38); }
-.btrack { height: 2px; background: rgba(248,244,240,.07); overflow: hidden; }
+.blbl { font-size: .54rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(240,239,236,.3); }
+.bval { font-size: .54rem; color: var(--accent); }
+.bval.dim { color: rgba(240,239,236,.35); }
+.btrack { height: 1px; background: rgba(255,255,255,.07); overflow: hidden; }
 .bfill { height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); transition: transform 1.1s ease; }
-.bfill.dim { background: rgba(248,244,240,.28); }
+.bfill.dim { background: rgba(255,255,255,.2); }
 .bfill.go { transform: scaleX(1); }
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(248,244,240,.07); margin-bottom: .4rem; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); margin-bottom: .4rem; }
 .photo-wrap { aspect-ratio: 4/3; overflow: hidden; }
 .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(12%) contrast(1.04); transition: transform .6s; }
 .photo-wrap:hover img { transform: scale(1.04); }
-.caps { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(248,244,240,.07); margin-bottom: 3rem; }
-.cap { background: #0a0a0a; padding: .75rem 1rem; font-size: .54rem; font-weight: 300; letter-spacing: .1em; color: var(--grey); }
+.caps { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
+.cap { background: #0a0a0a; padding: .75rem 1rem; font-size: .52rem; font-weight: 400; letter-spacing: .1em; color: rgba(240,239,236,.3); }
 .future-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
-.flbl { font-size: .54rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .55rem; }
-.ftxt { font-size: .68rem; font-weight: 300; line-height: 1.85; color: rgba(248,244,240,.4); }
-.sprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(248,244,240,.07); margin-bottom: 3rem; }
+.flbl { font-size: .52rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .55rem; }
+.ftxt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
+.sprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
 .sprint-box { background: #0a0a0a; padding: 1.7rem 1.4rem; }
-.sprint-lbl { font-size: .48rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
-.sprint-txt { font-size: .68rem; font-weight: 300; line-height: 1.85; color: rgba(248,244,240,.42); }
+.sprint-lbl { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+.sprint-txt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
 .video-box {
   width: 100%; aspect-ratio: 16/9; background: #0d0d0d;
-  border: 1px solid rgba(248,244,240,.07);
+  border: 1px solid rgba(255,255,255,.06);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem;
   margin-bottom: .4rem;
 }
-.vid-note { font-size: .68rem; font-weight: 300; color: rgba(248,244,240,.35); text-align: center; max-width: 36ch; }
+.vid-note { font-size: .68rem; font-weight: 400; color: rgba(240,239,236,.3); text-align: center; max-width: 36ch; }
 .vid-btn {
-  font-size: .56rem; font-weight: 300; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--accent); border: 1px solid rgba(200,184,154,.32); padding: .7rem 1.6rem;
+  font-size: .54rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,.2); padding: .7rem 1.6rem;
   transition: background .25s, color .25s;
 }
-.vid-btn:hover { background: var(--accent); color: var(--black); }
-.vid-cap { font-size: .54rem; font-weight: 300; letter-spacing: .1em; color: var(--grey); background: #0a0a0a; border: 1px solid rgba(248,244,240,.06); padding: .75rem 1rem; margin-bottom: 3rem; }
-.ov-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(248,244,240,.07); padding-top: 2.5rem; }
+.vid-btn:hover { background: var(--white); color: var(--black); }
+.vid-cap { font-size: .52rem; font-weight: 400; letter-spacing: .1em; color: rgba(240,239,236,.28); background: #0a0a0a; border: 1px solid rgba(255,255,255,.05); padding: .75rem 1rem; margin-bottom: 3rem; }
+.ov-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,.06); padding-top: 2.5rem; }
 
 /* ═══════════════════════════════
    MOBILE — plain scroll, clean
@@ -292,10 +406,10 @@ body.de .en { display: none !important; }
   #home.card { min-height: 100svh !important; }
 
   /* --- Backgrounds still applied --- */
-  .card:nth-child(2) { background: var(--white); color: var(--black); }
-  .card:nth-child(3) { background: #0e0d0c; color: var(--white); }
-  .card:nth-child(4) { background: var(--white); color: var(--black); }
-  .card:nth-child(5) { background: #0a0a0a; color: var(--white); }
+  .card:nth-child(2) { background: #0e0e0e; color: var(--white); }
+  .card:nth-child(3) { background: #111; color: var(--white); }
+  .card:nth-child(4) { background: #0e0e0e; color: var(--white); }
+  .card:nth-child(5) { background: #080808; color: var(--white); }
 
   /* --- Layouts collapse --- */
   .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -324,7 +438,7 @@ body.de .en { display: none !important; }
 }
 
 /* ══════════════════════════════════════
-   LOADING SCREEN
+   LOADING SCREEN — minimal name + line
 ══════════════════════════════════════ */
 #loader {
   position: fixed; inset: 0;
@@ -334,76 +448,71 @@ body.de .en { display: none !important; }
   align-items: center; justify-content: center;
   overflow: hidden;
 }
-#loader-top-line {
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 1px; background: #c8b89a;
-  transform: scaleX(0); transform-origin: left;
-}
 #loader-stage {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   width: 100%;
 }
-#loader-question {
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-}
-.lq-word {
-  font-size: clamp(2.8rem, 8.5vw, 7rem);
-  font-weight: 200; letter-spacing: -.035em; line-height: .95;
-  color: #f5f4f0; opacity: 0; transform: translateY(30px);
-  will-change: transform, opacity;
-}
-.lq-word.lq-accent { color: #c8b89a; }
 #loader-name-block {
-  opacity: 0; display: flex; flex-direction: column;
-  align-items: center; gap: .3rem; margin-top: 2.8rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: .3rem;
 }
+/* Small phrase above name */
+#loader-phrase {
+  font-size: clamp(.38rem, .9vw, .52rem);
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(240,239,236,0.14);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  transition: opacity .8s ease;
+  transition-delay: .1s;
+  white-space: nowrap;
+}
+#loader-phrase em { font-style: normal; color: rgba(216,216,216,0.4); }
 #loader-name-first {
-  font-size: clamp(.9rem, 3.2vw, 2rem); font-weight: 200;
-  letter-spacing: .08em; color: rgba(245,244,240,0.5);
-  text-transform: uppercase; opacity: 0; transform: translateY(8px);
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2rem, 7vw, 5rem); font-weight: 400;
+  letter-spacing: .06em; color: rgba(240,239,236,0.45);
+  text-transform: uppercase; opacity: 0; transform: translateY(12px);
+  transition: opacity .6s cubic-bezier(0.16,1,0.3,1), transform .6s cubic-bezier(0.16,1,0.3,1);
 }
 #loader-name-last {
-  font-size: clamp(1.1rem, 4vw, 2.8rem); font-weight: 300;
-  letter-spacing: -.01em; color: #f5f4f0;
-  opacity: 0; transform: translateY(8px);
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.8rem, 9vw, 6.5rem); font-weight: 400;
+  letter-spacing: .04em; color: #f0efec;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: .1s;
 }
 #loader-name-role {
-  margin-top: .85rem; font-size: clamp(.42rem, 1vw, .58rem);
-  font-weight: 300; letter-spacing: .26em; text-transform: uppercase;
-  color: #c8b89a; opacity: 0; transform: translateY(6px);
+  margin-top: .85rem; font-size: clamp(.42rem, 1vw, .56rem);
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(216,216,216,.45); opacity: 0; transform: translateY(6px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: .4s;
 }
-#loader-progress-wrap {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 1px; background: rgba(200,184,154,0.12);
+/* Small progress line directly below the role text */
+#loader-inline-progress {
+  margin-top: 1.6rem;
+  width: clamp(120px, 20vw, 200px);
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
 }
-#loader-progress-bar {
-  height: 100%; background: #c8b89a; width: 0%; position: relative;
+#loader-inline-bar {
+  position: absolute; top: 0; left: 0;
+  height: 100%; width: 0%;
+  background: rgba(216,216,216,.7);
+  transition: width linear;
 }
-#loader-progress-bar::after {
+#loader-inline-bar::after {
   content: ''; position: absolute; right: 0; top: -2px;
-  width: 3px; height: 5px; background: #c8b89a;
-  box-shadow: 0 0 8px 3px rgba(200,184,154,0.5); border-radius: 2px;
-}
-.loader-corner {
-  position: absolute; width: 18px; height: 18px; opacity: 0;
-}
-.loader-corner::before, .loader-corner::after {
-  content: ''; position: absolute; background: rgba(200,184,154,0.35);
-}
-.loader-corner::before { width: 1px; height: 100%; top:0; left:0; }
-.loader-corner::after  { width: 100%; height: 1px; top:0; left:0; }
-#lc-tl { top: 22px; left: 22px; }
-#lc-tr { top: 22px; right: 22px; transform: scaleX(-1); }
-#lc-bl { bottom: 22px; left: 22px; transform: scaleY(-1); }
-#lc-br { bottom: 22px; right: 22px; transform: scale(-1); }
-#loader-noise {
-  position: absolute; inset: 0; opacity: 0.022; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px;
+  width: 2px; height: 5px; background: #d8d8d8;
+  border-radius: 1px;
 }
 #loader-flash {
-  position: fixed; inset: 0; background: #f5f4f0;
+  position: fixed; inset: 0; background: #f0efec;
   z-index: 100000; opacity: 0; pointer-events: none;
 }
 
@@ -414,29 +523,16 @@ body.de .en { display: none !important; }
 <!-- ═══════════ LOADING SCREEN ═══════════ -->
 <div id="loader-flash"></div>
 <div id="loader">
-  <div id="loader-noise"></div>
-  <div id="loader-top-line"></div>
-  <div class="loader-corner" id="lc-tl"></div>
-  <div class="loader-corner" id="lc-tr"></div>
-  <div class="loader-corner" id="lc-bl"></div>
-  <div class="loader-corner" id="lc-br"></div>
   <div id="loader-stage">
-    <div id="loader-question">
-      <span class="lq-word" id="lq-ever">Ever</span>
-      <span class="lq-word" id="lq-wondered">wondered</span>
-      <span class="lq-word" id="lq-where">where</span>
-      <span class="lq-word" id="lq-we">we</span>
-      <span class="lq-word" id="lq-could">could</span>
-      <span class="lq-word lq-accent" id="lq-be">be?</span>
-    </div>
     <div id="loader-name-block">
+      <div id="loader-phrase">Ever wondered where we could <em>be?</em></div>
       <div id="loader-name-first">Satyajeet</div>
       <div id="loader-name-last">Salokhe</div>
       <div id="loader-name-role">Product &middot; Project &middot; Innovation</div>
+      <div id="loader-inline-progress">
+        <div id="loader-inline-bar"></div>
+      </div>
     </div>
-  </div>
-  <div id="loader-progress-wrap">
-    <div id="loader-progress-bar"></div>
   </div>
 </div>
 
@@ -483,6 +579,51 @@ body.de .en { display: none !important; }
     <span class="en">Explore my work</span>
     <span class="de">Meine Arbeit entdecken</span>
   </a>
+
+  <div class="year-stamp">v.03 — 2025</div>
+
+  <!-- Skewed scrolling gallery -->
+  <div id="home-gallery">
+    <div class="gallery-cols">
+      <!-- Col 1 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+        <!-- duplicate for seamless loop -->
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+      </div></div>
+      <!-- Col 2 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+        <!-- duplicate -->
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+      </div></div>
+      <!-- Col 3 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+        <!-- duplicate -->
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+      </div></div>
+    </div>
+  </div>
+
 </section>
 
 <!-- 2. ABOUT -->
@@ -532,6 +673,7 @@ body.de .en { display: none !important; }
 </section>
 
 <!-- 3. PROJECTS -->
+<div id="projects-wrap">
 <section class="card" id="projects">
   <div class="proj-header">
     <p class="section-label light r" data-n="02"><span class="en">Projects</span><span class="de">Projekte</span></p>
@@ -594,8 +736,37 @@ body.de .en { display: none !important; }
       <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
     </div>
 
+    <!-- Card 005 -->
+    <div class="proj-card clickable" onclick="openOv('bilstm')">
+      <p class="pnum">005</p>
+      <h3 class="ptitle"><span class="en">Deep Learning — Reliable User Identification in Social Media During Crisis</span><span class="de">Deep Learning — Zuverlässige Nutzeridentifikation in sozialen Medien während Krisen</span></h3>
+      <p class="pdesc"><span class="en">Academic paper presentation analysing a Bi-LSTM system that achieved 94.54% accuracy in classifying disaster-related tweets, combining VADER sentiment analysis and K-means clustering to identify trustworthy social media users.</span><span class="de">Präsentation eines akademischen Papers: Bi-LSTM-System mit 94,54 % Genauigkeit bei der Klassifizierung katastrophenbezogener Tweets mittels VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+      <div class="ptags">
+        <span class="ptag">Bi-LSTM</span>
+        <span class="ptag"><span class="en">Sentiment Analysis</span><span class="de">Sentiment-Analyse</span></span>
+        <span class="ptag">NLP</span>
+        <span class="ptag">Deep Learning</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 006 -->
+    <div class="proj-card clickable" onclick="openOv('smarthome')">
+      <p class="pnum">006</p>
+      <h3 class="ptitle"><span class="en">Technology Assessment — Smart Homes &amp; Buildings</span><span class="de">Technologiebewertung — Smart Homes &amp; Gebäude</span></h3>
+      <p class="pdesc"><span class="en">Group TAS project comparing smart home innovation strategies for the USA and Thailand. Conducted PESTEL analysis, proposed four innovations, and produced a Technology Radar mapping adoption readiness across AI, IoT, and blockchain tools.</span><span class="de">Gruppen-TAS-Projekt: PESTEL-Analyse für USA und Thailand, vier Innovationsvorschläge und ein Technology Radar zur Bewertung von KI-, IoT- und Blockchain-Tools.</span></p>
+      <div class="ptags">
+        <span class="ptag">PESTEL</span>
+        <span class="ptag"><span class="en">Technology Radar</span><span class="de">Technologie-Radar</span></span>
+        <span class="ptag">IoT</span>
+        <span class="ptag">SDGs</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
   </div>
 </section>
+</div><!-- /projects-wrap -->
 
 <!-- 4. SKILLS -->
 <section class="card" id="skills">
@@ -716,9 +887,9 @@ body.de .en { display: none !important; }
         <div style="margin-top:2rem">
           <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
           <div class="ptags" style="margin-top:0">
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Product Development</span><span class="de">Produktentwicklung</span></span>
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Product Marketing</span><span class="de">Produktmarketing</span></span>
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Innovation Strategy</span><span class="de">Innovationsstrategie</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Product Development</span><span class="de">Produktentwicklung</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Product Marketing</span><span class="de">Produktmarketing</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Innovation Strategy</span><span class="de">Innovationsstrategie</span></span>
           </div>
         </div>
       </div>
@@ -986,9 +1157,202 @@ body.de .en { display: none !important; }
         <div style="margin-top:2rem">
           <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
           <div class="ptags" style="margin-top:0">
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Idea Engineering</span><span class="de">Idea Engineering</span></span>
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Innovation Management</span><span class="de">Innovationsmanagement</span></span>
-            <span class="ptag" style="border-color:rgba(200,184,154,.25);color:rgba(248,244,240,.55)"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Idea Engineering</span><span class="de">Idea Engineering</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Innovation Management</span><span class="de">Innovationsmanagement</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 5 — BI-LSTM / PROJECT 005
+════════════════════════════════════ -->
+<div class="ov" id="ov-bilstm">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Deep Learning · NLP · HS Harz · Individual Presentation</span><span class="de">Deep Learning · NLP · HS Harz · Einzelpräsentation</span></p>
+    <h1 class="ov-title"><span class="en">Deep Learning — Reliable<br><em>User Identification During Crisis</em></span><span class="de">Deep Learning — Zuverlässige<br><em>Nutzeridentifikation während Krisen</em></span></h1>
+    <p class="ov-lede"><span class="en">An academic paper presentation analysing a deep learning system for identifying trustworthy social media users during disasters. The proposed Bi-LSTM model was evaluated on 20,000 real tweets from the 2022 Assam Floods, combining NLP preprocessing, VADER sentiment analysis, user profile scoring, and K-means clustering to achieve 94.54% classification accuracy.</span><span class="de">Präsentation eines akademischen Papers zur Identifikation zuverlässiger Social-Media-Nutzer während Katastrophen. Das Bi-LSTM-Modell wurde an 20.000 echten Tweets der Assam-Überschwemmungen 2022 evaluiert und kombiniert NLP, VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Research Question</span><span class="de">Forschungsfrage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Core Problem</span><span class="de">Kernproblem</span></p>
+          <p class="qtext"><span class="en">During crises, social media is flooded with misinformation, fake news, and unreliable sources. How can a system accurately predict user trustworthiness in real time to support emergency response teams?</span><span class="de">Während Krisen wird Social Media mit Fehlinformationen überflutet. Wie kann ein System die Vertrauenswürdigkeit von Nutzern in Echtzeit vorhersagen?</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Dataset</span><span class="de">Datensatz</span></p>
+          <p class="qtext"><span class="en">20,000 disaster tweets collected via Twitter API using 2022 Assam Flood hashtags — reduced to 16,600 after preprocessing. 13,178 user profiles analysed across 380,784 historical tweets.</span><span class="de">20.000 Katastrophen-Tweets via Twitter API gesammelt (2022 Assam-Überschwemmungen), auf 16.600 nach Vorverarbeitung reduziert. 13.178 Nutzerprofile über 380.784 historische Tweets analysiert.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">System Architecture</span><span class="de">Systemarchitektur</span></p>
+        <ul class="blist">
+          <li><span class="en">Tweet preprocessing — tokenization, lemmatization, stop-word removal</span><span class="de">Tweet-Vorverarbeitung — Tokenisierung, Lemmatisierung, Stoppwort-Entfernung</span></li>
+          <li><span class="en">User Profile Analysis — engagement metrics, verification status, follower counts</span><span class="de">Nutzerprofilanalyse — Engagement-Metriken, Verifizierungsstatus, Followerzahl</span></li>
+          <li><span class="en">User Behavior Analysis — VADER sentiment scoring across past 50 tweets per user</span><span class="de">Nutzerverhaltenanalyse — VADER-Sentiment-Bewertung der letzten 50 Tweets pro Nutzer</span></li>
+          <li><span class="en">Bi-LSTM Tweet Classification — relevant vs. irrelevant disaster tweets</span><span class="de">Bi-LSTM Tweet-Klassifizierung — relevante vs. irrelevante Katastrophen-Tweets</span></li>
+          <li><span class="en">K-Means Clustering — combines all scores to surface highly reliable users</span><span class="de">K-Means-Clustering — kombiniert alle Scores zur Identifikation zuverlässiger Nutzer</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">ML Model Performance — Accuracy over 10 Epochs</span><span class="de">ML-Modell-Performance — Genauigkeit über 10 Epochen</span></p>
+    <div class="step-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:2.5rem">
+      <div class="step-box">
+        <p class="step-lbl">CNN</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.5);font-weight:300">Peak: 85.3%</p>
+        <p class="step-txt">Captures spatial text patterns but lacks sequential context — lowest performer of the three models.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">LSTM</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Peak: 92.5%</p>
+        <p class="step-txt">Handles long-term sequential dependencies well, strong improvement over CNN across all epochs.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">Bi-LSTM · Best</p>
+        <p class="qtext" style="font-size:.72rem;color:var(--accent);font-weight:300">Peak: 94.54%</p>
+        <p class="step-txt">Processes input in both directions, capturing full sentence context — highest accuracy, selected model.</p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Findings</span><span class="de">Kernerkenntnisse</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Sentiment Breakdown (8,235 users after filtering)</span><span class="de">Sentiment-Verteilung (8.235 Nutzer nach Filterung)</span></p>
+          <p class="qtext"><span class="en">Positive: 2,178 users · Negative: 11,000 users · Neutral: 3,422 eliminated. Negative sentiment dominated — consistent with crisis communication patterns where urgency and distress are prevalent.</span><span class="de">Positiv: 2.178 · Negativ: 11.000 · Neutral: 3.422 eliminiert. Negatives Sentiment dominierte — konsistent mit Krisenkommunkationsmustern.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables &amp; Context</span><span class="de">Liefergegenstände &amp; Kontext</span></p>
+        <ul class="blist">
+          <li><span class="en">Academic paper review and structured presentation — 24 slides</span><span class="de">Akademische Paper-Auswertung und strukturierte Präsentation — 24 Folien</span></li>
+          <li><span class="en">System architecture walkthrough — pipeline from raw tweets to reliable user output</span><span class="de">Systemarchitektur-Walkthrough — Pipeline von rohen Tweets zum zuverlässigen Nutzeroutput</span></li>
+          <li><span class="en">ML model comparison — CNN vs. LSTM vs. Bi-LSTM across 10 epochs</span><span class="de">ML-Modellvergleich — CNN vs. LSTM vs. Bi-LSTM über 10 Epochen</span></li>
+          <li><span class="en">Assessment score: 25/30 — strong marks for novelty, quality, and structure</span><span class="de">Bewertung: 25/30 — starke Noten für Neuheit, Qualität und Struktur</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">Deep Learning</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">NLP</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">Bi-LSTM</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Sentiment Analysis</span><span class="de">Sentiment-Analyse</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 6 — SMART HOME / PROJECT 006
+════════════════════════════════════ -->
+<div class="ov" id="ov-smarthome">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Technology Assessment · HS Harz · Group 5</span><span class="de">Technologiebewertung · HS Harz · Gruppe 5</span></p>
+    <h1 class="ov-title"><span class="en">Technology Assessment —<br><em>Smart Homes &amp; Buildings</em></span><span class="de">Technologiebewertung —<br><em>Smart Homes &amp; Gebäude</em></span></h1>
+    <p class="ov-lede"><span class="en">A comparative Technology Assessment study examining smart home innovation opportunities in the USA and Thailand. The project combined PESTEL analysis, four targeted innovation proposals, SDG alignment, and a Technology Radar evaluating AI, IoT, and blockchain tools across adoption readiness levels.</span><span class="de">Eine vergleichende Technologiebewertungsstudie zu Smart-Home-Innovationen in den USA und Thailand. PESTEL-Analyse, vier Innovationsvorschläge, SDG-Zuordnung und Technology Radar zur Bewertung von KI-, IoT- und Blockchain-Tools.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">PESTEL Highlights</span><span class="de">PESTEL-Highlights</span></p>
+        <div class="qcard">
+          <p class="qnum">USA</p>
+          <p class="qtext"><span class="en">Government-backed smart infrastructure investment, evolving cybersecurity legislation, and post-COVID behavioural shifts driving demand for home automation and energy-efficient systems.</span><span class="de">Staatlich geförderter Infrastrukturausbau, sich entwickelnde Cybersicherheitsgesetze und post-COVID-Verhaltensänderungen treiben die Nachfrage nach Heimautomatisierung an.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum">Thailand</p>
+          <p class="qtext"><span class="en">Rapid urbanisation fuelling smart home market growth, strong environmental awareness shaping consumer preferences, and GDP expansion creating investment capacity for IoT infrastructure.</span><span class="de">Schnelle Urbanisierung treibt das Smart-Home-Marktwachstum voran, starkes Umweltbewusstsein prägt Verbraucherpräferenzen, BIP-Wachstum schafft IoT-Investitionskapazität.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Innovations Proposed</span><span class="de">Vorgeschlagene Innovationen</span></p>
+        <ul class="blist">
+          <li><span class="en">Smart Thermostat (USA) — voice/gesture control, geofencing, predictive HVAC maintenance</span><span class="de">Smart Thermostat (USA) — Sprach-/Gestensteuerung, Geofencing, vorausschauende HVAC-Wartung</span></li>
+          <li><span class="en">Solar Panels with AI Energy Management (USA) — bifacial panels, dynamic tilt, +30% energy capture</span><span class="de">Solaranlagen mit KI-Energiemanagement (USA) — bifaziale Panels, dynamische Neigung, +30 % Energieaufnahme</span></li>
+          <li><span class="en">Smart Water Supply Management (Thailand) — IoT leak detection, real-time consumption monitoring</span><span class="de">Smart Wasserversorgung (Thailand) — IoT-Leckerkennung, Echtzeit-Verbrauchsüberwachung</span></li>
+          <li><span class="en">Smart Security System (Thailand) — AI predictive alerts, biometric auth, blockchain footage storage</span><span class="de">Smart-Sicherheitssystem (Thailand) — KI-Prädiktionsalarme, biometrische Authentifizierung, Blockchain-Speicherung</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Technology Radar — Smart Security System</span><span class="de">Technology Radar — Smart-Sicherheitssystem</span></p>
+    <div class="sprint-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:2.5rem">
+      <div class="sprint-box">
+        <p class="sprint-lbl">Adopt</p>
+        <p class="sprint-txt"><span class="en">AI/ML Frameworks · Facial Recognition · Voice Recognition · Cloud Computing · IoT Platforms · Python · OpenCV · TensorFlow/PyTorch</span><span class="de">KI/ML-Frameworks · Gesichtserkennung · Spracherkennung · Cloud Computing · IoT-Plattformen</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">Trial</p>
+        <p class="sprint-txt"><span class="en">Emotion Recognition · Security Analytics Tools · Edge Computing Devices</span><span class="de">Emotionserkennung · Sicherheitsanalysetools · Edge-Computing-Geräte</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">Assess</p>
+        <p class="sprint-txt"><span class="en">Blockchain Storage · Blockchain Platform · Blockchain Frameworks</span><span class="de">Blockchain-Speicherung · Blockchain-Plattform · Blockchain-Frameworks</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">SDG Links</p>
+        <p class="sprint-txt"><span class="en">SDG 7 — Affordable Clean Energy · SDG 11 — Sustainable Cities · SDG 13 — Climate Action · SDG 6 — Clean Water</span><span class="de">SDG 7 · SDG 11 · SDG 13 · SDG 6</span></p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Takeaway</span><span class="de">Kernaussage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Cross-Market Strategy</span><span class="de">Cross-Market-Strategie</span></p>
+          <p class="qtext"><span class="en">Smart home innovation must be context-sensitive. The USA benefits from energy automation and solar integration, while Thailand's priorities around water scarcity and urban security call for distinct, regionally tailored solutions. Collaboration between government, industry, and academia is essential to meet SDG targets.</span><span class="de">Smart-Home-Innovation muss kontextsensitiv sein. Die USA profitieren von Energieautomatisierung, während Thailands Prioritäten bei Wasserknappheit und urbaner Sicherheit andere Lösungen erfordern.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables</span><span class="de">Liefergegenstände</span></p>
+        <ul class="blist">
+          <li><span class="en">PESTEL analysis for USA and Thailand smart home markets</span><span class="de">PESTEL-Analyse für Smart-Home-Märkte in den USA und Thailand</span></li>
+          <li><span class="en">4 targeted innovation proposals with technical specifications</span><span class="de">4 Innovationsvorschläge mit technischen Spezifikationen</span></li>
+          <li><span class="en">Technology Radar for Smart Security System — 4-quadrant adoption mapping</span><span class="de">Technology Radar für Smart-Sicherheitssystem — 4-Quadranten-Adoptionskartierung</span></li>
+          <li><span class="en">SDG alignment analysis across all proposed innovations</span><span class="de">SDG-Ausrichtungsanalyse für alle vorgeschlagenen Innovationen</span></li>
+          <li><span class="en">Group 5 — collaborative TAS module project, Hochschule Harz</span><span class="de">Gruppe 5 — kollaboratives TAS-Modulprojekt, Hochschule Harz</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">PESTEL</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Technology Radar</span><span class="de">Technologie-Radar</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">IoT</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">SDGs</span>
           </div>
         </div>
       </div>
@@ -1120,145 +1484,46 @@ updateNavOnScroll();
 
 /* ── LOADING SCREEN ── */
 (function() {
-  function cssT(el, props, ms, delay, ease) {
-    ease = ease || 'cubic-bezier(0.16,1,0.3,1)';
-    return new Promise(function(resolve) {
-      setTimeout(function() {
-        el.style.transition = 'all ' + ms + 'ms ' + ease;
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            Object.keys(props).forEach(function(k) { el.style[k] = props[k]; });
-            setTimeout(resolve, ms);
-          });
-        });
-      }, delay || 0);
-    });
-  }
-
-  var TOTAL_MS = 5800;
-  var progStart = null, progRunning = false;
-
-  function startProgress() {
-    progStart = null; progRunning = true;
-    requestAnimationFrame(progTick);
-  }
-  function progTick(ts) {
-    if (!progStart) progStart = ts;
-    var t = Math.min((ts - progStart) / TOTAL_MS, 1);
-    var bar = document.getElementById('loader-progress-bar');
-    if (bar) bar.style.width = (t * 100) + '%';
-    if (t < 1 && progRunning) requestAnimationFrame(progTick);
-  }
+  var TOTAL_MS = 2200;
 
   async function runLoader() {
     var loaderEl   = document.getElementById('loader');
     var flashEl    = document.getElementById('loader-flash');
-    var topLine    = document.getElementById('loader-top-line');
-    var question   = document.getElementById('loader-question');
-    var nameBlock  = document.getElementById('loader-name-block');
+    var phrase     = document.getElementById('loader-phrase');
     var nameFirst  = document.getElementById('loader-name-first');
     var nameLast   = document.getElementById('loader-name-last');
     var nameRole   = document.getElementById('loader-name-role');
-    var progWrap   = document.getElementById('loader-progress-wrap');
-    var corners    = document.querySelectorAll('.loader-corner');
-    var words      = [
-      document.getElementById('lq-ever'),
-      document.getElementById('lq-wondered'),
-      document.getElementById('lq-where'),
-      document.getElementById('lq-we'),
-      document.getElementById('lq-could'),
-      document.getElementById('lq-be')
-    ];
+    var bar        = document.getElementById('loader-inline-bar');
 
     if (!loaderEl) return;
-
-    // prevent scroll while loading
     document.body.style.overflow = 'hidden';
 
-    startProgress();
+    // Fade in phrase + name
+    await new Promise(function(r) { setTimeout(r, 200); });
+    if (phrase)    phrase.style.opacity   = '1';
+    nameFirst.style.opacity = '1'; nameFirst.style.transform = 'translateY(0)';
+    nameLast.style.opacity  = '1'; nameLast.style.transform  = 'translateY(0)';
+    nameRole.style.opacity  = '1'; nameRole.style.transform  = 'translateY(0)';
 
-    // Corner marks
-    corners.forEach(function(c, i) {
-      setTimeout(function() {
-        c.style.transition = 'opacity .6s ease';
-        c.style.opacity = '1';
-      }, 100 + i * 60);
+    // Run progress bar
+    await new Promise(function(r) { setTimeout(r, 500); });
+    bar.style.transition = 'width ' + (TOTAL_MS - 300) + 'ms cubic-bezier(0.4,0,0.2,1)';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { bar.style.width = '100%'; });
     });
 
-    // Top line draws
-    setTimeout(function() {
-      topLine.style.transition = 'transform .9s cubic-bezier(0.16,1,0.3,1)';
-      topLine.style.transform = 'scaleX(1)';
-    }, 200);
+    await new Promise(function(r) { setTimeout(r, TOTAL_MS); });
 
-    // Words drop in
-    var delays = [300, 560, 800, 1010, 1200, 1380];
-    words.forEach(function(w, i) {
-      setTimeout(function() {
-        w.style.transition = 'opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1)';
-        w.style.opacity = '1';
-        w.style.transform = 'translateY(0)';
-      }, delays[i]);
-    });
-
-    // Hold
-    await new Promise(function(r) { setTimeout(r, 2500); });
-
-    // Shrink words into a row
-    words.forEach(function(w) {
-      w.style.transition = 'font-size 700ms cubic-bezier(0.4,0,0.2,1), opacity 700ms ease, color 700ms ease, letter-spacing 700ms ease';
-      w.style.fontSize = 'clamp(.52rem, 1.3vw, .82rem)';
-      w.style.letterSpacing = '.22em';
-      if (!w.classList.contains('lq-accent')) {
-        w.style.color = 'rgba(245,244,240,0.20)';
-      } else {
-        w.style.color = 'rgba(200,184,154,0.50)';
-      }
-    });
-
-    question.style.transition = 'gap 700ms ease, transform 700ms cubic-bezier(0.4,0,0.2,1), flex-direction 700ms ease';
-    question.style.flexDirection = 'row';
-    question.style.gap = '.38em';
-    question.style.transform = 'translateY(-16px)';
-
-    await new Promise(function(r) { setTimeout(r, 780); });
-
-    // Name appears
-    nameBlock.style.opacity = '1';
-    await cssT(nameFirst, { opacity: '1', transform: 'translateY(0)' }, 620, 0);
-    cssT(nameLast, { opacity: '1', transform: 'translateY(0)' }, 700, 100);
-    cssT(nameRole,  { opacity: '1', transform: 'translateY(0)' }, 600, 400);
-
-    await new Promise(function(r) { setTimeout(r, 1100); });
-
-    // Top line retracts
-    topLine.style.transition = 'transform .5s cubic-bezier(0.4,0,1,1)';
-    topLine.style.transformOrigin = 'right';
-    topLine.style.transform = 'scaleX(0)';
-
-    // Progress done
-    progRunning = false;
-    var bar = document.getElementById('loader-progress-bar');
-    if (bar) bar.style.width = '100%';
-    await new Promise(function(r) { setTimeout(r, 300); });
-    if (progWrap) {
-      progWrap.style.transition = 'opacity .4s ease';
-      progWrap.style.opacity = '0';
-    }
-
-    await new Promise(function(r) { setTimeout(r, 300); });
-
-    // Flash
-    flashEl.style.transition = 'opacity .18s ease';
-    flashEl.style.opacity = '0.9';
-    await new Promise(function(r) { setTimeout(r, 180); });
-    flashEl.style.transition = 'opacity .55s ease';
+    // Flash then fade
+    flashEl.style.transition = 'opacity .15s ease';
+    flashEl.style.opacity = '0.85';
+    await new Promise(function(r) { setTimeout(r, 150); });
+    flashEl.style.transition = 'opacity .5s ease';
     flashEl.style.opacity = '0';
 
-    // Fade out loader
-    loaderEl.style.transition = 'opacity .6s ease';
+    loaderEl.style.transition = 'opacity .5s ease';
     loaderEl.style.opacity = '0';
-    await new Promise(function(r) { setTimeout(r, 620); });
+    await new Promise(function(r) { setTimeout(r, 520); });
     loaderEl.style.display = 'none';
     document.body.style.overflow = '';
   }
