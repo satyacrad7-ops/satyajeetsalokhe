@@ -152,13 +152,22 @@ body.de .en { display: none !important; }
 #home h1 em { font-style: normal; color: rgba(255,255,255,.28); }
 #home .sub { margin-top: 2.2rem; font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.35); max-width: 38ch; }
 #home .cta {
-  margin-top: 2.4rem; display: inline-flex; align-items: center; gap: .7rem;
-  font-size: .56rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-  color: var(--white); border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: .35rem;
+  margin-top: 2.4rem; display: inline-flex; align-items: center; gap: .8rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white); border-bottom: 2px solid rgba(255,255,255,.55); padding-bottom: .4rem;
   transition: color .25s, border-color .25s;
 }
 #home .cta::after { content: '→'; }
 #home .cta:hover { color: var(--accent); border-color: var(--accent); }
+.story-cta {
+  display: inline-flex; align-items: center; gap: .8rem;
+  margin-top: 1.2rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(240,239,236,.55); border-bottom: 2px solid rgba(255,255,255,.2); padding-bottom: .4rem;
+  transition: color .25s, border-color .25s;
+}
+.story-cta::after { content: '→'; }
+.story-cta:hover { color: var(--white); border-color: rgba(255,255,255,.55); }
 #home .year-stamp {
   position: absolute; left: var(--p); bottom: 2.5rem;
   font-size: .5rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
@@ -472,6 +481,7 @@ body.de .en { display: none !important; }
   /* --- Layouts collapse --- */
   .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
   .about-photo-frame { aspect-ratio: 4/3; }
+  .about-photo-frame img { object-position: center 55%; }
   .proj-grid { grid-template-columns: 1fr; }
   .skills-wrap { grid-template-columns: 1fr; gap: 2rem; }
   .skills-left { position: static; }
@@ -501,7 +511,7 @@ body.de .en { display: none !important; }
 ══════════════════════════════════════ */
 #loader {
   position: fixed; inset: 0;
-  background: #0a0a0a;
+  background: #080808;
   z-index: 99999;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -510,24 +520,22 @@ body.de .en { display: none !important; }
 #loader-stage {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  width: 100%;
+  text-align: center; width: 100%;
 }
+
+/* Name reveal after cities */
 #loader-name-block {
   display: flex; flex-direction: column;
   align-items: center; gap: .3rem;
 }
-/* Small phrase above name */
 #loader-phrase {
   font-size: clamp(.38rem, .9vw, .52rem);
   font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(240,239,236,0.14);
-  margin-bottom: 1.2rem;
-  opacity: 0;
-  transition: opacity .8s ease;
-  transition-delay: .1s;
-  white-space: nowrap;
+  color: rgba(240,239,236,0.88);
+  margin-bottom: 1.2rem; opacity: 0;
+  transition: opacity .8s ease; transition-delay: .1s; white-space: nowrap;
 }
-#loader-phrase em { font-style: normal; color: rgba(216,216,216,0.4); }
+#loader-phrase em { font-style: normal; color: rgba(216,216,216,1); }
 #loader-name-first {
   font-family: 'Bebas Neue', cursive;
   font-size: clamp(2rem, 7vw, 5rem); font-weight: 400;
@@ -547,28 +555,23 @@ body.de .en { display: none !important; }
   margin-top: .85rem; font-size: clamp(.42rem, 1vw, .56rem);
   font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
   color: rgba(216,216,216,.45); opacity: 0; transform: translateY(6px);
-  transition: opacity .6s ease, transform .6s ease;
-  transition-delay: .4s;
+  transition: opacity .6s ease, transform .6s ease; transition-delay: .4s;
 }
-/* Small progress line directly below the role text */
 #loader-inline-progress {
-  margin-top: 1.6rem;
-  width: clamp(120px, 20vw, 200px);
-  height: 1px;
-  background: rgba(255,255,255,0.08);
-  position: relative;
-  overflow: hidden;
+  margin-top: 1.8rem;
+  width: clamp(120px, 20vw, 200px); height: 1px;
+  background: rgba(255,255,255,0.07);
+  position: relative; overflow: hidden;
 }
 #loader-inline-bar {
   position: absolute; top: 0; left: 0;
   height: 100%; width: 0%;
-  background: rgba(216,216,216,.7);
+  background: rgba(216,216,216,.65);
   transition: width linear;
 }
 #loader-inline-bar::after {
   content: ''; position: absolute; right: 0; top: -2px;
-  width: 2px; height: 5px; background: #d8d8d8;
-  border-radius: 1px;
+  width: 2px; height: 5px; background: #d8d8d8; border-radius: 1px;
 }
 #loader-flash {
   position: fixed; inset: 0; background: #f0efec;
@@ -623,6 +626,117 @@ body.de .en { display: none !important; }
   font-style: normal;
 }
 
+
+.back-btn::before { content: '←'; }
+
+
+
+
+
+
+/* PAGE TITLE */
+.page-title { margin-bottom: 6rem; margin-top: 2rem; }
+.page-title-line {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 400; line-height: 1; letter-spacing: .02em;
+  margin-bottom: 1.4rem;
+}
+.pt-white { color: var(--white); }
+.pt-grey { color: rgba(240,239,236,.32); }
+.page-title-sub {
+  font-size: .78rem; font-style: italic; font-weight: 300;
+  color: rgba(240,239,236,.32); line-height: 1.9;
+  max-width: 44ch; margin: 0 auto;
+}
+
+/* FLOW */
+#flow { max-width: 660px; margin: 0 auto; padding: 100px var(--p) 8rem; text-align: center; }
+
+.beat {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .95s cubic-bezier(.22,1,.36,1), transform .95s cubic-bezier(.22,1,.36,1);
+  margin-bottom: 5rem;
+}
+.beat.show { opacity: 1; transform: none; }
+
+/* Chapter marker */
+.ch-marker {
+  font-size: .52rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  margin-bottom: 5rem;
+}
+.ch-marker::before, .ch-marker::after { content: ''; display: block; width: 2.5rem; height: 1px; background: rgba(255,255,255,.15); }
+
+/* Lyric */
+.lyric {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  font-weight: 400; font-style: italic;
+  line-height: 1.08; letter-spacing: .02em;
+  color: var(--white); margin-bottom: .85rem;
+}
+.lyric-credit { font-size: .46rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,239,236,.35); }
+.lyric-credit span { color: rgba(255,255,255,.09); margin: 0 .4rem; }
+
+/* Breath */
+.breath { width: 2rem; height: 1px; background: rgba(255,255,255,.09); margin: 2.6rem auto; }
+
+/* Story */
+.story { font-size: .87rem; font-weight: 400; line-height: 1.95; color: rgba(240,239,236,.55); }
+.story p { margin-bottom: 1rem; }
+.story p:last-child { margin-bottom: 0; }
+.story .word { display: inline; color: rgba(240,239,236,.18); transition: color .6s ease; }
+.story .word.lit { color: rgba(240,239,236,.72); }
+
+/* CLOSING */
+#story-close { max-width: 620px; margin: 0 auto; padding: 2rem var(--p) 8rem; text-align: center; }
+
+.close-lyric {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400; font-style: italic;
+  line-height: 1.1; letter-spacing: .02em; color: var(--white); margin-bottom: .7rem;
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
+}
+.close-lyric.show { opacity: 1; transform: none; }
+
+.close-credit {
+  font-size: .43rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,239,236,.2);
+  margin-bottom: 3.2rem;
+  opacity: 0; transition: opacity 1s ease .25s;
+}
+.close-credit.show { opacity: 1; }
+
+.close-body {
+  font-size: .87rem; font-style: italic; font-weight: 300;
+  line-height: 2; color: rgba(240,239,236,.42); margin-bottom: 3.5rem;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 1s ease .4s, transform 1s ease .4s;
+}
+.close-body.show { opacity: 1; transform: none; }
+
+.close-cta {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white); border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: .32rem;
+  opacity: 0; transition: opacity 1s ease .55s, color .25s, border-color .25s;
+}
+.close-cta.show { opacity: 1; }
+.close-cta::after { content: '→'; }
+.close-cta:hover { color: var(--accent); border-color: var(--accent); }
+
+/* FOOTER */
+#story-footer { border-top: 1px solid rgba(255,255,255,.05); padding: 1.6rem var(--p); display: flex; justify-content: space-between; }
+#story-footer span { font-size: .46rem; letter-spacing: .14em; color: rgba(240,239,236,.16); }
+
+@media (max-width: 768px) {
+  .lyric { font-size: clamp(1.8rem, 8vw, 3rem); }
+  #story-hero h1 { font-size: clamp(4rem, 18vw, 8rem); }
+  .beat { margin-bottom: 4rem; }
+}
 </style>
 </head>
 <body>
@@ -635,7 +749,7 @@ body.de .en { display: none !important; }
       <div id="loader-phrase">Ever wondered where we could <em>be?</em></div>
       <div id="loader-name-first">Satyajeet</div>
       <div id="loader-name-last">Salokhe</div>
-      <div id="loader-name-role">Product &middot; Project &middot; Innovation</div>
+      <div id="loader-name-role">Product &middot; Marketing &middot; Innovation</div>
       <div id="loader-inline-progress">
         <div id="loader-inline-bar"></div>
       </div>
@@ -654,7 +768,6 @@ body.de .en { display: none !important; }
     <li><a href="#" data-s="projects" onclick="goTo('projects');return false;"><span class="en">Projects</span><span class="de">Projekte</span></a></li>
     <li><a href="#" data-s="skills" onclick="goTo('skills');return false;"><span class="en">Skills</span><span class="de">Kenntnisse</span></a></li>
     <li><a href="#" data-s="contact" onclick="goTo('contact');return false;"><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
-    <li><a class="cv-btn" href="/cv-satyajeet-salokhe.pdf" download><span class="en">CV ↓</span><span class="de">Lebenslauf ↓</span></a></li>
   </ul>
   <button id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
@@ -672,7 +785,6 @@ body.de .en { display: none !important; }
 
 <!-- 1. HOME -->
 <section class="card" id="home">
-  <div class="bg-num">01</div>
   <p class="tag r">
     <span class="en">Product · Project · Marketing · Innovation</span>
     <span class="de">Produkt · Projekt · Marketing · Innovation</span>
@@ -685,6 +797,10 @@ body.de .en { display: none !important; }
   <a class="cta r d3" href="#" onclick="goTo('about');return false;">
     <span class="en">Explore my work</span>
     <span class="de">Meine Arbeit entdecken</span>
+  </a>
+  <a class="story-cta r d4" href="#" onclick="openOv('story');return false;">
+    <span class="en">Or read my life in lyrics →</span>
+    <span class="de">Mein Leben in Lyrics →</span>
   </a>
 
   <div class="year-stamp">v.03 — 2025</div>
@@ -875,8 +991,8 @@ body.de .en { display: none !important; }
     <!-- Card 005 -->
     <div class="proj-card clickable" onclick="openOv('bilstm')">
       <p class="pnum">005</p>
-      <h3 class="ptitle"><span class="en">Deep Learning — Reliable User Identification in Social Media During Crisis</span><span class="de">Deep Learning — Zuverlässige Nutzeridentifikation in sozialen Medien während Krisen</span></h3>
-      <p class="pdesc"><span class="en">Academic paper presentation analysing a Bi-LSTM system that achieved 94.54% accuracy in classifying disaster-related tweets, combining VADER sentiment analysis and K-means clustering to identify trustworthy social media users.</span><span class="de">Präsentation eines akademischen Papers: Bi-LSTM-System mit 94,54 % Genauigkeit bei der Klassifizierung katastrophenbezogener Tweets mittels VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+      <h3 class="ptitle"><span class="en">Paper Review — Reliable User Identification in Social Media During Crisis</span><span class="de">Paper-Review — Zuverlässige Nutzeridentifikation in sozialen Medien während Krisen</span></h3>
+      <p class="pdesc"><span class="en">Critical assessment and lecture presentation of a published deep learning paper — evaluated a Bi-LSTM system achieving 94.54% accuracy in classifying disaster tweets, analysing methodology, results, and real-world applicability.</span><span class="de">Präsentation eines akademischen Papers: Bi-LSTM-System mit 94,54 % Genauigkeit bei der Klassifizierung katastrophenbezogener Tweets mittels VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
       <div class="ptags">
         <span class="ptag">Bi-LSTM</span>
         <span class="ptag"><span class="en">Sentiment Analysis</span><span class="de">Sentiment-Analyse</span></span>
@@ -1319,7 +1435,7 @@ body.de .en { display: none !important; }
 
     <p class="ov-sub"><span class="en">Deep Learning · NLP · HS Harz · Individual Presentation</span><span class="de">Deep Learning · NLP · HS Harz · Einzelpräsentation</span></p>
     <h1 class="ov-title"><span class="en">Deep Learning — Reliable<br><em>User Identification During Crisis</em></span><span class="de">Deep Learning — Zuverlässige<br><em>Nutzeridentifikation während Krisen</em></span></h1>
-    <p class="ov-lede"><span class="en">An academic paper presentation analysing a deep learning system for identifying trustworthy social media users during disasters. The proposed Bi-LSTM model was evaluated on 20,000 real tweets from the 2022 Assam Floods, combining NLP preprocessing, VADER sentiment analysis, user profile scoring, and K-means clustering to achieve 94.54% classification accuracy.</span><span class="de">Präsentation eines akademischen Papers zur Identifikation zuverlässiger Social-Media-Nutzer während Katastrophen. Das Bi-LSTM-Modell wurde an 20.000 echten Tweets der Assam-Überschwemmungen 2022 evaluiert und kombiniert NLP, VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+    <p class="ov-lede"><span class="en">A scientific paper reading and critical assessment exercise — part of a university lecture series on AI research. I reviewed, evaluated, and presented a published paper proposing a Bi-LSTM system for identifying trustworthy social media users during disasters, covering its methodology, dataset, model architecture, and findings.</span><span class="de">Präsentation eines akademischen Papers zur Identifikation zuverlässiger Social-Media-Nutzer während Katastrophen. Das Bi-LSTM-Modell wurde an 20.000 echten Tweets der Assam-Überschwemmungen 2022 evaluiert und kombiniert NLP, VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
 
     <div class="div"></div>
 
@@ -1548,6 +1664,34 @@ function mobileGo(id) {
 
 /* ── OVERLAYS ── */
 function openOv(which) {
+    if (which === 'story') {
+      // init word reveal fresh each time
+      setTimeout(function() {
+        var wordObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.querySelectorAll('.word').forEach(function(w,i){ setTimeout(function(){ w.classList.add('lit'); }, i*38); });
+              wordObs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        var beatObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) { if(e.isIntersecting){ e.target.classList.add('show'); beatObs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('#ov-story .beat').forEach(function(el){ el.classList.remove('show'); beatObs.observe(el); });
+        document.querySelectorAll('#ov-story .close-lyric, #ov-story .close-credit, #ov-story .close-body, #ov-story .close-cta').forEach(function(el){ el.classList.remove('show'); });
+        document.querySelectorAll('#ov-story .story p').forEach(function(p) {
+          if (!p.querySelector('.word')) {
+            p.innerHTML = p.textContent.split(' ').map(function(w){ return '<span class="word">'+w+'</span>'; }).join(' ');
+          }
+          wordObs.observe(p);
+        });
+        var cObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); cObs.unobserve(e.target); } });
+        }, {threshold:0.15});
+        document.querySelectorAll('#ov-story .close-lyric, #ov-story .close-credit, #ov-story .close-body, #ov-story .close-cta').forEach(function(el){ cObs.observe(el); });
+      }, 50);
+    }
   activeOv = which;
   const el = document.getElementById('ov-' + which);
   el.classList.add('open');
@@ -1654,25 +1798,23 @@ updateNavOnScroll();
   var TOTAL_MS = 2200;
 
   async function runLoader() {
-    var loaderEl   = document.getElementById('loader');
-    var flashEl    = document.getElementById('loader-flash');
-    var phrase     = document.getElementById('loader-phrase');
-    var nameFirst  = document.getElementById('loader-name-first');
-    var nameLast   = document.getElementById('loader-name-last');
-    var nameRole   = document.getElementById('loader-name-role');
-    var bar        = document.getElementById('loader-inline-bar');
+    var loaderEl  = document.getElementById('loader');
+    var flashEl   = document.getElementById('loader-flash');
+    var phrase    = document.getElementById('loader-phrase');
+    var nameFirst = document.getElementById('loader-name-first');
+    var nameLast  = document.getElementById('loader-name-last');
+    var nameRole  = document.getElementById('loader-name-role');
+    var bar       = document.getElementById('loader-inline-bar');
 
     if (!loaderEl) return;
     document.body.style.overflow = 'hidden';
 
-    // Fade in phrase + name
     await new Promise(function(r) { setTimeout(r, 200); });
-    if (phrase)    phrase.style.opacity   = '1';
+    if (phrase) phrase.style.opacity = '1';
     nameFirst.style.opacity = '1'; nameFirst.style.transform = 'translateY(0)';
     nameLast.style.opacity  = '1'; nameLast.style.transform  = 'translateY(0)';
     nameRole.style.opacity  = '1'; nameRole.style.transform  = 'translateY(0)';
 
-    // Run progress bar
     await new Promise(function(r) { setTimeout(r, 500); });
     bar.style.transition = 'width ' + (TOTAL_MS - 300) + 'ms cubic-bezier(0.4,0,0.2,1)';
     requestAnimationFrame(function() {
@@ -1681,19 +1823,33 @@ updateNavOnScroll();
 
     await new Promise(function(r) { setTimeout(r, TOTAL_MS); });
 
-    // Flash then fade
     flashEl.style.transition = 'opacity .15s ease';
     flashEl.style.opacity = '0.85';
     await new Promise(function(r) { setTimeout(r, 150); });
     flashEl.style.transition = 'opacity .5s ease';
     flashEl.style.opacity = '0';
-
     loaderEl.style.transition = 'opacity .5s ease';
     loaderEl.style.opacity = '0';
     await new Promise(function(r) { setTimeout(r, 520); });
     loaderEl.style.display = 'none';
     document.body.style.overflow = '';
   }
+
+
+  // ── PAGE SWITCHING ──
+  function showPage(page) {
+    if (page === 'story') {
+      document.body.classList.add('story-active');
+      window.scrollTo(0, 0);
+      // reinit story word reveal
+      initStoryReveal();
+    } else {
+      document.body.classList.remove('story-active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runLoader);
@@ -1703,5 +1859,188 @@ updateNavOnScroll();
 })();
 
 </script>
+
+<!-- ═══════════ STORY OVERLAY ═══════════ -->
+<div class="ov" id="ov-story">
+  <div class="ov-body" style="max-width:680px;margin:0 auto;text-align:center;">
+  <div style="text-align:left;margin-bottom:2rem;"><a class="back-btn" href="#" onclick="closeOv();return false;">Back</a></div>
+<div id="flow">
+
+  <div class="page-title beat">
+    <div class="page-title-line">
+      <span class="pt-white">My Life</span>
+      <span class="pt-grey"> in Lyrics</span>
+    </div>
+    <p class="page-title-sub">Ten chapters, ten cities, and the songs that were playing when it all happened.</p>
+  </div>
+
+
+  <div class="beat ch-marker">Chapter 01 · Kolhapur</div>
+  <div class="beat">
+    <div class="lyric">"Everything comes back to you"</div>
+    <div class="lyric-credit">This Town <span>·</span> Niall Horan</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>A city of sugarcane and engine oil, where Saturdays smell like fresh paint from my father's workshop. I grew up watching people make things — really make things — with patience and pride. That never left me. It just changed form.</p>
+      <p>I was the elder child. The one who organised the game, gathered the crowd, knew everyone on the street by name. Football was my first language — played everywhere, with everyone, until a knee injury quietly closed that door. I didn't grieve it long. I just found other games to master.</p>
+      <p>Kolhapur gave me something no degree teaches — the instinct to show up, make something real, and take pride in the work. Everything I've called a skill since was already being practised here. I just didn't have the vocabulary for it yet.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 02 · The Dreamer</div>
+  <div class="beat">
+    <div class="lyric">"Oh, let the sun beat down upon my face, with stars to fill my dream"</div>
+    <div class="lyric-credit">Kashmir <span>·</span> Led Zeppelin</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Before any of it, there was just a boy who collected lyrics the way others collected trophies.</p>
+      <p>I noticed things. The way a crowd moved. The way the right words at the right moment could shift an entire room. The way some people walked into spaces and immediately understood who held the energy and what needed to be said.</p>
+      <p>I didn't know yet that noticing was a skill. I just knew the sun felt different when you were moving toward something.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 03 · The Leap</div>
+  <div class="beat">
+    <div class="lyric">"As I dream about movies they won't make of me when I'm dead"</div>
+    <div class="lyric-credit">Bed of Roses <span>·</span> Bon Jovi</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Everyone had a plan that looked like everyone else's plan. Stay. Build. Continue. Safe, known, sensible.</p>
+      <p>I chose Pune. Not because Kolhapur wasn't enough — because I was. Arrived with contacts, curiosity, and a restlessness that couldn't sit still. Built a team. Started volunteering at sports events — first as a pair of hands, then as the person running the room. Organised triathlons, managed logistics, led before anyone asked me to.</p>
+      <p>That's when I understood something no classroom teaches: execution is the strategy.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 04 · Cycle Republik</div>
+  <div class="beat">
+    <div class="lyric">"You're face to face with the man who sold the world"</div>
+    <div class="lyric-credit">The Man Who Sold The World <span>·</span> David Bowie</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>At Cycle Republik I met someone who could sell anything — not through pressure, through conviction. He understood people before he understood products. He saw something in me before I saw it in myself. Handed me a brief, pointed at a crowd, and said — go.</p>
+      <p>I went. Leveraged every contact I had. Turned events into experiences. Did marketing the way it should always be done — on the ground, in the room, in the moment.</p>
+      <p>That mentor didn't give me a playbook. He gave me permission to trust my instincts. That was worth more than any framework.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 05 · The Year</div>
+  <div class="beat">
+    <div class="lyric">"I put my heart into this game like I opened my chest"</div>
+    <div class="lyric-credit">Good Life <span>·</span> G-Eazy & Kehlani</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Then came the year I failed. Not quietly. Visibly. The kind where people stop calling and start whispering.</p>
+      <p>I called it a development year before that was fashionable. Volunteered. Worked without a title or a salary. Got humbled in ways a classroom never could. Treated that year like a product in beta — found the gaps, fixed them, shipped a better version.</p>
+      <p>Came out the other side not just recovered. Came out sharper. That skill — staying functional under pressure, making decisions with incomplete information — is not something you learn in a lecture. It's something you earn.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 06 · The Application</div>
+  <div class="beat">
+    <div class="lyric">"I'm always ready for a war again, go down that road again — I'll ride again"</div>
+    <div class="lyric-credit">Pray For Me <span>·</span> The Weeknd</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Everyone told me to stay. Work in your field. Stop chasing something nobody around you could picture.</p>
+      <p>I asked for one month to sort the funding. It took a year to get the loan approved. Applied to every university that mattered. Got rejected by all of them — first round. Then Hochschule Harz wrote back.</p>
+      <p>Small town in the Harz mountains. History, quiet, the kind of place that demands something of you. I said yes before I finished reading the letter. Conviction in a roadmap that hasn't proven itself yet. You back it anyway.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 07 · Germany</div>
+  <div class="beat">
+    <div class="lyric">"I switch up my cup, I kill any pain"</div>
+    <div class="lyric-credit">Starboy <span>·</span> The Weeknd</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Landing here felt like being a new product in an unfamiliar market — strong fundamentals, unclear positioning, everything to prove.</p>
+      <p>I missed home more than I admitted. Worked part-time, studied full-time, carried both without making it anyone else's problem. Found that every skill from Kolhapur — reading rooms, building teams, understanding what people need before they say it — translated perfectly.</p>
+      <p>The pain didn't disappear. I just got better at using it.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 08 · The Work</div>
+  <div class="beat">
+    <div class="lyric">"But I won't cry for yesterday, there's an ordinary world somehow I have to find"</div>
+    <div class="lyric-credit">Ordinary World <span>·</span> Duran Duran</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>At Hochschule Harz I found the vocabulary for everything I'd been doing by instinct. Product strategy. Innovation management. Marketing with intent. Not new concepts — just the right words for decisions I'd already been making for years.</p>
+      <p>I built things. Assessed research. Designed innovation platforms. Presented to real stakeholders. Closed the gap between thinking and doing — because that gap is where most people live, and I refuse to.</p>
+    </div>
+  </div>
+
+  <div class="beat ch-marker">Chapter 09 · November</div>
+  <div class="beat">
+    <div class="lyric">"And it's hard to hold a candle in the cold November rain"</div>
+    <div class="lyric-credit">November Rain <span>·</span> Guns N' Roses</div>
+  </div>
+  <div class="beat">
+    <div class="breath"></div>
+    <div class="story">
+      <p>Nobody tells you that going after what you want is genuinely hard. Not exam-hard. Sustained, quiet, unglamorous hard. Tuesday in November in the Harz mountains when the sky is grey and you're not sure it's all going to work out.</p>
+      <p>I've held that candle through every version of this story. Kolhapur to Pune. Pune through failure. Failure onto a flight to Germany. Germany into whatever comes next — which I intend to be meaningful, in product management and marketing, at a company that builds things worth building.</p>
+      <p>The candle is still lit.</p>
+    </div>
+  </div>
+
+</div>
+
+<section id="story-close">
+  <div class="close-lyric">"Life is full of sweet mistakes and love's an honest one to make, time leaves no fruit on the tree"</div>
+  <div class="close-credit">John Mayer</div>
+  <p class="close-body">I am not a finished product. Nobody worth hiring is.<br><br>What I am is someone who has moved through the world with intention — who has built teams, run events, crossed continents, learned from failure, and never stopped being curious about why people choose one thing over another.<br><br>That curiosity is the foundation of good marketing.<br>That execution is the foundation of good product management.<br>And that story — the football, the workshop, the lyrics, the rain — is why I show up differently.</p>
+  <a class="close-cta" href="#" onclick="closeOv();return false;">See the work</a>
+</section>
+
+<footer id="story-footer">
+  <span>Satyajeet Salokhe · 2025</span>
+  <span>Kolhapur → Pune → Wernigerode</span>
+</footer>
+
+<script>
+const beatObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); beatObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.beat').forEach(el => beatObs.observe(el));
+
+const closeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); closeObs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.close-lyric, .close-credit, .close-body, .close-cta').forEach(el => closeObs.observe(el));
+
+const wordObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.word').forEach((w, i) => setTimeout(() => w.classList.add('lit'), i * 38));
+      wordObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.story p').forEach(p => {
+  p.innerHTML = p.textContent.split(' ').map(w => `<span class="word">${w}</span>`).join(' ');
+  wordObs.observe(p);
+});
+</script>
+</div>
+
+</div>
 </body>
 </html>
