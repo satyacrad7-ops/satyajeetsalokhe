@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satyajeet Salokhe — Product · Project · Innovation</title>
+<meta name="description" content="M.Eng student in Technology & Innovation Management. Building products at the intersection of strategy, design, and engineering.">
+<meta property="og:title" content="Satyajeet Salokhe — Product · Project · Innovation">
+<meta property="og:description" content="M.Eng student in Technology & Innovation Management. Portfolio of product strategy, innovation, and engineering projects.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://satyajeetsalokhe.github.io/og-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Satyajeet Salokhe">
+<meta name="twitter:description" content="Product · Project · Innovation">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #080808;
+  --white: #f0efec;
+  --grey: #555;
+  --accent: #d8d8d8;
+  --p: clamp(1.5rem, 6vw, 5rem);
+}
+html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+body { font-family: 'Syne', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+a { text-decoration: none; }
+::selection { background: rgba(255,255,255,.18); color: #fff; }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); }
+
+/* ─── LANGUAGE ─── */
+body:not(.de) .de { display: none !important; }
+body.de .en { display: none !important; }
+
+/* ══════════════════════════════════════
+   NAV  — fixed, clean, no blend mode
+══════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--p);
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+#nav-left { display: flex; align-items: center; gap: 1.4rem; }
+.logo { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; font-weight: 400; letter-spacing: .1em; color: var(--white); }
+.lang { font-size: .54rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: none; border: 1px solid rgba(255,255,255,.2); padding: .25rem .6rem; cursor: pointer; transition: border-color .2s, color .2s; }
+.lang:hover { border-color: var(--white); color: var(--white); }
+#nav-links { display: flex; gap: 2.2rem; list-style: none; }
+#nav-links a { font-size: .58rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.35); transition: color .2s; }
+#nav-links a:hover, #nav-links a.on { color: var(--white); }
+#nav-links a.on::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--white);
+  margin-top: 2px;
+  transform-origin: left;
+  animation: navUnderline .3s ease forwards;
+}
+@keyframes navUnderline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.cv-btn {
+  font-size: .54rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,.25); padding: .28rem .75rem;
+  transition: background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.cv-btn:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+#burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+#burger span { display: block; width: 22px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
+#burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+#burger.open span:nth-child(2) { opacity: 0; }
+#burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+#mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: #080808;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+#mobile-menu.open { display: flex; }
+#mobile-menu a { font-size: 1.1rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+#mobile-menu a:hover { color: var(--white); }
+
+/* ══════════════════════════════════════
+   DESKTOP STICKY STACK
+══════════════════════════════════════ */
+#stack { position: relative; }
+.card {
+  min-height: 100vh;
+  padding: 100px var(--p) 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: sticky; top: 0; overflow: hidden;
+}
+/* Projects card — NOT sticky; sits in a tall wrapper so next cards push it away naturally */
+#projects {
+  position: relative !important;
+  min-height: auto;
+  justify-content: flex-start;
+  overflow: visible;
+  padding-bottom: 80px;
+}
+/* Tall wrapper gives scroll room so content is fully visible before next card arrives */
+#projects-wrap {
+  position: relative;
+  z-index: 3;
+}
+/* Next cards still stack on top — handled via ID selectors above */
+.card:nth-child(1) { background: var(--black); z-index: 1; }
+.card:nth-child(2) { background: #0e0e0e; color: var(--white); z-index: 2; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+/* projects card lives inside #projects-wrap, handled separately */
+#projects { background: #111; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+#skills { background: #0e0e0e; color: var(--white); z-index: 4; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+#contact { background: #080808; z-index: 5; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px rgba(0,0,0,.8); }
+
+/* ══════════════════════════════════════
+   REVEALS
+══════════════════════════════════════ */
+.r { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+.r.show { opacity: 1; transform: none; }
+.r.d1 { transition-delay: .1s; }
+.r.d2 { transition-delay: .2s; }
+.r.d3 { transition-delay: .3s; }
+.r.d4 { transition-delay: .4s; }
+
+/* ══════════════════════════════════════
+   HOME CARD
+══════════════════════════════════════ */
+#home .bg-num {
+  position: absolute; bottom: 2rem; right: var(--p);
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(6rem, 18vw, 14rem); font-weight: 400;
+  color: rgba(255,255,255,.022); line-height: 1; pointer-events: none;
+}
+#home .tag { font-size: .56rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.32); margin-bottom: 1.6rem; }
+#home h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(5rem, 16vw, 13rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .02em;
+}
+#home h1 em { font-style: normal; color: rgba(255,255,255,.28); }
+#home .sub { margin-top: 2.2rem; font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.35); max-width: 38ch; }
+#home .cta {
+  margin-top: 2.4rem; display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .56rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white); border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: .35rem;
+  transition: color .25s, border-color .25s;
+}
+#home .cta::after { content: '→'; }
+#home .cta:hover { color: var(--accent); border-color: var(--accent); }
+#home .year-stamp {
+  position: absolute; left: var(--p); bottom: 2.5rem;
+  font-size: .5rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.15); writing-mode: horizontal-tb;
+  display: flex; align-items: center; gap: .8rem;
+}
+#home .year-stamp::before { content: ''; display: block; width: 2rem; height: 1px; background: rgba(255,255,255,.15); }
+
+/* Home card — contains skewed gallery */
+#home { overflow: hidden; }
+/* Ensure home card text sits above gallery */
+#home .tag, #home h1, #home .sub, #home .cta { position: relative; z-index: 1; }
+#home .bg-num { z-index: 0; }
+#home .year-stamp { z-index: 1; }
+
+/* ══════════════════════════════════════
+   SKEWED GALLERY — Home card right side
+══════════════════════════════════════ */
+#home-gallery {
+  position: absolute;
+  top: -10%; right: -4%;
+  width: 52%; height: 120%;
+  overflow: hidden;
+  transform: rotate(-14deg);
+  transform-origin: top right;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+}
+.gallery-cols { display: flex; gap: 10px; height: 100%; width: 100%; }
+.gallery-col  { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.gallery-track {
+  display: flex; flex-direction: column; gap: 10px;
+  animation: galleryScroll linear infinite;
+  will-change: transform;
+}
+.gallery-col:nth-child(1) .gallery-track { animation-duration: 28s; }
+.gallery-col:nth-child(2) .gallery-track { animation-duration: 20s; animation-direction: reverse; }
+.gallery-col:nth-child(3) .gallery-track { animation-duration: 34s; }
+@keyframes galleryScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.gtile {
+  background: rgba(255,255,255,0.022);
+  border: 1px solid rgba(255,255,255,0.045);
+  padding: 1.1rem 1rem; flex-shrink: 0;
+}
+.gtile-num  { font-size: .42rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgba(200,200,200,0.35); margin-bottom: .55rem; }
+.gtile-title { font-size: .62rem; font-weight: 400; line-height: 1.4; color: rgba(240,239,236,0.42); margin-bottom: .6rem; letter-spacing: -.01em; }
+.gtile-tags  { display: flex; flex-wrap: wrap; gap: .25rem; }
+.gtile-tag   { font-size: .38rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.22); padding: .15rem .35rem; }
+@media (max-width: 768px) { #home-gallery { display: none; } }
+
+/* ══════════════════════════════════════
+   ABOUT CARD
+══════════════════════════════════════ */
+.section-label {
+  font-size: .54rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+.section-label::before { content: attr(data-n); opacity: .3; margin-right: .7rem; font-size: .5rem; }
+.section-label.light { color: var(--accent); }
+.section-label.dark { color: var(--accent); }
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: .02em;
+  margin-bottom: 1.8rem;
+}
+.body-dark { font-size: .87rem; font-weight: 400; line-height: 1.88; color: rgba(240,239,236,.72); margin-bottom: 1.2rem; }
+.body-light { font-size: .87rem; font-weight: 400; line-height: 1.88; color: rgba(240,239,236,.68); margin-bottom: 1.2rem; }
+
+/* 3-col about layout: photo | bio | info */
+.about-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 0.85fr;
+  gap: 4rem;
+  align-items: start;
+  width: 100%;
+}
+.about-photo-frame {
+  width: 100%; aspect-ratio: 3/4; overflow: hidden;
+}
+.about-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 10%;
+  filter: grayscale(20%) contrast(1.08);
+  display: block;
+  transition: transform .6s ease;
+}
+.about-photo-frame:hover img { transform: scale(1.03); }
+.about-photo-caption {
+  margin-top: .85rem;
+  font-size: .44rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(240,239,236,.2); line-height: 1.7;
+}
+.info-row { border-top: 1px solid rgba(255,255,255,.07); padding: 1.1rem 0; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.info-row:last-child { border-bottom: 1px solid rgba(255,255,255,.07); }
+.ilbl { font-size: .54rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,239,236,.45); flex-shrink: 0; }
+.ival { font-size: .82rem; font-weight: 400; color: rgba(240,239,236,.88); text-align: right; line-height: 1.6; }
+
+/* ══════════════════════════════════════
+   PROJECTS CARD
+══════════════════════════════════════ */
+.proj-header { margin-bottom: 2.5rem; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,.06); width: 100%; counter-reset: proj; }
+.proj-card {
+  background: #0d0d0d; color: var(--white); padding: 2.4rem 1.8rem;
+  transition: background .38s, border-left .38s; cursor: default;
+  position: relative; overflow: hidden;
+  border-left: 2px solid transparent;
+}
+.proj-card::before {
+  content: "0" counter(proj);
+  counter-increment: proj;
+  position: absolute; bottom: -1.5rem; right: .8rem;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 9rem; line-height: 1;
+  color: rgba(255,255,255,.028);
+  pointer-events: none; user-select: none;
+}
+.proj-card.clickable { cursor: pointer; }
+.proj-card.clickable:hover { background: #131313; border-left-color: var(--white); }
+.proj-card.clickable:hover .pnum { color: var(--accent); }
+.proj-card.clickable:hover .plink { color: var(--white); }
+.proj-card.clickable:hover .pdesc { color: rgba(240,239,236,.65); }
+.proj-card.clickable:hover .ptag { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.6); }
+.pnum { font-size: .52rem; font-weight: 600; letter-spacing: .18em; color: rgba(240,239,236,.2); margin-bottom: 1.8rem; transition: color .38s; }
+.ptitle { font-size: clamp(.85rem, 1.7vw, 1.05rem); font-weight: 500; line-height: 1.35; letter-spacing: -.01em; margin-bottom: .9rem; }
+.pdesc { font-size: .72rem; font-weight: 400; line-height: 1.9; color: rgba(240,239,236,.38); margin-bottom: 1.6rem; transition: color .38s; }
+.ptags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.4rem; }
+.ptag { font-size: .46rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.3); padding: .2rem .5rem; transition: border-color .38s, color .38s; }
+.plink { font-size: .52rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,239,236,.3); transition: color .38s; }
+
+/* ══════════════════════════════════════
+   SKILLS CARD
+══════════════════════════════════════ */
+.skills-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; width: 100%; }
+.skills-left { position: sticky; top: 80px; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); }
+.skill-box { background: #0e0e0e; padding: 1.8rem; transition: background .3s; }
+.skill-box:hover { background: #141414; }
+.skill-cat { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.3rem; padding-bottom: .7rem; border-bottom: 1px solid rgba(216,216,216,.12); }
+.skill-list { list-style: none; }
+.skill-list li { font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.62); }
+
+/* ══════════════════════════════════════
+   CONTACT CARD
+══════════════════════════════════════ */
+.contact-ghost {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3.5rem, 10vw, 10rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: rgba(240,239,236,.55);
+  margin-bottom: 3.5rem;
+}
+.contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid rgba(255,255,255,.07); padding-top: 3rem; }
+.contact-block h3 { font-size: .52rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,239,236,.4); margin-bottom: 1.1rem; }
+.clink { font-size: clamp(1.1rem, 2.8vw, 2rem); font-weight: 400; color: rgba(240,239,236,.92); display: block; line-height: 1.35; margin-bottom: .35rem; letter-spacing: -.02em; transition: color .25s; }
+.clink:hover { color: var(--accent); }
+.cdetail { font-size: .78rem; font-weight: 400; color: rgba(240,239,236,.55); margin-top: .8rem; line-height: 1.9; }
+.footer { margin-top: 5rem; border-top: 1px solid rgba(255,255,255,.05); padding-top: 1.6rem; display: flex; justify-content: space-between; align-items: center; }
+.footer span { font-size: .52rem; font-weight: 500; letter-spacing: .12em; color: rgba(240,239,236,.35); }
+
+/* ══════════════════════════════════════
+   OVERLAYS — shared
+══════════════════════════════════════ */
+.ov {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: #080808; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  color: var(--white);
+}
+.ov.open { display: block; }
+.ov-body { max-width: 1180px; margin: 0 auto; padding: 90px var(--p) 80px; }
+.ov-back { margin-bottom: 3rem; }
+.back-btn { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,239,236,.3); transition: color .2s; }
+.back-btn:hover { color: var(--white); }
+.ov-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.0;
+  margin-bottom: 1.4rem;
+}
+.ov-title em { font-style: normal; color: rgba(255,255,255,.4); }
+.ov-sub { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.ov-lede { font-size: .78rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.4); max-width: 62ch; margin-bottom: 0; }
+.div { height: 1px; background: rgba(255,255,255,.06); margin: 3rem 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+.blabel { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; padding-bottom: .75rem; border-bottom: 1px solid rgba(216,216,216,.12); }
+.qcard { padding: 1.3rem; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.018); margin-bottom: .9rem; }
+.qnum { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .45rem; }
+.qtext { font-size: .74rem; font-weight: 400; line-height: 1.8; color: rgba(240,239,236,.55); }
+.blist { list-style: none; }
+.blist li { font-size: .72rem; font-weight: 400; line-height: 2; color: rgba(240,239,236,.45); padding-left: 1rem; position: relative; }
+.blist li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .54rem; }
+.stat-row { border-top: 1px solid rgba(255,255,255,.06); padding: .95rem 0; display: flex; justify-content: space-between; align-items: center; }
+.slabel { font-size: .52rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,239,236,.25); }
+.sval { font-size: .78rem; font-weight: 400; color: var(--white); }
+.sval.hi { color: var(--accent); font-size: .9rem; }
+.step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
+.step-box { background: #0a0a0a; padding: 1.6rem 1.3rem; }
+.step-lbl { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+.step-txt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
+.bar-row { margin-bottom: 1.7rem; }
+.bar-head { display: flex; justify-content: space-between; margin-bottom: .45rem; }
+.blbl { font-size: .54rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(240,239,236,.3); }
+.bval { font-size: .54rem; color: var(--accent); }
+.bval.dim { color: rgba(240,239,236,.35); }
+.btrack { height: 1px; background: rgba(255,255,255,.07); overflow: hidden; }
+.bfill { height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); transition: transform 1.1s ease; }
+.bfill.dim { background: rgba(255,255,255,.2); }
+.bfill.go { transform: scaleX(1); }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); margin-bottom: .4rem; }
+.photo-wrap { aspect-ratio: 4/3; overflow: hidden; }
+.photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(12%) contrast(1.04); transition: transform .6s; }
+.photo-wrap:hover img { transform: scale(1.04); }
+.caps { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
+.cap { background: #0a0a0a; padding: .75rem 1rem; font-size: .52rem; font-weight: 400; letter-spacing: .1em; color: rgba(240,239,236,.3); }
+.future-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+.flbl { font-size: .52rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .55rem; }
+.ftxt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
+.sprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-bottom: 3rem; }
+.sprint-box { background: #0a0a0a; padding: 1.7rem 1.4rem; }
+.sprint-lbl { font-size: .46rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+.sprint-txt { font-size: .68rem; font-weight: 400; line-height: 1.85; color: rgba(240,239,236,.38); }
+.video-box {
+  width: 100%; aspect-ratio: 16/9; background: #0d0d0d;
+  border: 1px solid rgba(255,255,255,.06);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem;
+  margin-bottom: .4rem;
+}
+.vid-note { font-size: .68rem; font-weight: 400; color: rgba(240,239,236,.3); text-align: center; max-width: 36ch; }
+.vid-btn {
+  font-size: .54rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,.2); padding: .7rem 1.6rem;
+  transition: background .25s, color .25s;
+}
+.vid-btn:hover { background: var(--white); color: var(--black); }
+.vid-cap { font-size: .52rem; font-weight: 400; letter-spacing: .1em; color: rgba(240,239,236,.28); background: #0a0a0a; border: 1px solid rgba(255,255,255,.05); padding: .75rem 1rem; margin-bottom: 3rem; }
+.ov-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,.06); padding-top: 2.5rem; }
+
+/* ══════════════════════════════════════
+   FOOTER QUOTE
+══════════════════════════════════════ */
+.footer-quote {
+  margin-top: 5rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+  position: relative;
+}
+.footer-quote blockquote {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.1;
+  color: #f0efec;
+  letter-spacing: .04em;
+  max-width: 22ch;
+  margin: 0 auto 1.2rem;
+  text-shadow: 0 0 80px rgba(255,255,255,.08);
+}
+.footer-quote cite {
+  font-size: .52rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(240,239,236,.5);
+  font-style: normal;
+  display: block;
+  margin-top: .4rem;
+}
+
+/* ═══════════════════════════════
+   MOBILE — plain scroll, clean
+═══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* --- Nav --- */
+  #nav { padding: 0 1.4rem; }
+  #nav-links { display: none; }
+  #burger { display: flex; }
+
+  /* --- Disable sticky stack completely --- */
+  #stack { display: block; }
+  .card {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    min-height: auto !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 80px 1.4rem 50px !important;
+  }
+  #home.card { min-height: 100svh !important; }
+
+  /* --- Backgrounds still applied --- */
+  .card:nth-child(2) { background: #0e0e0e; color: var(--white); }
+  .card:nth-child(3) { background: #111; color: var(--white); }
+  .card:nth-child(4) { background: #0e0e0e; color: var(--white); }
+  .card:nth-child(5) { background: #080808; color: var(--white); }
+
+  /* --- Layouts collapse --- */
+  .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .about-photo-frame { aspect-ratio: 4/3; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skills-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .skills-left { position: static; }
+  .skill-grid { grid-template-columns: 1fr 1fr; }
+  .contact-cols { grid-template-columns: 1fr; gap: 2rem; }
+  .footer { flex-direction: column; gap: .5rem; text-align: center; }
+  .contact-ghost { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 2.5rem; }
+
+  /* --- Overlays on mobile --- */
+  .ov-body { padding: 80px 1.4rem 60px; }
+  .two { grid-template-columns: 1fr; gap: 2rem; }
+  .step-grid { grid-template-columns: 1fr 1fr; }
+  .future-grid { grid-template-columns: 1fr; gap: 1.3rem; }
+  .photo-grid { grid-template-columns: 1fr; }
+  .caps { grid-template-columns: 1fr; }
+  .sprint-grid { grid-template-columns: 1fr; }
+  .yolo-top { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 440px) {
+  .skill-grid { grid-template-columns: 1fr; }
+  .step-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════
+   LOADING SCREEN — minimal name + line
+══════════════════════════════════════ */
+#loader {
+  position: fixed; inset: 0;
+  background: #0a0a0a;
+  z-index: 99999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#loader-stage {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  width: 100%;
+}
+#loader-name-block {
+  display: flex; flex-direction: column;
+  align-items: center; gap: .3rem;
+}
+/* Small phrase above name */
+#loader-phrase {
+  font-size: clamp(.38rem, .9vw, .52rem);
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(240,239,236,0.14);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  transition: opacity .8s ease;
+  transition-delay: .1s;
+  white-space: nowrap;
+}
+#loader-phrase em { font-style: normal; color: rgba(216,216,216,0.4); }
+#loader-name-first {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2rem, 7vw, 5rem); font-weight: 400;
+  letter-spacing: .06em; color: rgba(240,239,236,0.45);
+  text-transform: uppercase; opacity: 0; transform: translateY(12px);
+  transition: opacity .6s cubic-bezier(0.16,1,0.3,1), transform .6s cubic-bezier(0.16,1,0.3,1);
+}
+#loader-name-last {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.8rem, 9vw, 6.5rem); font-weight: 400;
+  letter-spacing: .04em; color: #f0efec;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: .1s;
+}
+#loader-name-role {
+  margin-top: .85rem; font-size: clamp(.42rem, 1vw, .56rem);
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(216,216,216,.45); opacity: 0; transform: translateY(6px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: .4s;
+}
+/* Small progress line directly below the role text */
+#loader-inline-progress {
+  margin-top: 1.6rem;
+  width: clamp(120px, 20vw, 200px);
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+#loader-inline-bar {
+  position: absolute; top: 0; left: 0;
+  height: 100%; width: 0%;
+  background: rgba(216,216,216,.7);
+  transition: width linear;
+}
+#loader-inline-bar::after {
+  content: ''; position: absolute; right: 0; top: -2px;
+  width: 2px; height: 5px; background: #d8d8d8;
+  border-radius: 1px;
+}
+#loader-flash {
+  position: fixed; inset: 0; background: #f0efec;
+  z-index: 100000; opacity: 0; pointer-events: none;
+}
+
+
+
+
+/* ══════════════════════════════════════
+   TEXT REVEAL ON SCROLL (about only)
+══════════════════════════════════════ */
+.reveal-text {
+  overflow: hidden;
+}
+.reveal-text .word {
+  display: inline;
+  color: rgba(240,239,236,.2);
+  transition: color .4s ease;
+}
+.reveal-text .word.lit {
+  color: rgba(240,239,236,.82);
+}
+
+/* ══════════════════════════════════════
+   HERO QUOTE
+══════════════════════════════════════ */
+#home .hero-quote {
+  position: relative; z-index: 1;
+  margin-top: 2.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+  max-width: 50ch;
+}
+#home .hero-quote p {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,239,236,.88);
+  line-height: 1.45;
+  letter-spacing: .01em;
+}
+#home .hero-quote cite {
+  display: block;
+  margin-top: .75rem;
+  font-size: .48rem;
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: rgba(240,239,236,.4);
+  font-style: normal;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════ LOADING SCREEN ═══════════ -->
+<div id="loader-flash"></div>
+<div id="loader">
+  <div id="loader-stage">
+    <div id="loader-name-block">
+      <div id="loader-phrase">Ever wondered where we could <em>be?</em></div>
+      <div id="loader-name-first">Satyajeet</div>
+      <div id="loader-name-last">Salokhe</div>
+      <div id="loader-name-role">Product &middot; Project &middot; Innovation</div>
+      <div id="loader-inline-progress">
+        <div id="loader-inline-bar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div id="nav-left">
+    <a class="logo" href="#" onclick="goTo('home');return false;">SS</a>
+    <button class="lang" id="langBtn" onclick="toggleLang()">DE</button>
+  </div>
+  <ul id="nav-links">
+    <li><a href="#" data-s="about" onclick="goTo('about');return false;"><span class="en">About</span><span class="de">Über mich</span></a></li>
+    <li><a href="#" data-s="projects" onclick="goTo('projects');return false;"><span class="en">Projects</span><span class="de">Projekte</span></a></li>
+    <li><a href="#" data-s="skills" onclick="goTo('skills');return false;"><span class="en">Skills</span><span class="de">Kenntnisse</span></a></li>
+    <li><a href="#" data-s="contact" onclick="goTo('contact');return false;"><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
+    <li><a class="cv-btn" href="/cv-satyajeet-salokhe.pdf" download><span class="en">CV ↓</span><span class="de">Lebenslauf ↓</span></a></li>
+  </ul>
+  <button id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a href="#" onclick="mobileGo('about')"><span class="en">About</span><span class="de">Über mich</span></a>
+  <a href="#" onclick="mobileGo('projects')"><span class="en">Projects</span><span class="de">Projekte</span></a>
+  <a href="#" onclick="mobileGo('skills')"><span class="en">Skills</span><span class="de">Kenntnisse</span></a>
+  <a href="#" onclick="mobileGo('contact')"><span class="en">Contact</span><span class="de">Kontakt</span></a>
+</div>
+
+<!-- ═══════════ MAIN STACK ═══════════ -->
+<div id="stack">
+
+<!-- 1. HOME -->
+<section class="card" id="home">
+  <div class="bg-num">01</div>
+  <p class="tag r">
+    <span class="en">Product · Project · Marketing · Innovation</span>
+    <span class="de">Produkt · Projekt · Marketing · Innovation</span>
+  </p>
+  <h1 class="r d1">Satyajeet<br><em>Salokhe</em></h1>
+  <p class="sub r d2">
+    <span class="en">M.Eng student in Technology &amp; Innovation Management. Building products at the intersection of strategy, design, and engineering.</span>
+    <span class="de">M.Eng-Student in Technologie- und Innovationsmanagement. Produkte an der Schnittstelle von Strategie, Design und Technik.</span>
+  </p>
+  <a class="cta r d3" href="#" onclick="goTo('about');return false;">
+    <span class="en">Explore my work</span>
+    <span class="de">Meine Arbeit entdecken</span>
+  </a>
+
+  <div class="year-stamp">v.03 — 2025</div>
+  <div class="hero-quote r">
+    <p>"And a new day will dawn for those who stand long."</p>
+    <cite>— Led Zeppelin</cite>
+  </div>
+
+  <!-- Skewed scrolling gallery -->
+  <div id="home-gallery">
+    <div class="gallery-cols">
+      <!-- Col 1 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+        <!-- duplicate for seamless loop -->
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+      </div></div>
+      <!-- Col 2 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+        <!-- duplicate -->
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+      </div></div>
+      <!-- Col 3 -->
+      <div class="gallery-col"><div class="gallery-track">
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+        <!-- duplicate -->
+        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+      </div></div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- 2. ABOUT -->
+<section class="card" id="about">
+  <div class="about-wrap">
+
+    <!-- Col 1: Photo -->
+    <div class="r">
+      <div class="about-photo-frame">
+        <img src="satya-photo.jpg" alt="Satyajeet Salokhe presenting at HS Harz">
+      </div>
+      <p class="about-photo-caption">
+        <span class="en">Presenting research — HS Harz, 2025</span>
+        <span class="de">Forschungspräsentation — HS Harz, 2025</span>
+      </p>
+    </div>
+
+    <!-- Col 2: Bio -->
+    <div>
+      <p class="section-label dark r" data-n="01"><span class="en">About</span><span class="de">Über mich</span></p>
+      <h2 class="section-title r d1">
+        <span class="en">Built to go<br>the distance.</span>
+        <span class="de">Gemacht für<br>den langen Weg.</span>
+      </h2>
+      <p class="body-dark reveal-text r d2" id="about-p1">
+        <span class="en">I grew up in Kolhapur — a city that smells of sugarcane and engine oil, where my family ran a spray-painting workshop and craft was never separate from work. That early education in making things with your hands never really left me. It just changed form.</span>
+        <span class="de">Aufgewachsen in Kolhapur — einer Stadt, die nach Zuckerrohr und Motoröl riecht, wo meine Familie eine Spritzlackier-Werkstatt betrieb und Handwerk nie von Arbeit zu trennen war. Diese frühe Erziehung im Erschaffen mit den Händen hat mich nie wirklich verlassen. Sie hat nur die Form gewechselt.</span>
+      </p>
+      <p class="body-dark reveal-text r d3" id="about-p2">
+        <span class="en">Pune followed — engineering, late nights, a degree from D.Y. Patil, and two years learning how real businesses actually run. I coordinated triathlon events, managed supply chains, understood that strategy without execution is just noise. Then Germany called, and I answered.</span>
+        <span class="de">Dann Pune — Ingenieurwesen, späte Nächte, ein Abschluss am D.Y. Patil, zwei Jahre damit, zu verstehen, wie echte Unternehmen wirklich funktionieren. Triathlon-Events koordiniert, Lieferketten gemanagt, verstanden, dass Strategie ohne Umsetzung nur Lärm ist. Dann rief Deutschland, und ich antwortete.</span>
+      </p>
+      <p class="body-dark reveal-text r d4" id="about-p3">
+        <span class="en">Now at Hochschule Harz, building at the intersection of product, marketing and innovation. Fuelled by football, history, and the kind of music that reminds you that some things are worth the long road — Zeppelin, GN&#x27;R, the whole canon.</span>
+        <span class="de">Jetzt an der Hochschule Harz, an der Schnittstelle von Produkt, Marketing und Innovation. Angetrieben von Fußball, Geschichte und Musik, die einem daran erinnert, dass manche Dinge den langen Weg wert sind — Zeppelin, GN&#x27;R, der ganze Kanon.</span>
+      </p>
+    </div>
+
+    <!-- Col 3: Info rows -->
+    <div class="r d2">
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Location</span><span class="de">Standort</span></span>
+        <span class="ival">Wernigerode, DE</span>
+      </div>
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Education</span><span class="de">Ausbildung</span></span>
+        <span class="ival">M.Eng — Hochschule Harz<br><small style="opacity:.5"><span class="en">Expected 2.2 · Ongoing</span><span class="de">Angestrebt 2,2 · Laufend</span></small></span>
+      </div>
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Background</span><span class="de">Hintergrund</span></span>
+        <span class="ival"><span class="en">Kolhapur, India</span><span class="de">Kolhapur, Indien</span></span>
+      </div>
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Languages</span><span class="de">Sprachen</span></span>
+        <span class="ival"><span class="en">English C2 · Deutsch B1</span><span class="de">Englisch C2 · Deutsch B1</span></span>
+      </div>
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Certificates</span><span class="de">Zertifikate</span></span>
+        <span class="ival"><span class="en">Lean Six Sigma Yellow Belt<br>Excel · Project Management</span><span class="de">Lean Six Sigma Yellow Belt<br>Excel · Projektmanagement</span></span>
+      </div>
+      <div class="info-row">
+        <span class="ilbl"><span class="en">Focus</span><span class="de">Schwerpunkt</span></span>
+        <span class="ival">
+          <span class="en">Product · Project<br>Marketing · Innovation</span>
+          <span class="de">Produkt · Projekt<br>Marketing · Innovation</span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3. PROJECTS -->
+<div id="projects-wrap">
+<section class="card" id="projects">
+  <div class="proj-header">
+    <p class="section-label light r" data-n="02"><span class="en">Projects</span><span class="de">Projekte</span></p>
+    <h2 class="section-title r d1">
+      <span class="en">Things I've built<br>&amp; explored</span>
+      <span class="de">Was ich entwickelt<br>&amp; erforscht habe</span>
+    </h2>
+  </div>
+  <div class="proj-grid r d2">
+
+    <!-- Card 001 -->
+    <div class="proj-card clickable" onclick="openOv('rubber')">
+      <p class="pnum">001</p>
+      <h3 class="ptitle"><span class="en">Sustainable Product Strategy — Recycled Rubber</span><span class="de">Nachhaltige Produktstrategie — Recycelter Gummi</span></h3>
+      <p class="pdesc"><span class="en">End-to-end product strategy: user persona research, stakeholder analysis, requirements definition, and concept pitching for an eco-friendly rubber product line.</span><span class="de">End-to-End-Produktstrategie: Nutzer-Persona-Forschung, Stakeholderanalyse, Anforderungsdefinition und Konzeptpitch für eine umweltfreundliche Gummiproduktlinie.</span></p>
+      <div class="ptags">
+        <span class="ptag"><span class="en">Market Research</span><span class="de">Marktforschung</span></span>
+        <span class="ptag"><span class="en">User Personas</span><span class="de">Nutzer-Personas</span></span>
+        <span class="ptag"><span class="en">Sustainability</span><span class="de">Nachhaltigkeit</span></span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 002 -->
+    <div class="proj-card clickable" onclick="openOv('necklace')">
+      <p class="pnum">002</p>
+      <h3 class="ptitle"><span class="en">Smart Necklace Product Concept</span><span class="de">Produktkonzept: Intelligente Halskette</span></h3>
+      <p class="pdesc"><span class="en">Led an Agile sprint for concept validation and feedback-driven design iteration. Produced a digital marketing video in DaVinci Resolve and Canva.</span><span class="de">Leitete einen Agile-Sprint zur Konzeptvalidierung. Produzierte ein digitales Marketingvideo in DaVinci Resolve und Canva.</span></p>
+      <div class="ptags">
+        <span class="ptag">Agile Sprint</span>
+        <span class="ptag"><span class="en">Marketing Video</span><span class="de">Marketingvideo</span></span>
+        <span class="ptag"><span class="en">Concept Design</span><span class="de">Konzeptdesign</span></span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 003 -->
+    <div class="proj-card clickable" onclick="openOv('yolo')">
+      <p class="pnum">003</p>
+      <h3 class="ptitle"><span class="en">YOLO-Based Drone Recognition</span><span class="de">YOLO-basierte Drohnenerkennung</span></h3>
+      <p class="pdesc"><span class="en">Real-time object detection system achieving &gt;90% precision — reducing false positives by 25% and improving detection speed by 35% in an Industry 4.0 environment.</span><span class="de">Echtzeit-Objekterkennung mit &gt;90% Präzision — 25% weniger Falschpositive, 35% schnellere Erkennung in einer Industrie-4.0-Umgebung.</span></p>
+      <div class="ptags">
+        <span class="ptag">YOLOv11</span>
+        <span class="ptag">Computer Vision</span>
+        <span class="ptag">Industry 4.0</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 004 -->
+    <div class="proj-card clickable" onclick="openOv('ideaeng')">
+      <p class="pnum">004</p>
+      <h3 class="ptitle"><span class="en">Idea Engineering — Elbfabrik Collaboration Formats</span><span class="de">Idea Engineering — Kollaborationsformate Elbfabrik</span></h3>
+      <p class="pdesc"><span class="en">Systematic innovation management study: applied 5 Whys root cause analysis, brainstorming, and multi-criteria Benefit Analysis to design 5 collaboration formats for Fraunhofer IFF's Elbfabrik hub.</span><span class="de">Systematische Innovationsmanagementstudie: 5-Warum-Analyse, Brainstorming und Nutzwertanalyse zur Entwicklung von 5 Kollaborationsformaten für das Fraunhofer IFF Elbfabrik.</span></p>
+      <div class="ptags">
+        <span class="ptag"><span class="en">Innovation Strategy</span><span class="de">Innovationsstrategie</span></span>
+        <span class="ptag"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+        <span class="ptag"><span class="en">5 Whys</span><span class="de">5-Warum-Methode</span></span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 005 -->
+    <div class="proj-card clickable" onclick="openOv('bilstm')">
+      <p class="pnum">005</p>
+      <h3 class="ptitle"><span class="en">Deep Learning — Reliable User Identification in Social Media During Crisis</span><span class="de">Deep Learning — Zuverlässige Nutzeridentifikation in sozialen Medien während Krisen</span></h3>
+      <p class="pdesc"><span class="en">Academic paper presentation analysing a Bi-LSTM system that achieved 94.54% accuracy in classifying disaster-related tweets, combining VADER sentiment analysis and K-means clustering to identify trustworthy social media users.</span><span class="de">Präsentation eines akademischen Papers: Bi-LSTM-System mit 94,54 % Genauigkeit bei der Klassifizierung katastrophenbezogener Tweets mittels VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+      <div class="ptags">
+        <span class="ptag">Bi-LSTM</span>
+        <span class="ptag"><span class="en">Sentiment Analysis</span><span class="de">Sentiment-Analyse</span></span>
+        <span class="ptag">NLP</span>
+        <span class="ptag">Deep Learning</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+    <!-- Card 006 -->
+    <div class="proj-card clickable" onclick="openOv('smarthome')">
+      <p class="pnum">006</p>
+      <h3 class="ptitle"><span class="en">Technology Assessment — Smart Homes &amp; Buildings</span><span class="de">Technologiebewertung — Smart Homes &amp; Gebäude</span></h3>
+      <p class="pdesc"><span class="en">Group TAS project comparing smart home innovation strategies for the USA and Thailand. Conducted PESTEL analysis, proposed four innovations, and produced a Technology Radar mapping adoption readiness across AI, IoT, and blockchain tools.</span><span class="de">Gruppen-TAS-Projekt: PESTEL-Analyse für USA und Thailand, vier Innovationsvorschläge und ein Technology Radar zur Bewertung von KI-, IoT- und Blockchain-Tools.</span></p>
+      <div class="ptags">
+        <span class="ptag">PESTEL</span>
+        <span class="ptag"><span class="en">Technology Radar</span><span class="de">Technologie-Radar</span></span>
+        <span class="ptag">IoT</span>
+        <span class="ptag">SDGs</span>
+      </div>
+      <p class="plink"><span class="en">View Case Study →</span><span class="de">Fallstudie ansehen →</span></p>
+    </div>
+
+  </div>
+</section>
+</div><!-- /projects-wrap -->
+
+<!-- 4. SKILLS -->
+<section class="card" id="skills">
+  <div class="skills-wrap">
+    <div class="skills-left">
+      <p class="section-label dark r" data-n="03"><span class="en">Skills</span><span class="de">Kenntnisse</span></p>
+      <h2 class="section-title r d1"><span class="en">Tools &amp;<br>methods</span><span class="de">Werkzeuge &amp;<br>Methoden</span></h2>
+      <p class="body-dark r d2" style="margin-top:1.2rem;font-size:.72rem"><span class="en">A toolkit built across product, project, marketing, and technology disciplines.</span><span class="de">Ein Werkzeugkasten aus Produkt-, Projekt-, Marketing- und Technologiebereichen.</span></p>
+    </div>
+    <div class="skill-grid r d1">
+      <div class="skill-box">
+        <p class="skill-cat"><span class="en">Digital Tools</span><span class="de">Digitale Tools</span></p>
+        <ul class="skill-list"><li>Figma Sites &amp; FigJam</li><li>Conceptboard &amp; Miro</li><li>ChatGPT &amp; Copilot</li><li>Notion &amp; Canva</li></ul>
+      </div>
+      <div class="skill-box">
+        <p class="skill-cat"><span class="en">Agile &amp; Project</span><span class="de">Agile &amp; Projekt</span></p>
+        <ul class="skill-list"><li>Scrum &amp; SAFe</li><li>Lean Six Sigma</li><li>Jira &amp; MS Teams</li><li><span class="en">Risk Analysis</span><span class="de">Risikoanalyse</span></li></ul>
+      </div>
+      <div class="skill-box">
+        <p class="skill-cat">Marketing</p>
+        <ul class="skill-list"><li><span class="en">Digital Marketing</span><span class="de">Digitales Marketing</span></li><li><span class="en">Market Research</span><span class="de">Marktforschung</span></li><li>DaVinci Resolve</li><li>Power BI &amp; Excel</li></ul>
+      </div>
+      <div class="skill-box">
+        <p class="skill-cat"><span class="en">Innovation</span><span class="de">Innovation</span></p>
+        <ul class="skill-list"><li><span class="en">Innovation Platform Design</span><span class="de">Innovationsplattform-Design</span></li><li><span class="en">Idea Engineering</span><span class="de">Ideen-Engineering</span></li><li>Change Management</li><li><span class="en">Tech Adoption</span><span class="de">Technologieadoption</span></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CONTACT -->
+<section class="card" id="contact">
+  <p class="contact-ghost r"><span class="en">Let's connect</span><span class="de">Lass uns vernetzen</span></p>
+  <div class="contact-cols">
+    <div class="contact-block">
+      <h3 class="r"><span class="en">Get in touch</span><span class="de">Kontakt aufnehmen</span></h3>
+      <a class="clink r d1" href="/cdn-cgi/l/email-protection#fb889a8f829a919e9e8f889a979490939ececcbb9c969a9297d5989496">satyajeetsalokhe57<br>@gmail.com</a>
+      <p class="cdetail r d2"><span class="en">Open to internships, collaborations<br>&amp; new opportunities.</span><span class="de">Offen für Praktika, Kooperationen<br>&amp; neue Möglichkeiten.</span></p>
+    </div>
+    <div class="contact-block">
+      <h3 class="r"><span class="en">Find me online</span><span class="de">Online finden</span></h3>
+      <a class="clink r d1" href="https://linkedin.com/in/satyajeetsalokhe57" target="_blank" rel="noopener">LinkedIn</a>
+      <p class="cdetail r d2">Wernigerode, Deutschland<br>+49 017634415608</p>
+    </div>
+  </div>
+  <div class="footer r">
+    <span>© 2025 Satyajeet Salokhe</span>
+    <span><span class="en">Product · Project · Marketing · Innovation</span><span class="de">Produkt · Projekt · Marketing · Innovation</span></span>
+  </div>
+
+</section>
+
+</div><!-- /stack -->
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 1 — RUBBER / PROJECT 001
+════════════════════════════════════ -->
+<div class="ov" id="ov-rubber">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Product Strategy · HS Harz</span><span class="de">Produktstrategie · HS Harz</span></p>
+    <h1 class="ov-title"><span class="en">Sustainable Product Strategy<br><em>Recycled Rubber</em></span><span class="de">Nachhaltige Produktstrategie<br><em>Recycelter Gummi</em></span></h1>
+    <p class="ov-lede"><span class="en">A full product strategy project exploring the feasibility and market potential of eco-friendly rubber products — from user persona definition to stakeholder pitching and concept prototyping.</span><span class="de">Ein vollständiges Produktstrategieprojekt zur Bewertung der Machbarkeit und des Marktpotenzials umweltfreundlicher Gummiprodukte — von der Nutzer-Persona-Definition bis hin zu Stakeholder-Pitching und Konzeptprototyping.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">User Personas Defined</span><span class="de">Definierte Nutzer-Personas</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Persona 1 — The Eco-Conscious Consumer</span><span class="de">Persona 1 — Der umweltbewusste Verbraucher</span></p>
+          <p class="qtext"><span class="en">Urban professional, 25–40, actively chooses sustainable brands. Willing to pay a premium for certified eco-friendly products. Values transparency in materials and production.</span><span class="de">Urbaner Berufstätiger, 25–40, wählt aktiv nachhaltige Marken. Bereit, einen Aufpreis für zertifizierte Öko-Produkte zu zahlen. Legt Wert auf Transparenz bei Materialien und Produktion.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Persona 2 — The Industrial Buyer</span><span class="de">Persona 2 — Der industrielle Käufer</span></p>
+          <p class="qtext"><span class="en">Procurement manager in manufacturing, 35–55. Prioritises cost-efficiency and compliance. Interested in recycled materials for regulatory and ESG reporting advantages.</span><span class="de">Einkaufsleiter in der Industrie, 35–55. Priorisiert Kosteneffizienz und Compliance. Interessiert an recycelten Materialien für regulatorische und ESG-Reporting-Vorteile.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Persona 3 — The Retail Partner</span><span class="de">Persona 3 — Der Einzelhandelspartner</span></p>
+          <p class="qtext"><span class="en">Buyer at a mid-sized retail chain, 30–50. Seeks differentiated products with sustainability credentials to meet growing consumer demand and brand positioning goals.</span><span class="de">Einkäufer bei einer mittelgroßen Einzelhandelskette, 30–50. Sucht differenzierte Produkte mit Nachhaltigkeitsnachweisen, um der wachsenden Verbrauchernachfrage gerecht zu werden.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Methodology</span><span class="de">Methodik</span></p>
+        <ul class="blist">
+          <li><span class="en">Competitor analysis — mapped 12 rubber product alternatives across price, eco-certification, and market positioning</span><span class="de">Wettbewerbsanalyse — 12 Gummiprodukt-Alternativen nach Preis, Öko-Zertifizierung und Marktpositionierung kartiert</span></li>
+          <li><span class="en">Stakeholder interviews — gathered requirements from potential buyers, suppliers, and end users</span><span class="de">Stakeholder-Interviews — Anforderungen von potenziellen Käufern, Lieferanten und Endnutzern gesammelt</span></li>
+          <li><span class="en">Product requirements document — defined functional, quality, and sustainability specifications</span><span class="de">Produktanforderungsdokument — funktionale, qualitative und Nachhaltigkeitsspezifikationen definiert</span></li>
+          <li><span class="en">Feasibility assessment — evaluated technical and financial viability of three concept directions</span><span class="de">Machbarkeitsbewertung — technische und finanzielle Tragfähigkeit von drei Konzeptrichtungen bewertet</span></li>
+          <li><span class="en">Concept pitch — presented validated product concept to stakeholders with business case</span><span class="de">Konzeptpitch — validiertes Produktkonzept mit Business Case an Stakeholder präsentiert</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Insights</span><span class="de">Wichtige Erkenntnisse</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Market Gap</span><span class="de">Marktlücke</span></p>
+          <p class="qtext"><span class="en">Identified an underserved segment of mid-market B2B buyers seeking eco-certified rubber components with competitive pricing — no strong incumbent players at this intersection.</span><span class="de">Eine unterversorgte Zielgruppe von mittelständischen B2B-Käufern identifiziert, die öko-zertifizierte Gummikomponenten zu wettbewerbsfähigen Preisen suchen.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Value Proposition</span><span class="de">Wertversprechen</span></p>
+          <p class="qtext"><span class="en">Recycled rubber products positioned as both a cost-reduction lever and an ESG compliance tool — giving buyers dual justification for procurement decisions.</span><span class="de">Recycelte Gummiprodukte als Kostensenkungshebel und ESG-Compliance-Tool positioniert — doppelte Rechtfertigung für Beschaffungsentscheidungen.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Outcome &amp; Deliverables</span><span class="de">Ergebnis &amp; Liefergegenstände</span></p>
+        <ul class="blist">
+          <li><span class="en">3 fully defined user personas with behavioural profiles and buying triggers</span><span class="de">3 vollständig definierte Nutzer-Personas mit Verhaltensprofile und Kaufauslöser</span></li>
+          <li><span class="en">Competitive landscape map across 12 products</span><span class="de">Wettbewerbslandschaftskarte für 12 Produkte</span></li>
+          <li><span class="en">Product Requirements Document (PRD) — 3 concept directions</span><span class="de">Produktanforderungsdokument (PRD) — 3 Konzeptrichtungen</span></li>
+          <li><span class="en">Stakeholder pitch deck with feasibility assessment and business case</span><span class="de">Stakeholder-Pitch-Deck mit Machbarkeitsbewertung und Business Case</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Product Development</span><span class="de">Produktentwicklung</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Product Marketing</span><span class="de">Produktmarketing</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Innovation Strategy</span><span class="de">Innovationsstrategie</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 2 — NECKLACE / PROJECT 002
+════════════════════════════════════ -->
+<div class="ov" id="ov-necklace">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Agile Sprint · Marketing Production · HS Harz</span><span class="de">Agile-Sprint · Marketingproduktion · HS Harz</span></p>
+    <h1 class="ov-title"><span class="en">Smart Necklace<br><em>Product Concept</em></span><span class="de">Intelligente Halskette<br><em>Produktkonzept</em></span></h1>
+    <p class="ov-lede"><span class="en">A concept product developed through a structured Agile sprint — from ideation to validated prototype — culminating in a professional digital marketing video produced in DaVinci Resolve and Canva.</span><span class="de">Ein Konzeptprodukt, das durch einen strukturierten Agile-Sprint entwickelt wurde — von der Ideenfindung bis zum validierten Prototyp — mit einem professionellen Marketingvideo in DaVinci Resolve und Canva.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Project Overview</span><span class="de">Projektübersicht</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Goal</span><span class="de">Ziel</span></p>
+          <p class="qtext"><span class="en">Design and validate a smart wearable necklace concept through rapid Agile iteration, gathering user feedback at each stage to refine the product vision.</span><span class="de">Entwurf und Validierung eines intelligenten Halsketten-Konzepts durch schnelle Agile-Iteration mit Nutzerfeedback in jeder Phase.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Outcome</span><span class="de">Ergebnis</span></p>
+          <p class="qtext"><span class="en">Fully iterated product concept backed by user testing — documented in a professional digital marketing video for stakeholder presentation.</span><span class="de">Vollständig iteriertes Produktkonzept, gestützt durch Nutzertests — dokumentiert in einem professionellen Marketingvideo für die Stakeholder-Präsentation.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Tools &amp; Methods</span><span class="de">Tools &amp; Methoden</span></p>
+        <ul class="blist">
+          <li><span class="en">Agile Sprint — structured iteration with defined sprints and retrospectives</span><span class="de">Agile-Sprint — strukturierte Iteration mit definierten Sprints und Retrospektiven</span></li>
+          <li><span class="en">User feedback sessions — validation and design refinement at each stage</span><span class="de">Nutzerfeedback-Sessions — Validierung und Designverfeinerung in jeder Phase</span></li>
+          <li><span class="en">DaVinci Resolve — video editing and colour grading</span><span class="de">DaVinci Resolve — Videobearbeitung und Farbkorrektur</span></li>
+          <li><span class="en">Canva — graphic design, motion assets, and brand visuals</span><span class="de">Canva — Grafikdesign, Motion-Assets und Markenvisuals</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:2rem"><span class="en">Sprint Process</span><span class="de">Sprint-Prozess</span></p>
+    <div class="sprint-grid">
+      <div class="sprint-box">
+        <p class="sprint-lbl"><span class="en">01 — Ideation</span><span class="de">01 — Ideenfindung</span></p>
+        <p class="sprint-txt"><span class="en">Defined target user, core features, and value proposition through team brainstorming and initial market scan. Set sprint goals and acceptance criteria.</span><span class="de">Zielnutzer, Kernfunktionen und Wertversprechen durch Team-Brainstorming und Marktanalyse definiert. Sprint-Ziele und Akzeptanzkriterien festgelegt.</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl"><span class="en">02 — Prototype &amp; Test</span><span class="de">02 — Prototyp &amp; Test</span></p>
+        <p class="sprint-txt"><span class="en">Built low-fidelity concept mockups and ran user feedback sessions. Iterated the design across multiple rounds, incorporating insights each cycle.</span><span class="de">Low-Fidelity-Mockups erstellt und Nutzerfeedback-Sessions durchgeführt. Design über mehrere Runden iteriert und Erkenntnisse jedes Zyklus einbezogen.</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl"><span class="en">03 — Produce &amp; Present</span><span class="de">03 — Produktion &amp; Präsentation</span></p>
+        <p class="sprint-txt"><span class="en">Produced a professional digital marketing video presenting the validated concept. Edited in DaVinci Resolve; graphics and motion in Canva.</span><span class="de">Professionelles Marketingvideo produziert. Bearbeitet in DaVinci Resolve; Grafiken und Motion-Assets in Canva.</span></p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Marketing Video</span><span class="de">Marketingvideo</span></p>
+    <div class="video-box">
+      <p class="vid-note"><span class="en">Product marketing video hosted on Google Drive</span><span class="de">Produktmarketingvideo auf Google Drive gehostet</span></p>
+      <a class="vid-btn" href="https://drive.google.com/file/d/1l6j1DDIdXNDfW2sdD0UaphqccSqyy5IW/view?usp=share_link" target="_blank" rel="noopener"><span class="en">Watch Video →</span><span class="de">Video ansehen →</span></a>
+    </div>
+    <div class="vid-cap"><span class="en">Smart Necklace — Digital Marketing Video · DaVinci Resolve &amp; Canva</span><span class="de">Intelligente Halskette — Digitales Marketingvideo · DaVinci Resolve &amp; Canva</span></div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 3 — YOLO / PROJECT 003
+════════════════════════════════════ -->
+<div class="ov" id="ov-yolo">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <div class="yolo-top" style="display:grid;grid-template-columns:2fr 1fr;gap:4rem;align-items:start;margin-bottom:4rem">
+      <div>
+        <p class="ov-sub"><span class="en">Research Project · HS Harz</span><span class="de">Forschungsprojekt · HS Harz</span></p>
+        <h1 class="ov-title"><span class="en">YOLO-Based Drone &amp;<br>Robot Recognition in<br><em>Ongoing Video</em></span><span class="de">YOLO-basierte Drohnen- &amp;<br>Robotererkennung in<br><em>laufenden Videos</em></span></h1>
+        <p class="ov-lede"><span class="en">A YOLOv11-based AI model trained to detect Robomaster TT drones and iRobot ground vehicles — exploring whether image-based recognition alone is sufficient for reliable real-time identification in Industry 4.0 environments.</span><span class="de">Ein YOLOv11-basiertes KI-Modell zur Erkennung von Robomaster TT-Drohnen und iRobot-Bodenfahrzeugen — untersucht, ob bildbasierte Erkennung allein für zuverlässige Echtzeiterkennung in Industrie-4.0-Umgebungen ausreicht.</span></p>
+      </div>
+      <div>
+        <div class="stat-row"><span class="slabel"><span class="en">Model</span><span class="de">Modell</span></span><span class="sval">YOLOv11 · Roboflow</span></div>
+        <div class="stat-row"><span class="slabel">mAP</span><span class="sval hi">72.6%</span></div>
+        <div class="stat-row"><span class="slabel"><span class="en">Precision</span><span class="de">Präzision</span></span><span class="sval hi">100%</span></div>
+        <div class="stat-row"><span class="slabel">Recall</span><span class="sval">66.4%</span></div>
+        <div class="stat-row"><span class="slabel"><span class="en">Confidence</span><span class="de">Konfidenz</span></span><span class="sval hi">93%</span></div>
+        <div class="stat-row"><span class="slabel"><span class="en">Co-author</span><span class="de">Co-Autor</span></span><span class="sval">Vijay Potekar</span></div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Research Questions</span><span class="de">Forschungsfragen</span></p>
+        <div class="qcard"><p class="qnum">Q1</p><p class="qtext"><span class="en">Can robots and drones be consistently identified in onboard video images?</span><span class="de">Können Roboter und Drohnen in Onboard-Videobildern zuverlässig identifiziert werden?</span></p></div>
+        <div class="qcard"><p class="qnum">Q2</p><p class="qtext"><span class="en">Are images alone sufficient, or is additional sensor data required for reliable detection?</span><span class="de">Reichen Bilder allein aus oder werden zusätzliche Sensordaten für eine zuverlässige Erkennung benötigt?</span></p></div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Tools &amp; Stack</span><span class="de">Tools &amp; Technologien</span></p>
+        <ul class="blist">
+          <li><span class="en">YOLOv11 via Roboflow — primary detection model</span><span class="de">YOLOv11 via Roboflow — primäres Erkennungsmodell</span></li>
+          <li><span class="en">Robomaster TT Drone + iRobot — hardware subjects</span><span class="de">Robomaster TT Drohne + iRobot — Hardware-Objekte</span></li>
+          <li><span class="en">High-performance GPUs — model training</span><span class="de">Hochleistungs-GPUs — Modelltraining</span></li>
+          <li><span class="en">244 images — 231 train / 8 valid / 5 test</span><span class="de">244 Bilder — 231 Training / 8 Validierung / 5 Test</span></li>
+          <li>1200×1200px · Batch size 249</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:2rem"><span class="en">Methodology</span><span class="de">Methodik</span></p>
+    <div class="step-grid">
+      <div class="step-box"><p class="step-lbl"><span class="en">01 — Data</span><span class="de">01 — Daten</span></p><p class="step-txt"><span class="en">Indoor and outdoor images at 2m–50m distance, multiple angles and lighting conditions.</span><span class="de">Innen- und Außenbilder in 2m–50m Abstand, verschiedene Winkel und Licht.</span></p></div>
+      <div class="step-box"><p class="step-lbl"><span class="en">02 — Processing</span><span class="de">02 — Verarbeitung</span></p><p class="step-txt"><span class="en">Resizing, noise reduction, and augmentation — flips, rotations, brightness, grayscale, color jitter.</span><span class="de">Größenanpassung, Rauschreduzierung, Augmentierung — Spiegelungen, Rotationen, Helligkeit.</span></p></div>
+      <div class="step-box"><p class="step-lbl"><span class="en">03 — Annotation</span><span class="de">03 — Annotation</span></p><p class="step-txt"><span class="en">Manual bounding box annotation via Roboflow with multi-round quality checks.</span><span class="de">Manuelle Bounding-Box-Annotation via Roboflow mit Qualitätsprüfungen.</span></p></div>
+      <div class="step-box"><p class="step-lbl"><span class="en">04 — Training</span><span class="de">04 — Training</span></p><p class="step-txt"><span class="en">YOLOv11 retrained on drone-specific dataset. Batch 249 selected for optimal convergence.</span><span class="de">YOLOv11 auf drohnenspezifischem Datensatz nachtrainiert. Batch 249 für optimale Konvergenz.</span></p></div>
+    </div>
+
+    <div class="two">
+      <div>
+        <p class="blabel" style="margin-bottom:1.4rem"><span class="en">Results &amp; Findings</span><span class="de">Ergebnisse</span></p>
+        <p class="body-light"><span class="en">100% precision — every drone flagged was correctly identified, zero false positives. Critical for autonomous navigation where false detections cause unnecessary evasive actions.</span><span class="de">100% Präzision — jede erkannte Drohne korrekt identifiziert, null Falschpositive. Entscheidend für autonome Navigation.</span></p>
+        <p class="body-light"><span class="en">Recall at 66.4% highlights room to improve detection in complex backgrounds and occlusion scenarios.</span><span class="de">Recall von 66,4% zeigt Verbesserungspotenzial bei komplexen Hintergründen und Verdeckung.</span></p>
+      </div>
+      <div>
+        <p class="blabel" style="margin-bottom:1.4rem"><span class="en">Performance Metrics</span><span class="de">Leistungskennzahlen</span></p>
+        <div class="bar-row"><div class="bar-head"><span class="blbl"><span class="en">Precision</span><span class="de">Präzision</span></span><span class="bval">100%</span></div><div class="btrack"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="bar-row"><div class="bar-head"><span class="blbl">mAP</span><span class="bval">72.6%</span></div><div class="btrack"><div class="bfill" style="width:72.6%"></div></div></div>
+        <div class="bar-row"><div class="bar-head"><span class="blbl">Recall</span><span class="bval dim">66.4%</span></div><div class="btrack"><div class="bfill dim" style="width:66.4%"></div></div></div>
+        <div class="bar-row"><div class="bar-head"><span class="blbl"><span class="en">Confidence</span><span class="de">Konfidenz</span></span><span class="bval">93%</span></div><div class="btrack"><div class="bfill" style="width:93%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Photo Gallery</span><span class="de">Fotogalerie</span></p>
+    <div class="photo-grid">
+      <div class="photo-wrap"><img src="satya-photo.jpg" alt="Robomaster TT Drone lab"></div>
+      <div class="photo-wrap"><img src="satya-photo.jpg" alt="Robomaster TT Drone flight"></div>
+    </div>
+    <div class="caps">
+      <div class="cap"><span class="en">Robomaster TT — Lab setup</span><span class="de">Robomaster TT — Laboraufbau</span></div>
+      <div class="cap"><span class="en">Robomaster TT — Outdoor flight test</span><span class="de">Robomaster TT — Außenflugtest</span></div>
+    </div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Future Directions</span><span class="de">Zukünftige Richtungen</span></p>
+    <div class="future-grid">
+      <div><p class="flbl"><span class="en">Dataset Expansion</span><span class="de">Datensatzerweiterung</span></p><p class="ftxt"><span class="en">Broader scenarios and more drone types to improve generalization.</span><span class="de">Breitere Szenarien und mehr Drohnentypen zur Verbesserung der Generalisierung.</span></p></div>
+      <div><p class="flbl"><span class="en">Sensor Fusion</span><span class="de">Sensorfusion</span></p><p class="ftxt"><span class="en">Combining camera data with LiDAR or radar for improved recall in occluded conditions.</span><span class="de">Kombination von Kameradaten mit LiDAR oder Radar für besseren Recall bei Verdeckung.</span></p></div>
+      <div><p class="flbl"><span class="en">Real-world Deployment</span><span class="de">Realer Einsatz</span></p><p class="ftxt"><span class="en">Testing in live operational environments with actual drone systems.</span><span class="de">Tests in realen Umgebungen mit echten Drohnensystemen.</span></p></div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 4 — IDEA ENGINEERING / PROJECT 004
+════════════════════════════════════ -->
+<div class="ov" id="ov-ideaeng">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Innovation Management · HS Harz · Group 5</span><span class="de">Innovationsmanagement · HS Harz · Gruppe 5</span></p>
+    <h1 class="ov-title"><span class="en">Idea Engineering —<br><em>Elbfabrik Collaboration Formats</em></span><span class="de">Idea Engineering —<br><em>Elbfabrik Kollaborationsformate</em></span></h1>
+    <p class="ov-lede"><span class="en">A systematic innovation management case study applying structured problem analysis (5 Whys), divergent idea generation (Brainstorming), and objective evaluation (Benefit Analysis) to design five collaboration formats for Fraunhofer IFF's Elbfabrik innovation hub in Magdeburg.</span><span class="de">Eine systematische Innovationsmanagementstudie mit strukturierter Problemanalyse (5-Warum), divergenter Ideengenerierung (Brainstorming) und objektiver Bewertung (Nutzwertanalyse) zur Entwicklung von fünf Kollaborationsformaten für das Fraunhofer IFF Elbfabrik.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Problem Analysis — 5 Whys</span><span class="de">Problemanalyse — 5-Warum-Methode</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Core Problem Identified</span><span class="de">Kernproblem identifiziert</span></p>
+          <p class="qtext"><span class="en">Lack of effective cross-disciplinary collaboration within Elbfabrik's innovation ecosystem — traced through five layers to its root cause: no structured formats enabling knowledge exchange across academia, industry, and startups.</span><span class="de">Mangelnde fachübergreifende Zusammenarbeit im Innovationsökosystem des Elbfabrik — auf die Wurzelursache zurückgeführt: keine strukturierten Formate für den Wissensaustausch.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Root Cause Chain</span><span class="de">Ursachenkette</span></p>
+          <p class="qtext"><span class="en">Seamless communication gaps → limited shared goals → barriers to knowledge exchange → skill mismatches → no structured collaboration formats</span><span class="de">Kommunikationslücken → fehlende gemeinsame Ziele → Barrieren beim Wissensaustausch → Kompetenzlücken → keine strukturierten Formate</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Methodology Stack</span><span class="de">Methodenstack</span></p>
+        <ul class="blist">
+          <li><span class="en">5 Whys — structured root cause identification beyond surface symptoms</span><span class="de">5-Warum-Methode — strukturierte Ursachenanalyse jenseits von Oberflächensymptomen</span></li>
+          <li><span class="en">Brainstorming — open, fast-paced idea generation for high volume of diverse formats</span><span class="de">Brainstorming — offene, schnelle Ideengenerierung für vielfältige Formate</span></li>
+          <li><span class="en">Benefit Analysis — multi-criteria scoring across Feasibility, Scalability, Impact, and Cost</span><span class="de">Nutzwertanalyse — Mehrkriterien-Bewertung nach Machbarkeit, Skalierbarkeit, Wirkung und Kosten</span></li>
+          <li><span class="en">Group 5 — interdisciplinary collaboration between three M.Eng students</span><span class="de">Gruppe 5 — interdisziplinäre Zusammenarbeit zwischen drei M.Eng-Studierenden</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Benefit Analysis Results — Ranked Formats</span><span class="de">Ergebnisse der Nutzwertanalyse — Bewertete Formate</span></p>
+    <div class="step-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:2.5rem">
+      <div class="step-box">
+        <p class="step-lbl">01 · 22/25</p>
+        <p class="qtext" style="font-size:.72rem;color:var(--accent);font-weight:300">Innovation Boot Camp</p>
+        <p class="step-txt">Intensive 1–2 week hackathon-style programme. Highest ranked.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">02 · 20/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Open House Exhibition</p>
+        <p class="step-txt">Co-creation fair modelled on Hannover Messe.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">03 · 20/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Startup Partnership</p>
+        <p class="step-txt">Structured startup co-development pathway.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">04 · 19/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.45);font-weight:300">Exchange Program</p>
+        <p class="step-txt">Cross-disciplinary collaboration initiative.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">05 · 18/25</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.45);font-weight:300">Virtual Labs</p>
+        <p class="step-txt">Online remote collaboration platform.</p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Takeaway</span><span class="de">Kernaussage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Innovation Boot Camp — #1 Recommended</span><span class="de">Innovation Boot Camp — Empfehlung #1</span></p>
+          <p class="qtext"><span class="en">The Boot Camp scored highest (22/25) due to its concentrated structure, cross-disciplinary intensity, and ability to directly address all identified root causes simultaneously. Partners: universities (credit modules), startups (infrastructure access), Elbfabrik (talent pipeline + reputation).</span><span class="de">Das Boot Camp erzielte die höchste Punktzahl (22/25) durch seine konzentrierte Struktur und die Fähigkeit, alle identifizierten Ursachen gleichzeitig zu adressieren.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables</span><span class="de">Liefergegenstände</span></p>
+        <ul class="blist">
+          <li><span class="en">Root cause analysis via 5 Whys — documented problem chain</span><span class="de">Ursachenanalyse via 5-Warum-Methode — dokumentierte Problemkette</span></li>
+          <li><span class="en">5 collaboration format proposals with execution strategies</span><span class="de">5 Kollaborationsformate mit Ausführungsstrategien</span></li>
+          <li><span class="en">Multi-criteria Benefit Analysis scoring table (4 criteria, 5 formats)</span><span class="de">Nutzwertanalyse-Tabelle (4 Kriterien, 5 Formate)</span></li>
+          <li><span class="en">Group presentation deck — Hochschule Harz, November 2024</span><span class="de">Gruppenprä­sentations­deck — Hochschule Harz, November 2024</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Idea Engineering</span><span class="de">Idea Engineering</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Innovation Management</span><span class="de">Innovationsmanagement</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 5 — BI-LSTM / PROJECT 005
+════════════════════════════════════ -->
+<div class="ov" id="ov-bilstm">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Deep Learning · NLP · HS Harz · Individual Presentation</span><span class="de">Deep Learning · NLP · HS Harz · Einzelpräsentation</span></p>
+    <h1 class="ov-title"><span class="en">Deep Learning — Reliable<br><em>User Identification During Crisis</em></span><span class="de">Deep Learning — Zuverlässige<br><em>Nutzeridentifikation während Krisen</em></span></h1>
+    <p class="ov-lede"><span class="en">An academic paper presentation analysing a deep learning system for identifying trustworthy social media users during disasters. The proposed Bi-LSTM model was evaluated on 20,000 real tweets from the 2022 Assam Floods, combining NLP preprocessing, VADER sentiment analysis, user profile scoring, and K-means clustering to achieve 94.54% classification accuracy.</span><span class="de">Präsentation eines akademischen Papers zur Identifikation zuverlässiger Social-Media-Nutzer während Katastrophen. Das Bi-LSTM-Modell wurde an 20.000 echten Tweets der Assam-Überschwemmungen 2022 evaluiert und kombiniert NLP, VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Research Question</span><span class="de">Forschungsfrage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Core Problem</span><span class="de">Kernproblem</span></p>
+          <p class="qtext"><span class="en">During crises, social media is flooded with misinformation, fake news, and unreliable sources. How can a system accurately predict user trustworthiness in real time to support emergency response teams?</span><span class="de">Während Krisen wird Social Media mit Fehlinformationen überflutet. Wie kann ein System die Vertrauenswürdigkeit von Nutzern in Echtzeit vorhersagen?</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Dataset</span><span class="de">Datensatz</span></p>
+          <p class="qtext"><span class="en">20,000 disaster tweets collected via Twitter API using 2022 Assam Flood hashtags — reduced to 16,600 after preprocessing. 13,178 user profiles analysed across 380,784 historical tweets.</span><span class="de">20.000 Katastrophen-Tweets via Twitter API gesammelt (2022 Assam-Überschwemmungen), auf 16.600 nach Vorverarbeitung reduziert. 13.178 Nutzerprofile über 380.784 historische Tweets analysiert.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">System Architecture</span><span class="de">Systemarchitektur</span></p>
+        <ul class="blist">
+          <li><span class="en">Tweet preprocessing — tokenization, lemmatization, stop-word removal</span><span class="de">Tweet-Vorverarbeitung — Tokenisierung, Lemmatisierung, Stoppwort-Entfernung</span></li>
+          <li><span class="en">User Profile Analysis — engagement metrics, verification status, follower counts</span><span class="de">Nutzerprofilanalyse — Engagement-Metriken, Verifizierungsstatus, Followerzahl</span></li>
+          <li><span class="en">User Behavior Analysis — VADER sentiment scoring across past 50 tweets per user</span><span class="de">Nutzerverhaltenanalyse — VADER-Sentiment-Bewertung der letzten 50 Tweets pro Nutzer</span></li>
+          <li><span class="en">Bi-LSTM Tweet Classification — relevant vs. irrelevant disaster tweets</span><span class="de">Bi-LSTM Tweet-Klassifizierung — relevante vs. irrelevante Katastrophen-Tweets</span></li>
+          <li><span class="en">K-Means Clustering — combines all scores to surface highly reliable users</span><span class="de">K-Means-Clustering — kombiniert alle Scores zur Identifikation zuverlässiger Nutzer</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">ML Model Performance — Accuracy over 10 Epochs</span><span class="de">ML-Modell-Performance — Genauigkeit über 10 Epochen</span></p>
+    <div class="step-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:2.5rem">
+      <div class="step-box">
+        <p class="step-lbl">CNN</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.5);font-weight:300">Peak: 85.3%</p>
+        <p class="step-txt">Captures spatial text patterns but lacks sequential context — lowest performer of the three models.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">LSTM</p>
+        <p class="qtext" style="font-size:.72rem;color:rgba(248,244,240,.6);font-weight:300">Peak: 92.5%</p>
+        <p class="step-txt">Handles long-term sequential dependencies well, strong improvement over CNN across all epochs.</p>
+      </div>
+      <div class="step-box">
+        <p class="step-lbl">Bi-LSTM · Best</p>
+        <p class="qtext" style="font-size:.72rem;color:var(--accent);font-weight:300">Peak: 94.54%</p>
+        <p class="step-txt">Processes input in both directions, capturing full sentence context — highest accuracy, selected model.</p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Findings</span><span class="de">Kernerkenntnisse</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Sentiment Breakdown (8,235 users after filtering)</span><span class="de">Sentiment-Verteilung (8.235 Nutzer nach Filterung)</span></p>
+          <p class="qtext"><span class="en">Positive: 2,178 users · Negative: 11,000 users · Neutral: 3,422 eliminated. Negative sentiment dominated — consistent with crisis communication patterns where urgency and distress are prevalent.</span><span class="de">Positiv: 2.178 · Negativ: 11.000 · Neutral: 3.422 eliminiert. Negatives Sentiment dominierte — konsistent mit Krisenkommunkationsmustern.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables &amp; Context</span><span class="de">Liefergegenstände &amp; Kontext</span></p>
+        <ul class="blist">
+          <li><span class="en">Academic paper review and structured presentation — 24 slides</span><span class="de">Akademische Paper-Auswertung und strukturierte Präsentation — 24 Folien</span></li>
+          <li><span class="en">System architecture walkthrough — pipeline from raw tweets to reliable user output</span><span class="de">Systemarchitektur-Walkthrough — Pipeline von rohen Tweets zum zuverlässigen Nutzeroutput</span></li>
+          <li><span class="en">ML model comparison — CNN vs. LSTM vs. Bi-LSTM across 10 epochs</span><span class="de">ML-Modellvergleich — CNN vs. LSTM vs. Bi-LSTM über 10 Epochen</span></li>
+          <li><span class="en">Assessment score: 25/30 — strong marks for novelty, quality, and structure</span><span class="de">Bewertung: 25/30 — starke Noten für Neuheit, Qualität und Struktur</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">Deep Learning</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">NLP</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">Bi-LSTM</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Sentiment Analysis</span><span class="de">Sentiment-Analyse</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     OVERLAY 6 — SMART HOME / PROJECT 006
+════════════════════════════════════ -->
+<div class="ov" id="ov-smarthome">
+  <div class="ov-body">
+    <div class="ov-back"><a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← Back to Projects</span><span class="de">← Zurück zu Projekten</span></a></div>
+
+    <p class="ov-sub"><span class="en">Technology Assessment · HS Harz · Group 5</span><span class="de">Technologiebewertung · HS Harz · Gruppe 5</span></p>
+    <h1 class="ov-title"><span class="en">Technology Assessment —<br><em>Smart Homes &amp; Buildings</em></span><span class="de">Technologiebewertung —<br><em>Smart Homes &amp; Gebäude</em></span></h1>
+    <p class="ov-lede"><span class="en">A comparative Technology Assessment study examining smart home innovation opportunities in the USA and Thailand. The project combined PESTEL analysis, four targeted innovation proposals, SDG alignment, and a Technology Radar evaluating AI, IoT, and blockchain tools across adoption readiness levels.</span><span class="de">Eine vergleichende Technologiebewertungsstudie zu Smart-Home-Innovationen in den USA und Thailand. PESTEL-Analyse, vier Innovationsvorschläge, SDG-Zuordnung und Technology Radar zur Bewertung von KI-, IoT- und Blockchain-Tools.</span></p>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">PESTEL Highlights</span><span class="de">PESTEL-Highlights</span></p>
+        <div class="qcard">
+          <p class="qnum">USA</p>
+          <p class="qtext"><span class="en">Government-backed smart infrastructure investment, evolving cybersecurity legislation, and post-COVID behavioural shifts driving demand for home automation and energy-efficient systems.</span><span class="de">Staatlich geförderter Infrastrukturausbau, sich entwickelnde Cybersicherheitsgesetze und post-COVID-Verhaltensänderungen treiben die Nachfrage nach Heimautomatisierung an.</span></p>
+        </div>
+        <div class="qcard">
+          <p class="qnum">Thailand</p>
+          <p class="qtext"><span class="en">Rapid urbanisation fuelling smart home market growth, strong environmental awareness shaping consumer preferences, and GDP expansion creating investment capacity for IoT infrastructure.</span><span class="de">Schnelle Urbanisierung treibt das Smart-Home-Marktwachstum voran, starkes Umweltbewusstsein prägt Verbraucherpräferenzen, BIP-Wachstum schafft IoT-Investitionskapazität.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Innovations Proposed</span><span class="de">Vorgeschlagene Innovationen</span></p>
+        <ul class="blist">
+          <li><span class="en">Smart Thermostat (USA) — voice/gesture control, geofencing, predictive HVAC maintenance</span><span class="de">Smart Thermostat (USA) — Sprach-/Gestensteuerung, Geofencing, vorausschauende HVAC-Wartung</span></li>
+          <li><span class="en">Solar Panels with AI Energy Management (USA) — bifacial panels, dynamic tilt, +30% energy capture</span><span class="de">Solaranlagen mit KI-Energiemanagement (USA) — bifaziale Panels, dynamische Neigung, +30 % Energieaufnahme</span></li>
+          <li><span class="en">Smart Water Supply Management (Thailand) — IoT leak detection, real-time consumption monitoring</span><span class="de">Smart Wasserversorgung (Thailand) — IoT-Leckerkennung, Echtzeit-Verbrauchsüberwachung</span></li>
+          <li><span class="en">Smart Security System (Thailand) — AI predictive alerts, biometric auth, blockchain footage storage</span><span class="de">Smart-Sicherheitssystem (Thailand) — KI-Prädiktionsalarme, biometrische Authentifizierung, Blockchain-Speicherung</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Technology Radar — Smart Security System</span><span class="de">Technology Radar — Smart-Sicherheitssystem</span></p>
+    <div class="sprint-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:2.5rem">
+      <div class="sprint-box">
+        <p class="sprint-lbl">Adopt</p>
+        <p class="sprint-txt"><span class="en">AI/ML Frameworks · Facial Recognition · Voice Recognition · Cloud Computing · IoT Platforms · Python · OpenCV · TensorFlow/PyTorch</span><span class="de">KI/ML-Frameworks · Gesichtserkennung · Spracherkennung · Cloud Computing · IoT-Plattformen</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">Trial</p>
+        <p class="sprint-txt"><span class="en">Emotion Recognition · Security Analytics Tools · Edge Computing Devices</span><span class="de">Emotionserkennung · Sicherheitsanalysetools · Edge-Computing-Geräte</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">Assess</p>
+        <p class="sprint-txt"><span class="en">Blockchain Storage · Blockchain Platform · Blockchain Frameworks</span><span class="de">Blockchain-Speicherung · Blockchain-Plattform · Blockchain-Frameworks</span></p>
+      </div>
+      <div class="sprint-box">
+        <p class="sprint-lbl">SDG Links</p>
+        <p class="sprint-txt"><span class="en">SDG 7 — Affordable Clean Energy · SDG 11 — Sustainable Cities · SDG 13 — Climate Action · SDG 6 — Clean Water</span><span class="de">SDG 7 · SDG 11 · SDG 13 · SDG 6</span></p>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="two">
+      <div>
+        <p class="blabel"><span class="en">Key Takeaway</span><span class="de">Kernaussage</span></p>
+        <div class="qcard">
+          <p class="qnum"><span class="en">Cross-Market Strategy</span><span class="de">Cross-Market-Strategie</span></p>
+          <p class="qtext"><span class="en">Smart home innovation must be context-sensitive. The USA benefits from energy automation and solar integration, while Thailand's priorities around water scarcity and urban security call for distinct, regionally tailored solutions. Collaboration between government, industry, and academia is essential to meet SDG targets.</span><span class="de">Smart-Home-Innovation muss kontextsensitiv sein. Die USA profitieren von Energieautomatisierung, während Thailands Prioritäten bei Wasserknappheit und urbaner Sicherheit andere Lösungen erfordern.</span></p>
+        </div>
+      </div>
+      <div>
+        <p class="blabel"><span class="en">Deliverables</span><span class="de">Liefergegenstände</span></p>
+        <ul class="blist">
+          <li><span class="en">PESTEL analysis for USA and Thailand smart home markets</span><span class="de">PESTEL-Analyse für Smart-Home-Märkte in den USA und Thailand</span></li>
+          <li><span class="en">4 targeted innovation proposals with technical specifications</span><span class="de">4 Innovationsvorschläge mit technischen Spezifikationen</span></li>
+          <li><span class="en">Technology Radar for Smart Security System — 4-quadrant adoption mapping</span><span class="de">Technology Radar für Smart-Sicherheitssystem — 4-Quadranten-Adoptionskartierung</span></li>
+          <li><span class="en">SDG alignment analysis across all proposed innovations</span><span class="de">SDG-Ausrichtungsanalyse für alle vorgeschlagenen Innovationen</span></li>
+          <li><span class="en">Group 5 — collaborative TAS module project, Hochschule Harz</span><span class="de">Gruppe 5 — kollaboratives TAS-Modulprojekt, Hochschule Harz</span></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <p class="blabel" style="margin-bottom:.8rem"><span class="en">Modules Applied</span><span class="de">Angewandte Module</span></p>
+          <div class="ptags" style="margin-top:0">
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">PESTEL</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)"><span class="en">Technology Radar</span><span class="de">Technologie-Radar</span></span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">IoT</span>
+            <span class="ptag" style="border-color:rgba(255,255,255,.12);color:rgba(240,239,236,.5)">SDGs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov-footer">
+      <a class="back-btn" href="#" onclick="closeOv();return false;"><span class="en">← All Projects</span><span class="de">← Alle Projekte</span></a>
+      <a class="back-btn" href="#" onclick="closeOv();goTo('contact');return false;"><span class="en">Contact →</span><span class="de">Kontakt →</span></a>
+    </div>
+  </div>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── CORE ── */
+const SECTIONS = ['home','about','projects','skills','contact'];
+let lang = 'en', activeOv = null;
+
+function goTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const navH = 60;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+  setNav(id);
+}
+
+function setNav(id) {
+  document.querySelectorAll('#nav-links a').forEach(a => {
+    a.classList.toggle('on', a.dataset.s === id);
+  });
+}
+
+function toggleLang() {
+  lang = lang === 'en' ? 'de' : 'en';
+  document.body.classList.toggle('de', lang === 'de');
+  document.getElementById('langBtn').textContent = lang === 'en' ? 'DE' : 'EN';
+  document.documentElement.lang = lang;
+}
+
+/* ── MOBILE MENU ── */
+function toggleMenu() {
+  document.getElementById('burger').classList.toggle('open');
+  document.getElementById('mobile-menu').classList.toggle('open');
+  document.body.style.overflow =
+    document.getElementById('mobile-menu').classList.contains('open') ? 'hidden' : '';
+}
+function mobileGo(id) {
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => goTo(id), 60);
+  return false;
+}
+
+/* ── OVERLAYS ── */
+function openOv(which) {
+  activeOv = which;
+  const el = document.getElementById('ov-' + which);
+  el.classList.add('open');
+  el.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  if (which === 'yolo') {
+    setTimeout(() => {
+      el.querySelectorAll('.bfill').forEach(b => b.classList.add('go'));
+    }, 500);
+  }
+}
+function closeOv() {
+  if (activeOv) {
+    document.getElementById('ov-' + activeOv).classList.remove('open');
+    activeOv = null;
+  }
+  document.body.style.overflow = '';
+  return false;
+}
+
+/* ── YOLO HEADER responsive ── */
+function fixYoloTop() {
+  const el = document.querySelector('.yolo-top');
+  if (el) el.style.gridTemplateColumns = window.innerWidth <= 768 ? '1fr' : '2fr 1fr';
+}
+window.addEventListener('resize', fixYoloTop);
+fixYoloTop();
+
+/* ── REVEALS ── */
+// Desktop: IntersectionObserver per section
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.25) {
+      setNav(e.target.id);
+      e.target.querySelectorAll('.r').forEach(el => el.classList.add('show'));
+    }
+  });
+}, { threshold: 0.25 });
+SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+
+// Mobile + fallback: scroll-based reveals
+function mobileReveal() {
+  document.querySelectorAll('.r:not(.show)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
+      el.classList.add('show');
+    }
+  });
+}
+window.addEventListener('scroll', mobileReveal, { passive: true });
+// Always run reveals — catches mobile and cases where IO doesn't fire
+setTimeout(mobileReveal, 100);
+setTimeout(mobileReveal, 500);
+
+/* ── SCROLL-BASED NAV ACTIVE STATE ── */
+// Updates nav highlight as user scrolls (especially needed with sticky cards)
+function updateNavOnScroll() {
+  const navH = 60;
+  let current = 'home';
+  SECTIONS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= navH + 10) current = id;
+    }
+  });
+  setNav(current);
+}
+window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+updateNavOnScroll();
+
+
+/* ── ABOUT TEXT WORD REVEAL ── */
+(function() {
+  function wrapWords(el) {
+    // only wrap the visible lang span
+    el.querySelectorAll('.en, .de').forEach(function(span) {
+      var words = span.innerHTML.split(/(\s+)/);
+      span.innerHTML = words.map(function(w) {
+        return w.match(/\S/) ? '<span class="word">' + w + '</span>' : w;
+      }).join('');
+    });
+  }
+
+  var paras = document.querySelectorAll('.reveal-text');
+  paras.forEach(wrapWords);
+
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var words = entry.target.querySelectorAll('.word');
+      words.forEach(function(w, i) {
+        setTimeout(function() { w.classList.add('lit'); }, i * 28);
+      });
+      revealObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+
+  paras.forEach(function(p) { revealObs.observe(p); });
+})();
+
+/* ── LOADING SCREEN ── */
+(function() {
+  var TOTAL_MS = 2200;
+
+  async function runLoader() {
+    var loaderEl   = document.getElementById('loader');
+    var flashEl    = document.getElementById('loader-flash');
+    var phrase     = document.getElementById('loader-phrase');
+    var nameFirst  = document.getElementById('loader-name-first');
+    var nameLast   = document.getElementById('loader-name-last');
+    var nameRole   = document.getElementById('loader-name-role');
+    var bar        = document.getElementById('loader-inline-bar');
+
+    if (!loaderEl) return;
+    document.body.style.overflow = 'hidden';
+
+    // Fade in phrase + name
+    await new Promise(function(r) { setTimeout(r, 200); });
+    if (phrase)    phrase.style.opacity   = '1';
+    nameFirst.style.opacity = '1'; nameFirst.style.transform = 'translateY(0)';
+    nameLast.style.opacity  = '1'; nameLast.style.transform  = 'translateY(0)';
+    nameRole.style.opacity  = '1'; nameRole.style.transform  = 'translateY(0)';
+
+    // Run progress bar
+    await new Promise(function(r) { setTimeout(r, 500); });
+    bar.style.transition = 'width ' + (TOTAL_MS - 300) + 'ms cubic-bezier(0.4,0,0.2,1)';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { bar.style.width = '100%'; });
+    });
+
+    await new Promise(function(r) { setTimeout(r, TOTAL_MS); });
+
+    // Flash then fade
+    flashEl.style.transition = 'opacity .15s ease';
+    flashEl.style.opacity = '0.85';
+    await new Promise(function(r) { setTimeout(r, 150); });
+    flashEl.style.transition = 'opacity .5s ease';
+    flashEl.style.opacity = '0';
+
+    loaderEl.style.transition = 'opacity .5s ease';
+    loaderEl.style.opacity = '0';
+    await new Promise(function(r) { setTimeout(r, 520); });
+    loaderEl.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runLoader);
+  } else {
+    runLoader();
+  }
+})();
+
+</script>
+</body>
+</html>
