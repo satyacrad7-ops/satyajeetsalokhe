@@ -226,6 +226,29 @@
   color: var(--text-faint);
 }
 
+[data-theme="light"] .workflow-title {
+  color: var(--text);
+}
+[data-theme="light"] .workflow-num {
+  color: var(--text-faint);
+  font-weight: 700;
+}
+[data-theme="light"] .methods-label {
+  color: var(--text-faint);
+  font-weight: 700;
+}
+[data-theme="light"] .methods-item {
+  color: var(--text-dim);
+}
+
+[data-theme="light"] .workflow-method-pill {
+  color: var(--text-faint);
+  border-color: var(--border-soft);
+}
+[data-theme="light"] .workflow-divider {
+  background: var(--border-soft);
+}
+
 html { scroll-behavior: smooth; scroll-padding-top: 60px; }
 body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: background .35s ease, color .35s ease; }
 a { text-decoration: none; }
@@ -329,12 +352,24 @@ body.de .en { display: none !important; }
   position: relative;
   z-index: 3;
 }
+/* Skills card — same treatment as projects, content too tall for sticky */
+#skills {
+  position: relative !important;
+  min-height: auto;
+  justify-content: flex-start;
+  overflow: visible;
+  padding-bottom: 80px;
+}
+#skills-wrap {
+  position: relative;
+  z-index: 4;
+}
 /* Next cards still stack on top — handled via ID selectors above */
 .card:nth-child(1) { background: var(--bg); z-index: 1; }
 .card:nth-child(2) { background: var(--bg-2); color: var(--text); z-index: 2; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px var(--shadow-card); }
 /* projects card lives inside #projects-wrap, handled separately */
 #projects { background: var(--bg-3); border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px var(--shadow-card); }
-#skills { background: var(--bg-2); color: var(--text); z-index: 4; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px var(--shadow-card); }
+#skills { background: var(--bg-2); color: var(--text); border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px var(--shadow-card); }
 #contact { background: var(--bg); z-index: 5; border-radius: 16px 16px 0 0; box-shadow: 0 -24px 60px var(--shadow-card); }
 
 /* ══════════════════════════════════════
@@ -524,14 +559,83 @@ body.de .en { display: none !important; }
 /* ══════════════════════════════════════
    SKILLS CARD
 ══════════════════════════════════════ */
-.skills-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; width: 100%; }
+.skills-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+  width: 100%;
+}
 .skills-left { position: sticky; top: 80px; }
-.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-faint); }
-.skill-box { background: var(--bg-box); padding: 1.8rem; transition: background .3s; }
-.skill-box:hover { background: var(--bg-deep); }
-.skill-cat { font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-col); margin-bottom: 1.3rem; padding-bottom: .7rem; border-bottom: 1px solid var(--border-accent); }
-.skill-list { list-style: none; }
-.skill-list li { font-size: .78rem; font-weight: 400; line-height: 2; color: var(--text-mid); }
+
+/* Workflow cards — 3 across */
+.workflow-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border-faint);
+  margin-bottom: 2.5rem;
+}
+.workflow-card {
+  background: var(--bg-box);
+  padding: 2rem 2rem 1.8rem;
+  border-left: 2px solid transparent;
+  transition: background .3s, border-left-color .3s;
+}
+.workflow-card:hover {
+  background: var(--bg-deep);
+  border-left-color: var(--accent-col);
+}
+.workflow-num {
+  font-size: .48rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--text-ghost); margin-bottom: .9rem;
+}
+.workflow-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 400; letter-spacing: .03em; line-height: 1.1;
+  color: var(--text);
+  margin-bottom: .75rem;
+}
+.workflow-desc {
+  font-size: .80rem; font-weight: 400; line-height: 1.85;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+  max-width: 56ch;
+}
+.workflow-tools {
+  display: flex; flex-wrap: wrap; gap: .3rem;
+}
+.workflow-tool {
+  font-size: .44rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  border: 1px solid var(--border-mid);
+  color: var(--text-faint);
+  padding: .18rem .5rem;
+}
+
+/* Divider between tools and methods within a card */
+.workflow-divider {
+  height: 1px;
+  background: var(--border-faint);
+  margin: 1.1rem 0 .9rem;
+}
+
+/* Method pills — dimmer than tool pills, italic feel */
+.workflow-methods {
+  display: flex; flex-wrap: wrap; gap: .3rem;
+}
+.workflow-method-pill {
+  font-size: .42rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-ghost);
+  padding: .15rem .45rem;
+  border: 1px solid var(--border-faint);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .skills-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .skills-left { position: static; }
+}
 
 /* ══════════════════════════════════════
    CONTACT CARD
@@ -688,19 +792,16 @@ body.de .en { display: none !important; }
   #home.card { min-height: 100svh !important; }
 
   /* --- Backgrounds still applied --- */
-  .card:nth-child(2) { background: var(--bg-2); color: var(--text); }
-  .card:nth-child(3) { background: var(--bg-3); color: var(--text); }
-  .card:nth-child(4) { background: var(--bg-2); color: var(--text); }
-  .card:nth-child(5) { background: var(--bg); color: var(--text); }
+  #about  { background: var(--bg-2); color: var(--text); }
+  #projects { background: var(--bg-3); color: var(--text); }
+  #skills { background: var(--bg-2); color: var(--text); }
+  #contact { background: var(--bg); color: var(--text); }
 
   /* --- Layouts collapse --- */
   .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
   .about-photo-frame { aspect-ratio: 4/3; }
   .about-photo-frame img { object-position: center 55%; }
   .proj-grid { grid-template-columns: 1fr; }
-  .skills-wrap { grid-template-columns: 1fr; gap: 2rem; }
-  .skills-left { position: static; }
-  .skill-grid { grid-template-columns: 1fr 1fr; }
   .contact-cols { grid-template-columns: 1fr; gap: 2rem; }
   .footer { flex-direction: column; gap: .5rem; text-align: center; }
   .contact-ghost { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 2.5rem; }
@@ -791,6 +892,33 @@ body.de .en { display: none !important; }
 #loader-flash {
   position: fixed; inset: 0; background: var(--flash-col);
   z-index: 100000; opacity: 0; pointer-events: none;
+}
+
+/* ── LOADER WHISPER — story aside ── */
+#loader-whisper {
+  margin-top: 2.2rem;
+  opacity: 0;
+  transition: opacity .9s ease;
+  pointer-events: none;
+}
+#loader-whisper.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+#loader-whisper a {
+  font-size: clamp(.36rem, .8vw, .48rem);
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: .2rem;
+  transition: color .2s, border-color .2s;
+}
+#loader-whisper a:hover {
+  color: var(--text-dim);
+  border-color: var(--border-mid);
 }
 
 
@@ -967,6 +1095,9 @@ body.de .en { display: none !important; }
       <div id="loader-name-role">Product &middot; Marketing &middot; Innovation</div>
       <div id="loader-inline-progress">
         <div id="loader-inline-bar"></div>
+      </div>
+      <div id="loader-whisper">
+        <a href="#" onclick="loaderGoStory();return false;">or read my life in lyrics →</a>
       </div>
     </div>
   </div>
@@ -1237,33 +1368,112 @@ body.de .en { display: none !important; }
 </div><!-- /projects-wrap -->
 
 <!-- 4. SKILLS -->
+<div id="skills-wrap">
 <section class="card" id="skills">
   <div class="skills-wrap">
+
     <div class="skills-left">
       <p class="section-label dark r" data-n="03"><span class="en">Skills</span><span class="de">Kenntnisse</span></p>
-      <h2 class="section-title r d1"><span class="en">Tools &amp;<br>methods</span><span class="de">Werkzeuge &amp;<br>Methoden</span></h2>
-      <p class="body-dark r d2" style="margin-top:1.2rem;font-size:.72rem"><span class="en">A toolkit built across product, project, marketing, and technology disciplines.</span><span class="de">Ein Werkzeugkasten aus Produkt-, Projekt-, Marketing- und Technologiebereichen.</span></p>
+      <h2 class="section-title r d1"><span class="en">How I<br>work</span><span class="de">Wie ich<br>arbeite</span></h2>
+      <p class="body-dark r d2" style="margin-top:1.2rem;font-size:.76rem;max-width:28ch;">
+        <span class="en">Three modes. Each one is a different kind of problem — and a different set of tools working together to solve it.</span>
+        <span class="de">Drei Arbeitsmodi. Jeder löst eine andere Art von Problem — mit unterschiedlichen Tools, die zusammenwirken.</span>
+      </p>
     </div>
-    <div class="skill-grid r d1">
-      <div class="skill-box">
-        <p class="skill-cat"><span class="en">Digital Tools</span><span class="de">Digitale Tools</span></p>
-        <ul class="skill-list"><li>Figma Sites &amp; FigJam</li><li>Conceptboard &amp; Miro</li><li>ChatGPT &amp; Copilot</li><li>Notion &amp; Canva</li></ul>
-      </div>
-      <div class="skill-box">
-        <p class="skill-cat"><span class="en">Agile &amp; Project</span><span class="de">Agile &amp; Projekt</span></p>
-        <ul class="skill-list"><li>Scrum &amp; SAFe</li><li>Lean Six Sigma</li><li>Jira &amp; MS Teams</li><li><span class="en">Risk Analysis</span><span class="de">Risikoanalyse</span></li></ul>
-      </div>
-      <div class="skill-box">
-        <p class="skill-cat">Marketing</p>
-        <ul class="skill-list"><li><span class="en">Digital Marketing</span><span class="de">Digitales Marketing</span></li><li><span class="en">Market Research</span><span class="de">Marktforschung</span></li><li>DaVinci Resolve</li><li>Power BI &amp; Excel</li></ul>
-      </div>
-      <div class="skill-box">
-        <p class="skill-cat"><span class="en">Innovation</span><span class="de">Innovation</span></p>
-        <ul class="skill-list"><li><span class="en">Innovation Platform Design</span><span class="de">Innovationsplattform-Design</span></li><li><span class="en">Idea Engineering</span><span class="de">Ideen-Engineering</span></li><li>Change Management</li><li><span class="en">Tech Adoption</span><span class="de">Technologieadoption</span></li></ul>
-      </div>
+
+    <div class="r d1">
+      <div class="workflow-grid">
+
+        <!-- Workflow 01 -->
+        <div class="workflow-card">
+          <p class="workflow-num">01</p>
+          <h3 class="workflow-title"><span class="en">Brief → Prototype</span><span class="de">Brief → Prototyp</span></h3>
+          <p class="workflow-desc">
+            <span class="en">A stakeholder describes a problem. Within a session I can go from blank page to something tangible enough to react to — using Claude to pressure-test the brief, Figma to make it visual, Canva when it needs to move or present. The gap between "idea" and "thing you can show someone" has collapsed.</span>
+            <span class="de">Ein Stakeholder beschreibt ein Problem. Innerhalb einer Session kann ich von der leeren Seite zu etwas Greifbarem gelangen — Claude zum Hinterfragen des Briefs, Figma zur Visualisierung, Canva wenn es präsentiert werden muss.</span>
+          </p>
+          <div class="workflow-tools">
+            <span class="workflow-tool">Claude</span>
+            <span class="workflow-tool">ChatGPT</span>
+            <span class="workflow-tool">Copilot</span>
+            <span class="workflow-tool">Figma</span>
+            <span class="workflow-tool">FigJam</span>
+            <span class="workflow-tool">Canva</span>
+            <span class="workflow-tool">Notion AI</span>
+            <span class="workflow-tool">Miro</span>
+          </div>
+          <div class="workflow-divider"></div>
+          <div class="workflow-methods">
+            <span class="workflow-method-pill"><span class="en">Design Thinking</span><span class="de">Design Thinking</span></span>
+            <span class="workflow-method-pill"><span class="en">Rapid Prototyping</span><span class="de">Rapid Prototyping</span></span>
+            <span class="workflow-method-pill"><span class="en">User Persona Research</span><span class="de">Nutzer-Persona-Forschung</span></span>
+            <span class="workflow-method-pill"><span class="en">Stakeholder Pitching</span><span class="de">Stakeholder-Pitching</span></span>
+          </div>
+        </div>
+
+        <!-- Workflow 02 -->
+        <div class="workflow-card">
+          <p class="workflow-num">02</p>
+          <h3 class="workflow-title"><span class="en">Complexity → Clarity</span><span class="de">Komplexität → Klarheit</span></h3>
+          <p class="workflow-desc">
+            <span class="en">When a problem is genuinely messy — multiple stakeholders, conflicting inputs, unclear root cause — I reach for structured methods on collaborative canvases. Miro and Conceptboard for mapping and ideation, 5 Whys and Benefit Analysis for working through the fog to a defensible recommendation. This is where I actually enjoy the process most.</span>
+            <span class="de">Bei wirklich unübersichtlichen Problemen — mehrere Stakeholder, widersprüchliche Inputs — nutze ich strukturierte Methoden auf kollaborativen Canvases. Miro und Conceptboard zum Mapping, 5-Warum und Nutzwertanalyse für klare Empfehlungen.</span>
+          </p>
+          <div class="workflow-tools">
+            <span class="workflow-tool">Miro</span>
+            <span class="workflow-tool">Conceptboard</span>
+            <span class="workflow-tool">FigJam</span>
+            <span class="workflow-tool">Jira</span>
+            <span class="workflow-tool">MS Teams</span>
+            <span class="workflow-tool">Notion</span>
+            <span class="workflow-tool">Excel</span>
+          </div>
+          <div class="workflow-divider"></div>
+          <div class="workflow-methods">
+            <span class="workflow-method-pill">5 Whys</span>
+            <span class="workflow-method-pill"><span class="en">Benefit Analysis</span><span class="de">Nutzwertanalyse</span></span>
+            <span class="workflow-method-pill">Scrum &amp; SAFe</span>
+            <span class="workflow-method-pill">Lean Six Sigma</span>
+            <span class="workflow-method-pill"><span class="en">Risk Analysis</span><span class="de">Risikoanalyse</span></span>
+            <span class="workflow-method-pill"><span class="en">Innovation Platform Design</span><span class="de">Innovationsplattform-Design</span></span>
+            <span class="workflow-method-pill"><span class="en">Idea Engineering</span><span class="de">Ideen-Engineering</span></span>
+          </div>
+        </div>
+
+        <!-- Workflow 03 -->
+        <div class="workflow-card">
+          <p class="workflow-num">03</p>
+          <h3 class="workflow-title"><span class="en">Concept → Audience</span><span class="de">Konzept → Publikum</span></h3>
+          <p class="workflow-desc">
+            <span class="en">Once the thinking is done, the work isn't. Getting a validated idea in front of the right people requires a different skill — translating it into whatever format they need. A marketing video edited in DaVinci. A data story in Power BI. A product deck in Canva. The tool always serves the audience, not the other way around.</span>
+            <span class="de">Sobald das Denken abgeschlossen ist, ist die Arbeit nicht vorbei. Eine validierte Idee vor das richtige Publikum zu bringen erfordert eine andere Fertigkeit — sie in das jeweils passende Format zu übersetzen.</span>
+          </p>
+          <div class="workflow-tools">
+            <span class="workflow-tool">DaVinci Resolve</span>
+            <span class="workflow-tool">Power BI</span>
+            <span class="workflow-tool">Excel</span>
+            <span class="workflow-tool">Canva</span>
+            <span class="workflow-tool">Figma</span>
+            <span class="workflow-tool">Jira &amp; MS Teams</span>
+            <span class="workflow-tool">Notion</span>
+          </div>
+          <div class="workflow-divider"></div>
+          <div class="workflow-methods">
+            <span class="workflow-method-pill"><span class="en">Digital Marketing</span><span class="de">Digitales Marketing</span></span>
+            <span class="workflow-method-pill"><span class="en">Market Research</span><span class="de">Marktforschung</span></span>
+            <span class="workflow-method-pill"><span class="en">Change Management</span><span class="de">Change Management</span></span>
+            <span class="workflow-method-pill"><span class="en">Tech Adoption</span><span class="de">Technologieadoption</span></span>
+            <span class="workflow-method-pill">PESTEL</span>
+            <span class="workflow-method-pill"><span class="en">Technology Radar</span><span class="de">Technologie-Radar</span></span>
+          </div>
+        </div>
+
+      </div><!-- /workflow-grid -->
     </div>
+
   </div>
 </section>
+</div><!-- /skills-wrap -->
 
 <!-- 5. CONTACT -->
 <section class="card" id="contact">
@@ -1515,8 +1725,8 @@ body.de .en { display: none !important; }
 
     <p class="blabel" style="margin-bottom:1.5rem"><span class="en">Photo Gallery</span><span class="de">Fotogalerie</span></p>
     <div class="photo-grid">
-      <div class="photo-wrap"><img src="satya-photo.jpg" alt="Robomaster TT Drone lab"></div>
-      <div class="photo-wrap"><img src="satya-photo.jpg" alt="Robomaster TT Drone flight"></div>
+      <div class="photo-wrap"><img src="yolo-lab.jpg" alt="Robomaster TT Drone lab setup"></div>
+      <div class="photo-wrap"><img src="yolo-flight.jpg" alt="Robomaster TT Drone outdoor flight test"></div>
     </div>
     <div class="caps">
       <div class="cap"><span class="en">Robomaster TT — Lab setup</span><span class="de">Robomaster TT — Laboraufbau</span></div>
@@ -2030,6 +2240,22 @@ updateNavOnScroll();
 /* ── LOADING SCREEN ── */
 (function() {
   var TOTAL_MS = 2200;
+  var WHISPER_LINGER = 1400; // extra time after bar fills so whisper is readable
+  var storyClicked = false;
+
+  window.loaderGoStory = function() {
+    storyClicked = true;
+    var loaderEl = document.getElementById('loader');
+    var whisper  = document.getElementById('loader-whisper');
+    if (whisper) whisper.style.opacity = '0';
+    loaderEl.style.transition = 'opacity .4s ease';
+    loaderEl.style.opacity = '0';
+    setTimeout(function() {
+      loaderEl.style.display = 'none';
+      document.body.style.overflow = '';
+      openOv('story');
+    }, 420);
+  };
 
   async function runLoader() {
     var loaderEl  = document.getElementById('loader');
@@ -2039,23 +2265,34 @@ updateNavOnScroll();
     var nameLast  = document.getElementById('loader-name-last');
     var nameRole  = document.getElementById('loader-name-role');
     var bar       = document.getElementById('loader-inline-bar');
+    var whisper   = document.getElementById('loader-whisper');
 
     if (!loaderEl) return;
     document.body.style.overflow = 'hidden';
 
+    // Names fade in
     await new Promise(function(r) { setTimeout(r, 200); });
     if (phrase) phrase.style.opacity = '1';
     nameFirst.style.opacity = '1'; nameFirst.style.transform = 'translateY(0)';
     nameLast.style.opacity  = '1'; nameLast.style.transform  = 'translateY(0)';
     nameRole.style.opacity  = '1'; nameRole.style.transform  = 'translateY(0)';
 
+    // Bar starts filling
     await new Promise(function(r) { setTimeout(r, 500); });
     bar.style.transition = 'width ' + (TOTAL_MS - 300) + 'ms cubic-bezier(0.4,0,0.2,1)';
     requestAnimationFrame(function() {
       requestAnimationFrame(function() { bar.style.width = '100%'; });
     });
 
+    // Wait for bar to finish, then show whisper
     await new Promise(function(r) { setTimeout(r, TOTAL_MS); });
+    if (!storyClicked && whisper) {
+      whisper.classList.add('visible');
+    }
+
+    // Linger so whisper is readable, then exit if story wasn't clicked
+    await new Promise(function(r) { setTimeout(r, WHISPER_LINGER); });
+    if (storyClicked) return;
 
     flashEl.style.transition = 'opacity .15s ease';
     flashEl.style.opacity = '0.85';
@@ -2105,7 +2342,7 @@ updateNavOnScroll();
       <span class="pt-white">My Life</span>
       <span class="pt-grey"> in Lyrics</span>
     </div>
-    <p class="page-title-sub">Ten chapters, three cities, and the songs that were playing when it all happened.</p>
+    <p class="page-title-sub">Ten chapters, ten cities, and the songs that were playing when it all happened.</p>
   </div>
 
 
