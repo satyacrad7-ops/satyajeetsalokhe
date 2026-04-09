@@ -12,18 +12,119 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Satyajeet Salokhe">
 <meta name="twitter:description" content="Product · Project · Innovation">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGZR1TVQRR"></script>
+<!-- GA4 — loads only after cookie consent -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-VGZR1TVQRR');
+  gtag('consent','default',{analytics_storage:'denied'});
+
+  function enableGA4(){
+    if(window._ga4loaded) return;
+    window._ga4loaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VGZR1TVQRR';
+    document.head.appendChild(s);
+    s.onload = function(){
+      gtag('js', new Date());
+      gtag('consent','update',{analytics_storage:'granted'});
+      gtag('config','G-VGZR1TVQRR');
+    };
+  }
+
+  // Auto-enable if already consented
+  if(localStorage.getItem('cookie_consent') === 'accepted') enableGA4();
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
-/* ─── RESET & BASE ─── */
+/* ─── COOKIE BANNER ─── */
+#cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: rgba(10,10,10,0.97);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 1rem clamp(1.5rem,6vw,5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+[data-theme="light"] #cookie-banner {
+  background: rgba(240,239,236,0.97);
+  border-top: 1px solid rgba(26,25,22,0.1);
+}
+#cookie-banner p {
+  font-family: 'Syne', sans-serif;
+  font-size: .52rem;
+  letter-spacing: .08em;
+  color: rgba(240,239,236,.6);
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+[data-theme="light"] #cookie-banner p {
+  color: rgba(26,25,22,.6);
+}
+#cookie-banner p a {
+  color: rgba(240,239,236,.85);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+[data-theme="light"] #cookie-banner p a {
+  color: rgba(26,25,22,.85);
+}
+.cookie-btns {
+  display: flex;
+  gap: .6rem;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: .48rem;
+  letter-spacing: .12em;
+  font-weight: 600;
+  padding: .5rem 1.2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.18);
+  background: transparent;
+  color: rgba(240,239,236,.7);
+  transition: all .2s;
+  text-transform: uppercase;
+}
+.cookie-btn:hover { color: var(--text); border-color: rgba(255,255,255,.4); }
+.cookie-btn.accept {
+  background: rgba(240,239,236,.08);
+  color: var(--text);
+  border-color: rgba(255,255,255,.25);
+}
+.cookie-btn.accept:hover { background: rgba(240,239,236,.15); }
+[data-theme="light"] .cookie-btn { color: rgba(26,25,22,.6); border-color: rgba(26,25,22,.2); }
+[data-theme="light"] .cookie-btn.accept { background: rgba(26,25,22,.06); color: rgba(26,25,22,.9); border-color: rgba(26,25,22,.3); }
+
+/* ─── IMPRESSUM FOOTER LINE ─── */
+.impressum-line {
+  text-align: center;
+  padding: .8rem var(--p);
+  font-family: 'Syne', sans-serif;
+  font-size: .44rem;
+  letter-spacing: .1em;
+  color: var(--text-ghost);
+  border-top: 1px solid var(--border-faint);
+}
+.impressum-line a {
+  color: var(--text-ghost);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color .2s;
+}
+.impressum-line a:hover { color: var(--text-faint); }
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
   --black: #080808;
@@ -2521,5 +2622,45 @@ document.querySelectorAll('.story p').forEach(p => {
 </div>
 
 </div>
+<!-- ═══ COOKIE CONSENT BANNER ═══ -->
+<div id="cookie-banner" style="display:none">
+  <p>
+    This site uses cookies (Google Analytics) to understand how visitors interact with the content.
+    No personal data is sold or shared. See the <a href="#impressum" onclick="document.getElementById('cookie-banner').style.display='none'">Impressum &amp; Privacy</a> for details.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn decline" onclick="cookieDecline()">Decline</button>
+    <button class="cookie-btn accept" onclick="cookieAccept()">Accept</button>
+  </div>
+</div>
+
+<!-- ═══ IMPRESSUM LINE ═══ -->
+<div class="impressum-line" id="impressum">
+  Impressum · Satyajeet Salokhe · Wernigerode, Germany · <a href="mailto:contact@satyajeetsalokhe.com">contact@satyajeetsalokhe.com</a>
+  &nbsp;·&nbsp;
+  This site uses Google Analytics with your consent. Data processed by Google LLC, USA. You may withdraw consent at any time by clearing cookies.
+</div>
+
+<script>
+// ── Cookie Consent Logic ──
+function cookieAccept(){
+  localStorage.setItem('cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  enableGA4();
+}
+function cookieDecline(){
+  localStorage.setItem('cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+// Show banner only if no choice made yet
+window.addEventListener('DOMContentLoaded', function(){
+  if(!localStorage.getItem('cookie_consent')){
+    setTimeout(function(){
+      document.getElementById('cookie-banner').style.display='flex';
+    }, 1500);
+  }
+});
+</script>
+
 </body>
 </html>
