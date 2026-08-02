@@ -384,6 +384,11 @@ body.de .en { display: none !important; }
   border-bottom: 1px solid var(--border-nav);
   transition: background .35s ease, border-color .35s ease;
 }
+/* Nav goes transparent only while the video hero is in view — unchanged everywhere else */
+#nav.nav-on-home {
+  background: transparent;
+  border-bottom-color: transparent;
+}
 #nav-left { display: flex; align-items: center; gap: 1.4rem; }
 .logo { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; font-weight: 400; letter-spacing: .1em; color: var(--text); }
 .lang { font-size: .54rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text); background: none; border: 1px solid var(--border-lang); padding: .25rem .6rem; cursor: pointer; transition: border-color .2s, color .2s; }
@@ -543,6 +548,54 @@ body.de .en { display: none !important; }
 #home .year-stamp { z-index: 1; }
 
 /* ══════════════════════════════════════
+   HOME — FULL-BLEED VIDEO HERO
+   (video replaces the skewed gallery visually;
+   gallery markup is kept in the DOM, just hidden)
+══════════════════════════════════════ */
+#home #home-gallery { display: none; }
+
+#home-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+#home-video-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,.32) 0%, rgba(0,0,0,.8) 78%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-name {
+  position: absolute; top: 92px; left: var(--p);
+  z-index: 1;
+  font-size: .6rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--text-hi);
+}
+
+.hero-bottom-left {
+  position: absolute; left: var(--p); bottom: 2.6rem; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-start; gap: .8rem;
+}
+.hero-bottom-left .cta,
+.hero-bottom-left .story-cta { margin-top: 0; }
+.hero-version {
+  font-size: .42rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text-ghost);
+}
+
+@media (max-width: 768px) {
+  .hero-name, .hero-bottom-left, #home .hero-quote {
+    position: static !important; margin: 0 0 1.2rem !important; max-width: none !important; text-align: left !important;
+  }
+  #home { display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 3rem; }
+  #home-video { object-position: center 30%; }
+}
+
+/* ══════════════════════════════════════
    SKEWED GALLERY — Home card right side
 ══════════════════════════════════════ */
 #home-gallery {
@@ -589,7 +642,7 @@ body.de .en { display: none !important; }
   font-size: .54rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
   margin-bottom: 1.8rem;
 }
-.section-label::before { content: attr(data-n); opacity: .3; margin-right: .7rem; font-size: .5rem; }
+.section-label::before { content: none; }
 .section-label.light { color: var(--accent-col); }
 .section-label.dark { color: var(--accent-col); }
 .section-title {
@@ -1052,27 +1105,26 @@ body.de .en { display: none !important; }
    HERO QUOTE
 ══════════════════════════════════════ */
 #home .hero-quote {
-  position: relative; z-index: 1;
-  margin-top: 2.8rem;
-  padding-top: 1.8rem;
-  border-top: 1px solid var(--hero-quote-b);
-  max-width: 50ch;
+  position: absolute; z-index: 1;
+  right: var(--p); bottom: 2.6rem;
+  max-width: 260px;
+  text-align: right;
 }
 #home .hero-quote p {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-size: .68rem;
   font-weight: 300;
   font-style: italic;
   color: var(--text-hi);
-  line-height: 1.45;
+  line-height: 1.5;
   letter-spacing: .01em;
 }
 #home .hero-quote cite {
   display: block;
-  margin-top: .75rem;
-  font-size: .48rem;
+  margin-top: .5rem;
+  font-size: .42rem;
   font-weight: 600;
-  letter-spacing: .26em;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--text-faint);
   font-style: normal;
@@ -1241,68 +1293,70 @@ body.de .en { display: none !important; }
 
 <!-- 1. HOME -->
 <section class="card" id="home">
-  <p class="tag r">
-    <span class="en">Product · Project · Marketing · Innovation</span>
-    <span class="de">Produkt · Projekt · Marketing · Innovation</span>
-  </p>
-  <h1 class="r d1">Satyajeet<br><em>Salokhe</em></h1>
-  <p class="sub r d2">
-    <span class="en">M.Eng student in Technology &amp; Innovation Management. Building products at the intersection of strategy, design, and engineering.</span>
-    <span class="de">M.Eng-Student in Technologie- und Innovationsmanagement. Produkte an der Schnittstelle von Strategie, Design und Technik.</span>
-  </p>
-  <a class="cta r d3" href="#" onclick="goTo('about');return false;">
-    <span class="en">Explore my work</span>
-    <span class="de">Meine Arbeit entdecken</span>
-  </a>
-  <a class="story-cta r d4" href="#" onclick="openOv('story');return false;">
-    <span class="en">Or read my life in lyrics →</span>
-    <span class="de">Mein Leben in Lyrics →</span>
-  </a>
 
-  <div class="year-stamp">v.03 — 2025</div>
-  <div class="hero-quote r">
+  <!-- Full-bleed hero video — replace src with your GitHub-hosted video path -->
+  <video id="home-video" autoplay muted loop playsinline poster="hero-poster.jpg">
+    <source src="hero-loop.mp4" type="video/mp4">
+  </video>
+  <div id="home-video-overlay"></div>
+
+  <p class="hero-name r d1">Satyajeet Salokhe</p>
+
+  <div class="hero-bottom-left r d3">
+    <a class="cta" href="#" onclick="goTo('about');return false;">
+      <span class="en">Explore my work</span>
+      <span class="de">Meine Arbeit entdecken</span>
+    </a>
+    <a class="story-cta" href="#" onclick="openOv('story');return false;">
+      <span class="en">Or read my life in lyrics →</span>
+      <span class="de">Mein Leben in Lyrics →</span>
+    </a>
+    <div class="hero-version">v.03 — 2025</div>
+  </div>
+
+  <div class="hero-quote r d4">
     <p>"And a new day will dawn for those who stand long."</p>
     <cite>— Led Zeppelin</cite>
   </div>
 
-  <!-- Skewed scrolling gallery -->
+  <!-- Skewed scrolling gallery (kept in DOM, hidden — video now fills this role) -->
   <div id="home-gallery">
     <div class="gallery-cols">
       <!-- Col 1 -->
       <div class="gallery-col"><div class="gallery-track">
-        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
-        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
-        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
-        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+        <div class="gtile"><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
         <!-- duplicate for seamless loop -->
-        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
-        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
-        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
-        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
+        <div class="gtile"><p class="gtile-title">Sustainable Product Strategy — Recycled Rubber</p><div class="gtile-tags"><span class="gtile-tag">Market Research</span><span class="gtile-tag">Sustainability</span></div></div>
+        <div class="gtile"><p class="gtile-title">YOLO-Based Drone Recognition</p><div class="gtile-tags"><span class="gtile-tag">YOLOv11</span><span class="gtile-tag">Computer Vision</span></div></div>
+        <div class="gtile"><p class="gtile-title">Deep Learning — Reliable User Identification</p><div class="gtile-tags"><span class="gtile-tag">Bi-LSTM</span><span class="gtile-tag">NLP</span></div></div>
+        <div class="gtile"><p class="gtile-title">Smart Necklace Product Concept</p><div class="gtile-tags"><span class="gtile-tag">Agile Sprint</span><span class="gtile-tag">Marketing Video</span></div></div>
       </div></div>
       <!-- Col 2 -->
       <div class="gallery-col"><div class="gallery-track">
-        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
-        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
-        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
-        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+        <div class="gtile"><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
         <!-- duplicate -->
-        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
-        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
-        <div class="gtile"><p class="gtile-num">001</p><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
-        <div class="gtile"><p class="gtile-num">003</p><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
+        <div class="gtile"><p class="gtile-title">Idea Engineering — Elbfabrik Collaboration Formats</p><div class="gtile-tags"><span class="gtile-tag">Innovation</span><span class="gtile-tag">5 Whys</span></div></div>
+        <div class="gtile"><p class="gtile-title">Technology Assessment — Smart Homes &amp; Buildings</p><div class="gtile-tags"><span class="gtile-tag">PESTEL</span><span class="gtile-tag">IoT</span></div></div>
+        <div class="gtile"><p class="gtile-title">Recycled Rubber — Eco Product Line</p><div class="gtile-tags"><span class="gtile-tag">User Personas</span><span class="gtile-tag">Stakeholders</span></div></div>
+        <div class="gtile"><p class="gtile-title">Real-Time Drone Detection System</p><div class="gtile-tags"><span class="gtile-tag">Industry 4.0</span><span class="gtile-tag">Deep Learning</span></div></div>
       </div></div>
       <!-- Col 3 -->
       <div class="gallery-col"><div class="gallery-track">
-        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
-        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
-        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
-        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+        <div class="gtile"><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
         <!-- duplicate -->
-        <div class="gtile"><p class="gtile-num">005</p><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
-        <div class="gtile"><p class="gtile-num">002</p><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
-        <div class="gtile"><p class="gtile-num">006</p><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
-        <div class="gtile"><p class="gtile-num">004</p><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
+        <div class="gtile"><p class="gtile-title">Crisis Tweet Classification — 94.54% Accuracy</p><div class="gtile-tags"><span class="gtile-tag">Sentiment</span><span class="gtile-tag">K-Means</span></div></div>
+        <div class="gtile"><p class="gtile-title">Smart Necklace — Agile Sprint &amp; Video Production</p><div class="gtile-tags"><span class="gtile-tag">DaVinci</span><span class="gtile-tag">Canva</span></div></div>
+        <div class="gtile"><p class="gtile-title">Technology Radar — AI, IoT &amp; Blockchain Adoption</p><div class="gtile-tags"><span class="gtile-tag">SDGs</span><span class="gtile-tag">Tech Radar</span></div></div>
+        <div class="gtile"><p class="gtile-title">Fraunhofer IFF — Innovation Platform Design</p><div class="gtile-tags"><span class="gtile-tag">Benefit Analysis</span><span class="gtile-tag">Brainstorming</span></div></div>
       </div></div>
     </div>
   </div>
@@ -1327,7 +1381,7 @@ body.de .en { display: none !important; }
 
     <!-- Col 2: Bio -->
     <div>
-      <p class="section-label dark r" data-n="01"><span class="en">About</span><span class="de">Über mich</span></p>
+      <p class="section-label dark r"><span class="en">About</span><span class="de">Über mich</span></p>
       <h2 class="section-title r d1">
         <span class="en">Built to go<br>the distance.</span>
         <span class="de">Gemacht für<br>den langen Weg.</span>
@@ -1384,7 +1438,7 @@ body.de .en { display: none !important; }
 <div id="projects-wrap">
 <section class="card" id="projects">
   <div class="proj-header">
-    <p class="section-label light r" data-n="02"><span class="en">Projects</span><span class="de">Projekte</span></p>
+    <p class="section-label light r"><span class="en">Projects</span><span class="de">Projekte</span></p>
     <h2 class="section-title r d1">
       <span class="en">Things I've built<br>&amp; explored</span>
       <span class="de">Was ich entwickelt<br>&amp; erforscht habe</span>
@@ -1394,7 +1448,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 001 -->
     <div class="proj-card clickable" onclick="openOv('rubber')">
-      <p class="pnum">001</p>
+      
       <h3 class="ptitle"><span class="en">Sustainable Product Strategy — Recycled Rubber</span><span class="de">Nachhaltige Produktstrategie — Recycelter Gummi</span></h3>
       <p class="pdesc"><span class="en">End-to-end product strategy: user persona research, stakeholder analysis, requirements definition, and concept pitching for an eco-friendly rubber product line.</span><span class="de">End-to-End-Produktstrategie: Nutzer-Persona-Forschung, Stakeholderanalyse, Anforderungsdefinition und Konzeptpitch für eine umweltfreundliche Gummiproduktlinie.</span></p>
       <div class="ptags">
@@ -1407,7 +1461,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 002 -->
     <div class="proj-card clickable" onclick="openOv('necklace')">
-      <p class="pnum">002</p>
+      
       <h3 class="ptitle"><span class="en">Smart Necklace Product Concept</span><span class="de">Produktkonzept: Intelligente Halskette</span></h3>
       <p class="pdesc"><span class="en">Led an Agile sprint for concept validation and feedback-driven design iteration. Produced a digital marketing video in DaVinci Resolve and Canva.</span><span class="de">Leitete einen Agile-Sprint zur Konzeptvalidierung. Produzierte ein digitales Marketingvideo in DaVinci Resolve und Canva.</span></p>
       <div class="ptags">
@@ -1420,7 +1474,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 003 -->
     <div class="proj-card clickable" onclick="openOv('yolo')">
-      <p class="pnum">003</p>
+      
       <h3 class="ptitle"><span class="en">YOLO-Based Drone Recognition</span><span class="de">YOLO-basierte Drohnenerkennung</span></h3>
       <p class="pdesc"><span class="en">Real-time object detection system achieving &gt;90% precision — reducing false positives by 25% and improving detection speed by 35% in an Industry 4.0 environment.</span><span class="de">Echtzeit-Objekterkennung mit &gt;90% Präzision — 25% weniger Falschpositive, 35% schnellere Erkennung in einer Industrie-4.0-Umgebung.</span></p>
       <div class="ptags">
@@ -1433,7 +1487,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 004 -->
     <div class="proj-card clickable" onclick="openOv('ideaeng')">
-      <p class="pnum">004</p>
+      
       <h3 class="ptitle"><span class="en">Idea Engineering — Elbfabrik Collaboration Formats</span><span class="de">Idea Engineering — Kollaborationsformate Elbfabrik</span></h3>
       <p class="pdesc"><span class="en">Systematic innovation management study: applied 5 Whys root cause analysis, brainstorming, and multi-criteria Benefit Analysis to design 5 collaboration formats for Fraunhofer IFF's Elbfabrik hub.</span><span class="de">Systematische Innovationsmanagementstudie: 5-Warum-Analyse, Brainstorming und Nutzwertanalyse zur Entwicklung von 5 Kollaborationsformaten für das Fraunhofer IFF Elbfabrik.</span></p>
       <div class="ptags">
@@ -1446,7 +1500,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 005 -->
     <div class="proj-card clickable" onclick="openOv('bilstm')">
-      <p class="pnum">005</p>
+      
       <h3 class="ptitle"><span class="en">Paper Review — Reliable User Identification in Social Media During Crisis</span><span class="de">Paper-Review — Zuverlässige Nutzeridentifikation in sozialen Medien während Krisen</span></h3>
       <p class="pdesc"><span class="en">Critical assessment and lecture presentation of a published deep learning paper — evaluated a Bi-LSTM system achieving 94.54% accuracy in classifying disaster tweets, analysing methodology, results, and real-world applicability.</span><span class="de">Präsentation eines akademischen Papers: Bi-LSTM-System mit 94,54 % Genauigkeit bei der Klassifizierung katastrophenbezogener Tweets mittels VADER-Sentiment-Analyse und K-Means-Clustering.</span></p>
       <div class="ptags">
@@ -1460,7 +1514,7 @@ body.de .en { display: none !important; }
 
     <!-- Card 006 -->
     <div class="proj-card clickable" onclick="openOv('smarthome')">
-      <p class="pnum">006</p>
+      
       <h3 class="ptitle"><span class="en">Technology Assessment — Smart Homes &amp; Buildings</span><span class="de">Technologiebewertung — Smart Homes &amp; Gebäude</span></h3>
       <p class="pdesc"><span class="en">Group TAS project comparing smart home innovation strategies for the USA and Thailand. Conducted PESTEL analysis, proposed four innovations, and produced a Technology Radar mapping adoption readiness across AI, IoT, and blockchain tools.</span><span class="de">Gruppen-TAS-Projekt: PESTEL-Analyse für USA und Thailand, vier Innovationsvorschläge und ein Technology Radar zur Bewertung von KI-, IoT- und Blockchain-Tools.</span></p>
       <div class="ptags">
@@ -1482,7 +1536,7 @@ body.de .en { display: none !important; }
   <div class="skills-wrap">
 
     <div class="skills-left">
-      <p class="section-label dark r" data-n="03"><span class="en">Skills</span><span class="de">Kenntnisse</span></p>
+      <p class="section-label dark r"><span class="en">Skills</span><span class="de">Kenntnisse</span></p>
       <h2 class="section-title r d1"><span class="en">How I<br>work</span><span class="de">Wie ich<br>arbeite</span></h2>
       <p class="body-dark r d2" style="margin-top:1.2rem;font-size:.76rem;max-width:28ch;">
         <span class="en">Three modes. Each one is a different kind of problem — and a different set of tools working together to solve it.</span>
@@ -1495,7 +1549,7 @@ body.de .en { display: none !important; }
 
         <!-- Workflow 01 -->
         <div class="workflow-card">
-          <p class="workflow-num">01</p>
+          
           <h3 class="workflow-title"><span class="en">Brief → Prototype</span><span class="de">Brief → Prototyp</span></h3>
           <p class="workflow-desc">
             <span class="en">A stakeholder describes a problem. Within a session I can go from blank page to something tangible enough to react to — using Claude to pressure-test the brief, Figma to make it visual, Canva when it needs to move or present. The gap between "idea" and "thing you can show someone" has collapsed.</span>
@@ -1522,7 +1576,7 @@ body.de .en { display: none !important; }
 
         <!-- Workflow 02 -->
         <div class="workflow-card">
-          <p class="workflow-num">02</p>
+          
           <h3 class="workflow-title"><span class="en">Complexity → Clarity</span><span class="de">Komplexität → Klarheit</span></h3>
           <p class="workflow-desc">
             <span class="en">When a problem is genuinely messy — multiple stakeholders, conflicting inputs, unclear root cause — I reach for structured methods on collaborative canvases. Miro and Conceptboard for mapping and ideation, 5 Whys and Benefit Analysis for working through the fog to a defensible recommendation. This is where I actually enjoy the process most.</span>
@@ -1551,7 +1605,7 @@ body.de .en { display: none !important; }
 
         <!-- Workflow 03 -->
         <div class="workflow-card">
-          <p class="workflow-num">03</p>
+          
           <h3 class="workflow-title"><span class="en">Concept → Audience</span><span class="de">Konzept → Publikum</span></h3>
           <p class="workflow-desc">
             <span class="en">Once the thinking is done, the work isn't. Getting a validated idea in front of the right people requires a different skill — translating it into whatever format they need. A marketing video edited in DaVinci. A data story in Power BI. A product deck in Canva. The tool always serves the audience, not the other way around.</span>
@@ -2173,6 +2227,7 @@ function setNav(id) {
   document.querySelectorAll('#nav-links a').forEach(a => {
     a.classList.toggle('on', a.dataset.s === id);
   });
+  document.getElementById('nav').classList.toggle('nav-on-home', id === 'home');
 }
 
 function toggleLang() {
